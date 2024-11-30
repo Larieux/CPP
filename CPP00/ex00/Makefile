@@ -9,7 +9,7 @@ VPATH =	$(SRCDIR)
 
 OBJ := $(SRC:%.c=$(OBJDIR)/%.o)
 
-CXX =		c++
+CC =		c++
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
 CPPFLAGS =	-I$(INCDIR)
 
@@ -18,13 +18,13 @@ NAME =	$(BINDIR)/megaphone
 all = $(NAME)
 
 $(NAME) : $(OBJ) | $(BINDIR)
-	$(CXX) $^ -o $@ $(CXXFLAGS)
+	$(CC) $^ -o $@ $(CXXFLAGS)
 
 $(BINDIR) $(OBJDIR) :
 	mkdir $@
 
 $(OBJDIR)/%.o : %.c | $(OBJDIR)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+	$(CC) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 clean :
 	@$(RM) -RV $(OBJDIR)
