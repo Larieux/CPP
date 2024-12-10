@@ -8,15 +8,15 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	else if (argc < 1 && argv)
+	else if (argc > 1 && argv)
 	{
-		for (int j = 1; i < argc; j++)
+		for (int j = 1; j < argc; j++)
 		{
 			arg = argv[j];
 			for(i = arg.begin(); i != arg.end(); ++i)
 				res += std::toupper(*i);
 		}
-		std::cout << std::res;
+		std::cout << res;
 	}
 	std::cout << std::endl;
 	return (0);
