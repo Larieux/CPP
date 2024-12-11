@@ -5,33 +5,38 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/11 16:04:16 by mlarieux          #+#    #+#              #
-#    Updated: 2024/12/11 16:04:18 by mlarieux         ###   ########.fr        #
+#    Created: 2024/12/11 15:18:32 by mlarieux          #+#    #+#              #
+#    Updated: 2024/12/11 17:29:06 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC=megaphone.cpp
+SRC =		phonebook.cpp
 
+SRCDIR =	src
+INCDIR =	include
 OBJDIR =	obj
 BINDIR =	.
+
+VPATH = $(SRCDIR)
 
 OBJ := $(SRC:%.c=$(OBJDIR)/%.o)
 
 CC =		c++
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
+CPPFLAGS =	-I$(INCDIR)
 
-NAME =	$(BINDIR)/megaphone
+NAME =	$(BINDIR)/phonebook
 
 all : $(NAME)
 
 $(NAME) : $(OBJ) | $(BINDIR)
-	$(CC) $^ -o $@ $(CXXFLAGS)
+	$(CC) $(CPPFLAGS) $^ -o $@ $(CXXFLAGS)
 
 $(BINDIR) $(OBJDIR) :
 	mkdir $@
 
 $(OBJDIR)/%.o : %.c | $(OBJDIR)
-	$(CC) $(CXXFLAGS) -c $< -o $@
+	$(CC) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 clean :
 	@$(RM) -rv $(OBJDIR)
