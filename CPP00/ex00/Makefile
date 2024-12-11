@@ -6,35 +6,38 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 16:04:16 by mlarieux          #+#    #+#              #
-#    Updated: 2024/12/11 16:04:18 by mlarieux         ###   ########.fr        #
+#    Updated: 2024/12/11 17:54:56 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC=megaphone.cpp
+SRC = megaphone.cpp
 
-OBJDIR =	obj
-BINDIR =	.
+SRC_DIR =	src
+OBJ_DIR =	obj
+BIN_DIR =	.
 
-OBJ := $(SRC:%.c=$(OBJDIR)/%.o)
+VPATH = $(SRC_DIR)
+
+OBJ := $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 CC =		c++
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
 
-NAME =	$(BINDIR)/megaphone
+NAME =	$(BIN_DIR)/megaphone
 
 all : $(NAME)
 
-$(NAME) : $(OBJ) | $(BINDIR)
+$(NAME) : $(OBJ) | $(BIN_DIR)
 	$(CC) $^ -o $@ $(CXXFLAGS)
 
-$(BINDIR) $(OBJDIR) :
+$(BIN_DIR) ${OBJ_DIR} :
 	mkdir $@
 
-$(OBJDIR)/%.o : %.c | $(OBJDIR)
+$(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)
 	$(CC) $(CXXFLAGS) -c $< -o $@
 
 clean :
-	@$(RM) -rv $(OBJDIR)
+	$(RM) -rv $(OBJ_DIR)
 
 fclean : clean
 	$(RM) $(NAME)
