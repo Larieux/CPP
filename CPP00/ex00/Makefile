@@ -1,4 +1,4 @@
-SRC=megaphone.cpp
+SRC =		megaphone.cpp
 
 SRCDIR =	src
 INCDIR =	include
@@ -15,7 +15,7 @@ CPPFLAGS =	-I$(INCDIR)
 
 NAME =	$(BINDIR)/megaphone
 
-all = $(NAME)
+all : $(NAME)
 
 $(NAME) : $(OBJ) | $(BINDIR)
 	$(CC) $^ -o $@ $(CXXFLAGS)
@@ -27,7 +27,7 @@ $(OBJDIR)/%.o : %.c | $(OBJDIR)
 	$(CC) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 clean :
-	@$(RM) -RV $(OBJDIR)
+	@$(RM) -rv $(OBJDIR)
 
 fclean : clean
 	$(RM) $(NAME)
