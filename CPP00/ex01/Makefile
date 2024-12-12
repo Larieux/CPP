@@ -6,11 +6,12 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 15:18:32 by mlarieux          #+#    #+#              #
-#    Updated: 2024/12/11 17:29:06 by mlarieux         ###   ########.fr        #
+#    Updated: 2024/12/12 17:08:38 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =		phonebook.cpp
+SRC =		Contact.cpp\
+			Main.cpp
 
 SRCDIR =	src
 INCDIR =	include

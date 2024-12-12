@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.hpp                                      :+:      :+:    :+:   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 15:17:11 by mlarieux          #+#    #+#             */
-/*   Updated: 2024/12/12 16:55:47 by mlarieux         ###   ########.fr       */
+/*   Created: 2024/12/12 16:58:07 by mlarieux          #+#    #+#             */
+/*   Updated: 2024/12/12 17:10:46 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
-
 #include "Contact.hpp"
+#include "Phonebook.hpp"
 
-class PhoneBook
+void	PhoneBook::addContact()
 {
-	private:
-	Contact my_contact[8];
-	public:
-	Contact getContact() const;
-	void	addContact();
-	PhoneBook();
-};
+	std::string	str;
 
-#endif
+	std::cout << "please write contact's first name";
+	std::getline(std::cin, str);
+	Contact << str;
+}
