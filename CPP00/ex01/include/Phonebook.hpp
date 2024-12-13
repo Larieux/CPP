@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:17:11 by mlarieux          #+#    #+#             */
-/*   Updated: 2024/12/12 16:55:47 by mlarieux         ###   ########.fr       */
+/*   Updated: 2024/12/13 13:50:34 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ class PhoneBook
 	public:
 	Contact getContact() const;
 	void	addContact();
-	PhoneBook();
 };
 
 #endif

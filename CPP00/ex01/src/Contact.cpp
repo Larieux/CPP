@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:58:07 by mlarieux          #+#    #+#             */
-/*   Updated: 2024/12/12 17:10:46 by mlarieux         ###   ########.fr       */
+/*   Updated: 2024/12/13 13:51:01 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	PhoneBook::addContact()
 {
 	std::string	str;
 
-	std::cout << "please write contact's first name";
+	std::cout << "please write contact's first name\n";
 	std::getline(std::cin, str);
-	Contact << str;
+	std::cout << str << std::endl;
 }
