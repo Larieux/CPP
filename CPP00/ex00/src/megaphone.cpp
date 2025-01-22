@@ -2,22 +2,21 @@
 
 int	main(int argc, char **argv)
 {
-	std::string 			arg;
-	std::string				res;
-	std::string::iterator	i;
-
 	if (argc == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	else if (argc > 1 && argv)
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+	else if (argc > 1)
 	{
-		for (int j = 1; j < argc; j++)
+		for (int i = 1; argv[i]; i++)
 		{
-			arg = argv[j];
-			for(i = arg.begin(); i != arg.end(); ++i)
-				res += std::toupper(*i);
+			for (int j = 0; argv[i][j] ; j++)
+			{
+				if (argv[i][j] >= 'a' && argv[i][j] <= 'z')
+					std::cout << (argv[i][j] -= 'a' - 'A');
+				else
+					std::cout << argv[i][j];
+			}
 		}
-		std::cout << res;
+		std::cout << std::endl;
 	}
-	std::cout << std::endl;
 	return (0);
 }
