@@ -6,7 +6,7 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 16:04:16 by mlarieux          #+#    #+#              #
-#    Updated: 2024/12/11 17:54:56 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/01/23 13:03:45 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ BIN_DIR =	.
 
 VPATH = $(SRC_DIR)
 
-OBJ := $(SRC:%.c=$(OBJ_DIR)/%.o)
+OBJ := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 
 CC =		c++
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
@@ -33,7 +33,7 @@ $(NAME) : $(OBJ) | $(BIN_DIR)
 $(BIN_DIR) ${OBJ_DIR} :
 	mkdir $@
 
-$(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o : %.cpp | $(OBJ_DIR)
 	$(CC) $(CXXFLAGS) -c $< -o $@
 
 clean :
