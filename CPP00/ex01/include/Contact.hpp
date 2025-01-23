@@ -30,7 +30,6 @@ public:
 	Contact( void );
 	~Contact( void );
 
-
 };
 
 #endif

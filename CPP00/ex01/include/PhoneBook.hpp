@@ -25,7 +25,7 @@ private:
 public:
 
 	PhoneBook( void );
-	~PhoneBook ( void );
+	~PhoneBook( void );
 
 	Contact	getContact() const;
 	void	addContact();
