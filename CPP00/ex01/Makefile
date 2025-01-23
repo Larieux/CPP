@@ -6,11 +6,11 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 15:18:32 by mlarieux          #+#    #+#              #
-#    Updated: 2024/12/12 17:08:38 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/01/23 13:10:14 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =		Contact.cpp\
+SRC =		Contact.cpp \
 			Main.cpp
 
 SRCDIR =	src
@@ -20,7 +20,7 @@ BINDIR =	.
 
 VPATH = $(SRCDIR)
 
-OBJ := $(SRC:%.c=$(OBJDIR)/%.o)
+OBJ := $(SRC:%.cpp=$(OBJDIR)/%.o)
 
 CC =		c++
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
@@ -36,7 +36,7 @@ $(NAME) : $(OBJ) | $(BINDIR)
 $(BINDIR) $(OBJDIR) :
 	mkdir $@
 
-$(OBJDIR)/%.o : %.c | $(OBJDIR)
+$(OBJDIR)/%.o : %.cpp | $(OBJDIR)
 	$(CC) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 clean :

@@ -14,6 +14,6 @@ public:
 	const char	*nickname;
 	const int	number;
 
-}
+};
 
 #endif
