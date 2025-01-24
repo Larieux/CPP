@@ -14,11 +14,15 @@
 # define CONTACT_HPP
 
 #include <iostream>
+#include <iomanip>
 
 class Contact {
 
 private:
 
+	static int	contact_number;
+
+	int			index;
 	std::string	first_name;
 	std::string	last_name;
 	std::string	nickname;
@@ -29,6 +33,19 @@ public:
 
 	Contact( void );
 	~Contact( void );
+
+
+	void	displaySearch(int mode)const;
+	void	truncateDisplay(std::string field)const;
+
+	int		getContactNumber(void)const;
+	void	setContactNumber(void);
+
+	void	setFirstName(std::string value);
+	void	setLastName(std::string value);
+	void	setNickname(std::string value);
+	void	setPhoneNumber(std::string value);
+	void	setSecret(std::string value);
 
 };
 

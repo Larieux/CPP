@@ -12,7 +12,17 @@
 
 #include "PhoneBook.hpp"
 
-int	main()
+Phonebook::Phonebook(void)
 {
-	
+	return ;
+}
+
+Phonebook::~Phonebook(void)
+{
+	return ;
+}
+
+Contact	*Phonebook::getContact(int index)
+{
+	return (&m_contacts[index]);
 }

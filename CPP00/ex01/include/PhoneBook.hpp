@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include "Contact.hpp"
+#include "Menu.hpp"
 
 class PhoneBook {
 
@@ -27,8 +28,7 @@ public:
 	PhoneBook( void );
 	~PhoneBook( void );
 
-	Contact	getContact() const;
-	void	addContact();
+	Contact		*getContact(int index) const;	
 
 };
 
