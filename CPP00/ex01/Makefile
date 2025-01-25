@@ -12,7 +12,6 @@
 
 SRC =		Contact.cpp \
 			PhoneBook.cpp \
-			Menu.cpp \
 			Main.cpp
 
 SRCDIR =	src
