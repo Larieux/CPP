@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:47:41 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/01/23 13:58:36 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/03/03 14:20:17 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ private:
 	std::string	nickname;
 	std::string	phone_number;
 	std::string	secret;
+	
+	void	truncateDisplay(std::string field)const;
 
 public:
 
@@ -38,7 +40,6 @@ public:
 
 
 	void	displaySearch(int mode)const;
-	void	truncateDisplay(std::string field)const;
 
 	int		getContactNumber(void)const;
 	void	setContactNumber(void);
