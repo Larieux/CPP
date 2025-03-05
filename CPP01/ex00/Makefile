@@ -1,4 +1,19 @@
-SRC =	main.cpp
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/03/05 16:03:57 by mlarieux          #+#    #+#              #
+#    Updated: 2025/03/05 16:21:22 by mlarieux         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRC =	newZombie.cpp \
+		randomChump.cpp \
+		zombie.cpp \
+		main.cpp
 
 SRCDIR =	src
 INCDIR =	include
@@ -7,27 +22,27 @@ BINDIR =	.
 
 VPATH =	$(SRCDIR)
 
-OBJ := $(SRC:%.c=$(OBJDIR)/%.o)
+OBJ := $(SRC:%.cpp=$(OBJDIR)/%.o)
 
 CXX =		c++
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
 CPPFLAGS =	-I$(INCDIR)
 
-NAME =	$(BINDIR)/ex00
+NAME =	$(BINDIR)/braiiiiiiinnnzzzz
 
-all = $(NAME)
+all : $(NAME)
 
 $(NAME) : $(OBJ) | $(BINDIR)
-	$(CXX) $^ -o $@ $(CXXFLAGS)
+	$(CXX) $(CPPFLAGS) $^ -o $@ $(CXXFLAGS)
 
 $(BINDIR) $(OBJDIR) :
 	mkdir $@
 
-$(OBJDIR)/%.o : %.c | $(OBJDIR)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+$(OBJDIR)/%.o : %.cpp | $(OBJDIR)
+	$(CXX) $(CPPFLAGS) -c $< -o $@ $(CXXFLAGS)
 
 clean :
-	@$(RM) -RV $(OBJDIR)
+	@$(RM) -rv $(OBJDIR)
 
 fclean : clean
 	$(RM) $(NAME)

@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:14:23 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/02/18 14:40:37 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:34:01 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ std::string	PhoneBook::ft_getline(std::string prompt)
 
 void	PhoneBook::add_contact(PhoneBook &phone_book)
 {
-	std::string	line;
 	int	i = 0;
 
 	i = phone_book.getContact(i)->getContactNumber() - 1;
