@@ -5,30 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 14:42:50 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/03/10 15:25:22 by mlarieux         ###   ########.fr       */
+/*   Created: 2025/03/10 14:50:59 by mlarieux          #+#    #+#             */
+/*   Updated: 2025/03/10 15:32:53 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <iterator>
-#include "zombie.hpp"
 
-#define THERES_TOO_MANY_OF_THEM	9
-#define AND_THEIR_NAME_IS		"Brian"
-
-Zombie*	zombieHorde( int N, std::string name );
-
-int	main( void )
+int main( void )
 {
-	Zombie 			*horde;
-	int				N;
-
-	N = THERES_TOO_MANY_OF_THEM;
-	horde = zombieHorde(N, AND_THEIR_NAME_IS);
-	for (int i = 0; i < N; i++)
-		horde->announce();
-	delete[] horde;
-
-	return (0);
+	std::string str = "HI THIS IS BRAIN";
+	std::string* ptr = &str;
+	std::string& ref = str;
 }
