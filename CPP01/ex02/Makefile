@@ -6,7 +6,7 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/05 16:03:57 by mlarieux          #+#    #+#              #
-#    Updated: 2025/03/10 14:49:49 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/03/10 17:05:59 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CXX =		c++
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
 CPPFLAGS =	-I$(INCDIR)
 
-NAME =	$(BINDIR)/braiiiiiiinnnzzzzTimesN
+NAME =	$(BINDIR)/brain
 
 all : $(NAME)
 
