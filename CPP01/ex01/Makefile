@@ -6,12 +6,11 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/05 16:03:57 by mlarieux          #+#    #+#              #
-#    Updated: 2025/03/05 16:21:22 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/03/10 11:45:55 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =	newZombie.cpp \
-		randomChump.cpp \
+SRC =	zombieHorde.cpp \
 		zombie.cpp \
 		main.cpp
 
@@ -28,7 +27,7 @@ CXX =		c++
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
 CPPFLAGS =	-I$(INCDIR)
 
-NAME =	$(BINDIR)/braiiiiiiinnnzzzz
+NAME =	$(BINDIR)/braiiiiiiinnnzzzzTimesN
 
 all : $(NAME)
 
