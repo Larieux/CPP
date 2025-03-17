@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
@@ -12,7 +12,7 @@
 
 #include "HumanB.hpp"
 
-HumanB::HumanB(const std::string _name ) :
+HumanB::HumanB(const std::string name ) :
 		
 {
 	return;
@@ -23,11 +23,9 @@ HumanB::~HumanB( void )
 	return;
 }
 
-void	HumanB::set_weapon ( Weapon _weapon )
+void	HumanB::setWeapon ( Weapon weapon )
 {
-	Weapon	weapon;
-
-	weapon = new Weapon( _weapon );
+	HumanB.weapon = new Weapon( weapon );
 }
 
 void	HumanB::attack ( void )

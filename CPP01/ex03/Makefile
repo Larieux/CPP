@@ -10,7 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC =		main.cpp
+SRC =	Weapon.cpp \
+		HumanA.cpp \
+		HumanB.cpp \
+		main.cpp
 
 SRCDIR =	src
 INCDIR =	include
