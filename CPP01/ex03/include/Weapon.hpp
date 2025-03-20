@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:47:16 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/03/14 13:35:18 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:37:43 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ private :
 
 public :
 
-	Weapon( std::string type );
+	Weapon( std::string &type );
 	~Weapon( void );
 
-	void		setType( std::string type );
+	void		setType( std::string &type );
 	std::string	&getType( void );
 
 };
