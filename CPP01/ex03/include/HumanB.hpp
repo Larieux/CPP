@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:07:43 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/03/20 14:42:07 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:45:47 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ class HumanB
 {
 private :
 
-	std::string &_name;
-	Weapon *_weapon;
+	std::string	_name;
+	Weapon		*_weapon;
 
 public :
 
-	HumanB( const std::string &name );
 	HumanB( const std::string &name );
 	~HumanB( void );
 

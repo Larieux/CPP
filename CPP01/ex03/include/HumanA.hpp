@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:57:10 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/03/20 14:45:31 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:43:06 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ private :
 
 public :
 
-	HumanA( const std::string &name, const Weapon &weapon );
+	HumanA( const std::string &name, Weapon &weapon );
 	~HumanA( void );
 
 	void	attack ( void );
