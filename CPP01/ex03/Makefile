@@ -6,7 +6,7 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/05 16:03:57 by mlarieux          #+#    #+#              #
-#    Updated: 2025/03/10 17:05:59 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/03/20 13:34:03 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ VPATH =	$(SRCDIR)
 OBJ := $(SRC:%.cpp=$(OBJDIR)/%.o)
 
 CXX =		c++
-CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
+CXXFLAGS =	-Wall -Wextra -Werror -std=c++98 -g
 CPPFLAGS =	-I$(INCDIR)
 
-NAME =	$(BINDIR)/brain
+NAME =	$(BINDIR)/unnessary_violence
 
 all : $(NAME)
 
