@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:57:10 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/03/20 15:43:06 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/03/24 12:07:35 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ class HumanA
 {
 private :
 
-	std::string _name;
-	Weapon &_weapon;
+	std::string	_name;
+	Weapon		&_weapon;
 
 public :
 
