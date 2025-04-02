@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:17:32 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/02 15:07:17 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:23:21 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,5 @@ public:
 	PhoneBook();
 	~PhoneBook(); 
 };
-
-PhoneBook::PhoneBook()
-{
-	std::cout	<< "Phone Book initialized"
-				<< std::endl;
-}
-
-PhoneBook::~PhoneBook()
-{
-	std::cout	<< "All contacts erased,"
-				<< "Phone Book shut down."
-				<< std::endl;
-}
 
 #endif
