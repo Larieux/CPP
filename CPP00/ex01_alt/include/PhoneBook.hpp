@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 14:17:32 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/02 15:07:17 by mlarieux         ###   ########.fr       */
+/*   Created: 2025/01/23 13:47:38 by mlarieux          #+#    #+#             */
+/*   Updated: 2025/04/02 14:33:58 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,29 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-#include "Contact.hpp"
-#include <string>
+#include <iostream>
 #include <iomanip>
+#include <cstdlib>	// std::atoi
+#include "Contact.hpp"
 
-class PhoneBook
-{
+class PhoneBook {
+
 private:
-	Contact	Contacts[8];
 
-	void	add();
-	void	search();
-	void	exit();
+	Contact	my_contact[8];
+	Contact		*getContact(int index);
+	bool		ft_isnum(std::string line);
+	std::string	ft_getline(std::string prompt);
 
 public:
-	PhoneBook();
-	~PhoneBook(); 
+
+	PhoneBook( void );
+	~PhoneBook( void );
+
+	void		add_contact(PhoneBook &phone_book);
+	void		search_contact(PhoneBook phone_book);
+	void		show_menu(int role);
+
 };
-
-PhoneBook::PhoneBook()
-{
-	std::cout	<< "Phone Book initialized"
-				<< std::endl;
-}
-
-PhoneBook::~PhoneBook()
-{
-	std::cout	<< "All contacts erased,"
-				<< "Phone Book shut down."
-				<< std::endl;
-}
 
 #endif
