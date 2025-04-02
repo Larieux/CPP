@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:17:35 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/02 15:02:08 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:03:21 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,18 @@
 class Contact
 {
 private:
-	std::string FirstName;
-	std::string LastName;
-	std::string Nickname;
-	std::string PhoneNumber;
-	std::string Secret;
+	std::string	FirstName;
+	std::string	LastName;
+	std::string	Nickname;
+	std::string	PhoneNumber;
+	std::string	Secret;
+
+	void		set_contact();
 
 public:
 	Contact();
 	~Contact();
+
 };
-
-Contact::Contact()
-{
-	std::cout	<< "Contact initialized"
-				<< std::endl;
-}
-
-Contact::~Contact()
-{}
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:23:13 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/02 16:24:18 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/02 22:23:50 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 Contact::Contact()
 {
-	std::cout	<< "Contact initialized"
-				<< std::endl;
 }
 
 Contact::~Contact()
-{}
+{
+}
+
+void	Contact::set_contact()
+{
+	
+}
