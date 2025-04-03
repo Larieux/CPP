@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:23:13 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/02 22:23:50 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/03 01:52:47 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,27 @@ Contact::~Contact()
 {
 }
 
-void	Contact::set_contact()
+void	Contact::set_FirstName( std::string input )
 {
-	
+	FirstName = input;
+}
+
+void	Contact::set_LastName( std::string input )
+{
+	LastName = input;
+}
+
+void	Contact::set_Nickname( std::string input )
+{
+	Nickname = input;
+}
+
+void	Contact::set_PhoneNumber( std::string input )
+{
+	PhoneNumber = input;
+}
+
+void	Contact::set_Secret( std::string input )
+{
+	Secret = input;
 }

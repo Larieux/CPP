@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:17:35 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/02 19:03:21 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/03 01:30:39 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@ private:
 	std::string	PhoneNumber;
 	std::string	Secret;
 
-	void		set_contact();
-
 public:
 	Contact();
 	~Contact();
 
+	void	set_FirstName( std::string input );
+	void	set_LastName( std::string input );
+	void	set_Nickname( std::string input );
+	void	set_PhoneNumber( std::string input );
+	void	set_Secret( std::string input );
 };
 
 #endif

@@ -6,7 +6,7 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 15:18:32 by mlarieux          #+#    #+#              #
-#    Updated: 2025/03/05 16:13:36 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/04/03 02:13:06 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ VPATH = $(SRCDIR)
 OBJ := $(SRC:%.cpp=$(OBJDIR)/%.o)
 
 CC =		c++
-CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
+CXXFLAGS =	-Wall -Wextra -Werror -std=c++98 -g
 CPPFLAGS =	-I$(INCDIR)
 
 NAME =	$(BINDIR)/phonebook
