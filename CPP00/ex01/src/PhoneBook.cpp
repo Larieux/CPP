@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:17:31 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/03 19:46:53 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/04 00:23:21 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ PhoneBook::PhoneBook()
 
 PhoneBook::~PhoneBook()
 {
-	std::cout	<< "******************************\n"
-				<< "*   All contacts erased,     *\n"
+	std::cout	<< "\n"
+				<< "******************************\n"
+				<< "*   All contacts cleared,    *\n"
 				<< "*   Phone Book shut down.    *\n"
 				<< "******************************"
 				<< std::endl;
@@ -136,7 +137,7 @@ std::string	PhoneBook::get_cmd( PhoneBook &phone_book )
 		phone_book.add_contact( phone_book );
 	else if (input.compare("SEARCH") == 0)
 		phone_book.search_contact( phone_book );
-	else if (input.compare("EXIT") != 0)
+	else if (input.compare("EXIT") != 0 && std::cin.eof() == false)
 		std::cout << "wrong input\ntry ADD/SEARCH/EXIT" << std::endl;
 	return (input);
 }
