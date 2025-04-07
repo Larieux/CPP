@@ -6,12 +6,12 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/05 16:03:57 by mlarieux          #+#    #+#              #
-#    Updated: 2025/04/07 15:59:59 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/04/07 22:41:01 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =	Mitosis.cpp \
-		Main.cpp
+SRC =	harl.cpp \
+		main.cpp
 
 SRCDIR =	src
 INCDIR =	include
@@ -26,7 +26,7 @@ CXX =		c++
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98 -g
 CPPFLAGS =	-I$(INCDIR)
 
-NAME =	$(BINDIR)/harl
+NAME =	$(BINDIR)/theWorstHarl
 
 all : $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:03:40 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/07 16:15:33 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/07 22:50:16 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 # define HARL_HPP
 
 #include <iostream>
+
+#define LEVEL_NB	5
+#define DEBUG_MSG	"debug message"
+#define INFO_MSG	"info message"
+#define WARNING_MSG	"warning message"
+#define ERROR_MSG	"error message"
+#define OTHER_MSG	"other message"
 
 class Harl
 {
@@ -30,6 +37,7 @@ private:
 	void	info( void );
 	void	warning( void );
 	void	error( void );
+	void	other( void );
 
 };
 
