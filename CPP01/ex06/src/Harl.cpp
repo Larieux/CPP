@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   harl.cpp                                           :+:      :+:    :+:   */
+/*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:03:43 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/07 22:57:41 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/08 21:15:10 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,24 @@ void	Harl::complain( std::string level )
 	if (i == LEVEL_NB)
 		i--;
 
-	(this->*fptr[i])();
+	switch (i)
+	{
+		case 0:
+			std::cout << "[ DEBUG ]" << std::endl;
+			(this->*fptr[0])();
+		case 1:
+			std::cout << "[ INFO ]" << std::endl;
+			(this->*fptr[1])();
+		case 2:
+			std::cout << "[ WARNING ]" << std::endl;
+			(this->*fptr[2])();
+		case 3:
+			std::cout << "[ ERROR ]" << std::endl;
+			(this->*fptr[3])();
+			break ;
+		default:
+			std::cout << "[ OTHER ]" << std::endl;
+			(this->*fptr[4])();
+			break;
+	}
 }

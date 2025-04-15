@@ -6,11 +6,11 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:42:50 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/03/05 15:52:13 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/08 21:09:28 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "zombie.hpp"
+#include "Zombie.hpp"
 
 Zombie*	newZombie( std::string name );
 void	randomChump( std::string name );

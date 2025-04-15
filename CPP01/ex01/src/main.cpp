@@ -6,13 +6,13 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:42:50 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/03/10 15:25:22 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/08 21:11:43 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <iterator>
-#include "zombie.hpp"
+#include "Zombie.hpp"
 
 #define THERES_TOO_MANY_OF_THEM	9
 #define AND_THEIR_NAME_IS		"Brian"

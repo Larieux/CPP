@@ -6,11 +6,11 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/05 16:03:57 by mlarieux          #+#    #+#              #
-#    Updated: 2025/04/07 23:10:07 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/04/08 21:15:23 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =	harl.cpp \
+SRC =	Harl.cpp \
 		main.cpp
 
 SRCDIR =	src

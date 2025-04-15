@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 15:13:08 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/04 00:18:51 by mlarieux         ###   ########.fr       */
+/*   Created: 2025/03/04 15:38:59 by mlarieux          #+#    #+#             */
+/*   Updated: 2025/04/08 21:07:03 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#pragma once
 
-int	main( void )
-{
-	PhoneBook	my_phonebook;
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
-	my_phonebook.display_menu();
-	while (my_phonebook.get_cmd( my_phonebook ).compare( "EXIT" ) != 0
-			&& std::cin.eof() == false)
-		my_phonebook.display_menu();
-}
+#include <iostream>
+#include <iomanip>
+
+class Zombie {
+private:
+
+	std::string	_name;
+
+public:
+
+	Zombie( std::string name );
+	~Zombie( void );
+
+	void	announce( void );
+};
+
+#endif

@@ -6,12 +6,12 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/05 16:03:57 by mlarieux          #+#    #+#              #
-#    Updated: 2025/04/04 02:58:50 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/04/08 21:13:28 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC =	Mitosis.cpp \
-		Main.cpp
+		main.cpp
 
 SRCDIR =	src
 INCDIR =	include

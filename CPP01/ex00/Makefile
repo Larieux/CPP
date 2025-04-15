@@ -6,13 +6,13 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/05 16:03:57 by mlarieux          #+#    #+#              #
-#    Updated: 2025/03/05 16:21:22 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/04/08 21:10:49 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC =	newZombie.cpp \
 		randomChump.cpp \
-		zombie.cpp \
+		Zombie.cpp \
 		main.cpp
 
 SRCDIR =	src
