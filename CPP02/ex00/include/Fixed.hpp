@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.hpp                                         :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 13:47:16 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/15 22:34:44 by mlarieux         ###   ########.fr       */
+/*   Created: 2025/04/15 22:42:03 by mlarieux          #+#    #+#             */
+/*   Updated: 2025/04/15 23:18:49 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEAPON_HPP
-#define WEAPON_HPP
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
 #include <iostream>
 
-class Weapon
+class Fixed
 {
-private :
+public:
+	Fixed( void );
+	Fixed( Fixed const &original );
+	~Fixed( void );
 
-	std::string _type;
+	Fixed &operator= (Fixed const &original);
 
-public :
+	int		getRawBits( void ) const;
+	void	setRawBits( int const raw );
 
-	Weapon( void );
-	Weapon( const std::string &type );
-	~Weapon( void );
-
-	void		setType( const std::string &type );
-	std::string	&getType( void );
+private:
+	int					_value;
+	static const int	_bits;
 
 };
 

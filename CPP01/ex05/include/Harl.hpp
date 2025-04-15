@@ -6,11 +6,9 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:03:40 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/07 22:50:16 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/15 22:34:55 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#pragma once
 
 #ifndef HARL_HPP
 # define HARL_HPP
