@@ -1,48 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 21:12:35 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/17 04:07:07 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/17 04:07:28 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-ScavTrap::ScavTrap( void ) : ClapTrap()
+FragTrap::FragTrap( void ) : ClapTrap()
 {
-	setName( "SBubbline" );
+	setName( "FBubbline" );
 	setHP( 100 );
-	setEP( 50 );
-	setAD( 20 );
+	setEP( 100 );
+	setAD( 30 );
 
-	std::cout	<< "ScavTrap default constructor called!\n"
+	std::cout	<< "FragTrap default constructor called!\n"
 				<< getName()
 				<< " now exists!"
 				<< std::endl;
 	return ;
 }
 
-ScavTrap::ScavTrap( const std::string Name ) : ClapTrap ( Name )
+FragTrap::FragTrap( const std::string Name ) : ClapTrap ( Name )
 {
 	setName( Name );
 	setHP( 100 );
-	setEP( 50 );
-	setAD( 20 );
+	setEP( 100 );
+	setAD( 30 );
 
-	std::cout	<< "ScavTrap constructor called!\n"
+	std::cout	<< "FragTrap constructor called!\n"
 				<< getName()
 				<< " now exists!"
 				<< std::endl;
 	return ;
 }
 
-ScavTrap::ScavTrap( const ScavTrap &original ) : ClapTrap( original )
+FragTrap::FragTrap( const FragTrap &original ) : ClapTrap( original )
 {
-	std::cout	<< "ScavTrap copy constructor called!\n"
+	std::cout	<< "FragTrap copy constructor called!\n"
 				<< "a copy of "
 				<< getName()
 				<< " now exists!"
@@ -50,9 +50,9 @@ ScavTrap::ScavTrap( const ScavTrap &original ) : ClapTrap( original )
 	return ;
 }
 
-ScavTrap::~ScavTrap( void )
+FragTrap::~FragTrap( void )
 {
-	std::cout	<< "ScavTrap destructor called!\n"
+	std::cout	<< "FragTrap destructor called!\n"
 				<< getName()
 				<< " no longer exist!"
 				<< std::endl;
@@ -60,20 +60,21 @@ ScavTrap::~ScavTrap( void )
 }
 
 
-ScavTrap	&ScavTrap::operator= ( const ScavTrap &original )
+FragTrap	&FragTrap::operator= ( const FragTrap &original )
 {
-	std::cout	<< "ScavTrap Assignment operator called for "
+	std::cout	<< "FragTrap Assignment operator called for "
 				<< getName()
 				<< "!"
 				<< std::endl;
 
+	std::cout << getName() << std::endl;
 	if ( this != &original )
 		ClapTrap::operator=( original );
 
 	return ( *this );
 }
 
-void	ScavTrap::attack( ClapTrap &target )
+void	FragTrap::attack( ClapTrap &target )
 {
 	if ( getEP() <= 0 || getHP() <= 0 )
 		setAD( 0 );
@@ -93,7 +94,7 @@ void	ScavTrap::attack( ClapTrap &target )
 	}
 	else
 	{
-		std::cout	<< "ScavTrap "
+		std::cout	<< "FragTrap "
 					<< getName()
 					<< " attacks "
 					<< target.getName()
@@ -106,20 +107,20 @@ void	ScavTrap::attack( ClapTrap &target )
 	return ;
 }
 
-void	ScavTrap::guardGate( void )
+void	FragTrap::highFivesGuys( void )
 {
 	if ( getHP() <= 0 )
 	{
 		std::cout	<< getName()
 					<< " is already dead! "
-					<< " they can't guard the gate! "
+					<< " they can't boost the party's morale! "
 					<< std::endl;
 	}
 	else
 	{
-		std::cout	<< "ScavTrap "
+		std::cout	<< "FragTrap "
 					<< getName()
-					<< " is now in gate keeper mode."
+					<< " sings a song that boosts the party's morale!"
 					<< std::endl;
 	}
 }
