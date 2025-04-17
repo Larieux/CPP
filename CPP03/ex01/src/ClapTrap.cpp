@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 21:12:35 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/17 03:31:42 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/17 03:26:53 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,22 +104,32 @@ int			ClapTrap::getAD( void )
 	return ( _Attack_Damage );
 }
 
+void		ClapTrap::setName( std::string Name )
+{
+	_Name = Name;
+	return ;
+}
+
+void		ClapTrap::setHP( unsigned int amount )
+{
+	_Hit_points = amount;
+	return ;
+}
+
+void		ClapTrap::setEP( unsigned int amount )
+{
+	_Energy_points = amount;
+	return ;
+}
+
 void		ClapTrap::setAD( unsigned int amount )
 {
 	_Attack_Damage = amount;
-	std::cout	<< _Name
-				<< "'s attack damage changes!\n"
-				<< "they now deal "
-				<< _Attack_Damage
-				<< " damage points!"
-				<< std::endl;
 	return ;
 }
 
 void	ClapTrap::attack( const std::string& target )
 {
-	if ( _Energy_points <= 0 || _Hit_points <= 0 )
-		setAD( 0 );
 	if ( _Hit_points <= 0 )
 	{
 		std::cout	<< _Name
@@ -146,6 +156,8 @@ void	ClapTrap::attack( const std::string& target )
 					<< std::endl;
 		_Energy_points--;
 	}
+	if ( _Energy_points <= 0 )
+		setAD( 0 );
 	return ;
 }
 
@@ -183,7 +195,7 @@ void	ClapTrap::takeDamage( unsigned int amount )
 						<< " died...\n"
 						<< "the rest of the party watches in grief.\n"
 						<< "\n"
-						<< "You'll prepare a new character sheet for next time, Caroline."
+						<< "You'll prepare a new character sheet for next time."
 						<< "\n"
 						<< std::endl;
 		}

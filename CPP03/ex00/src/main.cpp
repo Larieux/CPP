@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:25:12 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/16 23:37:09 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/17 03:18:51 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int main( void )
 	copy.attack( korra.getName() );
 	korra.takeDamage( copy.getAD() );
 	bubbline.attack( korra.getName() );
-	korra.takeDamage( copy.getAD() );
+	korra.takeDamage( bubbline.getAD() );
 	pyco.attack( korra.getName() );
 	korra.takeDamage( pyco.getAD() );
 
@@ -109,15 +109,15 @@ int main( void )
 	std::cout << std::endl;
 
 	pyco.attack( korra.getName() );
-	korra.takeDamage( copy.getAD() );
+	korra.takeDamage( pyco.getAD() );
 	pyco.attack( korra.getName() );
-	korra.takeDamage( copy.getAD() );
+	korra.takeDamage( pyco.getAD() );
 	pyco.attack( korra.getName() );
-	korra.takeDamage( copy.getAD() );
+	korra.takeDamage( pyco.getAD() );
 	pyco.attack( korra.getName() );
-	korra.takeDamage( copy.getAD() );
+	korra.takeDamage( pyco.getAD() );
 	pyco.attack( korra.getName() );
-	korra.takeDamage( copy.getAD() );
+	korra.takeDamage( pyco.getAD() );
 
 	return (0);
 }
