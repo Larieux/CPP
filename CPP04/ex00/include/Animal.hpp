@@ -1,18 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 15:19:55 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/18 14:14:48 by mlarieux         ###   ########.fr       */
+/*   Created: 2025/04/17 16:52:05 by mlarieux          #+#    #+#             */
+/*   Updated: 2025/04/18 02:11:33 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
-Zombie* newZombie( std::string name )
+#include <iostream>
+
+class Animal
 {
-	return (new Zombie(name));
-}
+public:
+	Animal( void );
+	Animal( std::string type );
+	Animal( const Animal &src );
+	~Animal( void );
+
+	Animal &operator= ( const Animal &src );
+
+	void		makeSound( void );
+	std::string	getType( void );
+
+protected:
+	std::string _type;
+
+private:
+
+
+};
+
+#endif

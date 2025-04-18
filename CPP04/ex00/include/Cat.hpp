@@ -1,18 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 15:19:55 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/18 14:14:48 by mlarieux         ###   ########.fr       */
+/*   Created: 2025/04/17 17:17:20 by mlarieux          #+#    #+#             */
+/*   Updated: 2025/04/17 17:17:28 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef Cat_HPP
+# define Cat_HPP
 
-Zombie* newZombie( std::string name )
+#include <Animal.hpp>
+
+class Cat : protected Animal
 {
-	return (new Zombie(name));
-}
+public:
+	Cat( void );
+	Cat( std::string type );
+	Cat( const Cat &src );
+	~Cat( void );
+
+	Cat &operator= ( const Cat &src );
+
+protected:
+
+
+private:
+
+
+};
+
+#endif

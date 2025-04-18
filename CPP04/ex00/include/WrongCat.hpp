@@ -1,18 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 15:19:55 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/18 14:14:48 by mlarieux         ###   ########.fr       */
+/*   Created: 2025/04/18 01:50:09 by mlarieux          #+#    #+#             */
+/*   Updated: 2025/04/18 01:50:29 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef WrongCat_HPP
+# define WrongCat_HPP
 
-Zombie* newZombie( std::string name )
+#include <WrongAnimal.hpp>
+
+class WrongCat : protected WrongAnimal
 {
-	return (new Zombie(name));
-}
+public:
+	WrongCat( void );
+	WrongCat( std::string type );
+	WrongCat( const WrongCat &src );
+	~WrongCat( void );
+
+	WrongCat &operator= ( const WrongCat &src );
+
+protected:
+
+
+private:
+
+
+};
+
+#endif

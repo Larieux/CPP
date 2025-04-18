@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:06:24 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/16 18:15:04 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/18 15:52:35 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Fixed::Fixed( void ) : _value(0)
 	return ;
 }
 
-Fixed::Fixed( Fixed const &original )
+Fixed::Fixed( const Fixed &original )
 {
 	*this = original;
 	return ;
@@ -42,61 +42,62 @@ Fixed::~Fixed( void )
 	return ;
 }
 
-Fixed &Fixed::operator= ( Fixed const &original )
+Fixed &Fixed::operator= ( const Fixed &original )
 {
+	if (this != &original)
 	_value = original.getRawBits();
 	return ( *this );
 }
 
-bool Fixed::operator== ( Fixed const &comp_to ) const
+bool Fixed::operator== ( const Fixed &comp_to ) const
 {
 	return (this->getRawBits() == comp_to._value);
 }
 
-bool Fixed::operator!= ( Fixed const &comp_to ) const
+bool Fixed::operator!= ( const Fixed &comp_to ) const
 {
 	return (this->getRawBits() != comp_to._value);
 }
 
-bool Fixed::operator<= ( Fixed const &comp_to ) const
+bool Fixed::operator<= ( const Fixed &comp_to ) const
 {
 	return (this->getRawBits() <= comp_to._value);
 }
 
-bool Fixed::operator>= ( Fixed const &comp_to ) const
+bool Fixed::operator>= ( const Fixed &comp_to ) const
 {
 	return (this->getRawBits() >= comp_to._value);
 }
 
-bool Fixed::operator< ( Fixed const &comp_to ) const
+bool Fixed::operator< ( const Fixed &comp_to ) const
 {
 	return (this->getRawBits() < comp_to._value);
 }
 
-bool Fixed::operator> ( Fixed const &comp_to ) const
+bool Fixed::operator> ( const Fixed &comp_to ) const
 {
 	return (this->getRawBits() > comp_to._value);
 }
 
 
-Fixed Fixed::operator+ ( Fixed const &worked_from )
+Fixed Fixed::operator+ ( const Fixed &worked_from ) const
 {
-	return (this->getRawBits() + worked_from._value);
+	return (Fixed(this->toFloat() + worked_from.toFloat()));
 }
 
-Fixed Fixed::operator- ( Fixed const &worked_from )
+Fixed Fixed::operator- ( const Fixed &worked_from ) const
 {
-	return (this->getRawBits() - worked_from._value);
+	return (Fixed(this->toFloat() - worked_from.toFloat()));
 }
 
-Fixed Fixed::operator* ( Fixed const &worked_from )
+Fixed Fixed::operator* ( const Fixed &worked_from ) const
 {
-	return (this->getRawBits() * worked_from._value);
+	return (Fixed(this->toFloat() * worked_from.toFloat()));
 }
 
-Fixed Fixed::operator/ ( Fixed const &worked_from )
+Fixed Fixed::operator/ ( const Fixed &worked_from ) const
 {
-	return (this->getRawBits() / worked_from._value);
+	return (Fixed(this->toFloat() / worked_from.toFloat()));
 }
 
 
@@ -168,7 +169,7 @@ float	Fixed::toFloat( void ) const
 	int		intValue = getRawBits();
 	float	floatValue = 0.0;
 
-	floatValue = intValue / (float)(1 << _bits);
+	floatValue = (float)intValue / (float)(1 << _bits);
 	return ( floatValue );
 }
 
@@ -177,7 +178,7 @@ int		Fixed::toInt( void ) const
 	return ( _value / (1 << _bits) );
 }
 
-std::ostream &operator<< ( std::ostream &outStream, Fixed const &fixed )
+std::ostream &operator<< ( std::ostream &outStream, const Fixed &fixed )
 {
 	outStream << fixed.toFloat();
 	return ( outStream );

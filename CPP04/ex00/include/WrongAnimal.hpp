@@ -1,18 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 15:19:55 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/18 14:14:48 by mlarieux         ###   ########.fr       */
+/*   Created: 2025/04/18 01:47:34 by mlarieux          #+#    #+#             */
+/*   Updated: 2025/04/18 01:47:57 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef WrongAnimal_HPP
+# define WrongAnimal_HPP
 
-Zombie* newZombie( std::string name )
+#include <iostream>
+
+class WrongAnimal
 {
-	return (new Zombie(name));
-}
+public:
+	WrongAnimal( void );
+	WrongAnimal( std::string type );
+	WrongAnimal( const WrongAnimal &src );
+	~WrongAnimal( void );
+
+	WrongAnimal &operator= ( const WrongAnimal &src );
+
+	void	makeSound( void );
+
+protected:
+	std::string _type;
+
+private:
+
+
+};
+
+#endif

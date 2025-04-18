@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 22:42:03 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/16 17:09:00 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/18 15:42:02 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,24 @@ class Fixed
 {
 public:
 	Fixed( void );
-	Fixed( Fixed const &original );
+	Fixed( const Fixed &original );
 	Fixed( const int to_fixed );
 	Fixed( const float to_fixed );
 	~Fixed( void );
 
-	Fixed &operator= ( Fixed const &original );
+	Fixed &operator= ( const Fixed &original );
 
-	bool operator== ( Fixed const &comp_to ) const;
-	bool operator!= ( Fixed const &comp_to ) const;
-	bool operator<= ( Fixed const &comp_to ) const;
-	bool operator>= ( Fixed const &comp_to ) const;
-	bool operator< ( Fixed const &comp_to ) const;
-	bool operator> ( Fixed const &comp_to ) const;
+	bool operator== ( const Fixed &comp_to ) const;
+	bool operator!= ( const Fixed &comp_to ) const;
+	bool operator<= ( const Fixed &comp_to ) const;
+	bool operator>= ( const Fixed &comp_to ) const;
+	bool operator< ( const Fixed &comp_to ) const;
+	bool operator> ( const Fixed &comp_to ) const;
 
-	Fixed operator+ ( Fixed const &worked_from );
-	Fixed operator- ( Fixed const &worked_from );
-	Fixed operator* ( Fixed const &worked_from );
-	Fixed operator/ ( Fixed const &worked_from );
+	Fixed operator+ ( const Fixed &worked_from ) const;
+	Fixed operator- ( const Fixed &worked_from ) const;
+	Fixed operator* ( const Fixed &worked_from ) const;
+	Fixed operator/ ( const Fixed &worked_from ) const;
 
 	Fixed &operator++ ( void );
 	Fixed operator++ ( int );
@@ -60,6 +60,6 @@ private:
 
 };
 
-std::ostream &operator<< ( std::ostream &outStream, Fixed const &fixed );
+std::ostream &operator<< ( std::ostream &outStream, const Fixed &fixed );
 
 #endif
