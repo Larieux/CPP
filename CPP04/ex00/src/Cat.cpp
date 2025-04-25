@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 18:51:38 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/18 02:15:12 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/25 16:51:12 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ Cat::Cat( void ) : Animal()
 
 	std::cout	<< "There's a "
 				<< _type
-				<< "in these woods..."
+				<< " in these woods..."
 				<< std::endl;
 
 	return ;
 }
 
-Cat::Cat( std::string type ) : Animal( type )
+Cat::Cat( const std::string type ) : Animal( type )
 {
 	_type = type;
 
 	std::cout	<< "There's a "
 				<< _type
-				<< "in these woods...\n"
+				<< " in these woods...\n"
 				<< "And that's either a mimic or a devil's familiar, I tell ya!"
 				<< std::endl;
 
@@ -43,7 +43,7 @@ Cat::Cat( const Cat &src ) : Animal( src )
 
 	std::cout	<< "there's another "
 				<< _type
-				<< "in these woods...\n"
+				<< " in these woods...\n"
 				<< "they group up in clans, then atack humans!"
 				<< std::endl;
 
@@ -54,9 +54,9 @@ Cat::~Cat( void )
 {
 	std::cout	<< "there's no more "
 				<< _type
-				<< "in these woods.\n"
+				<< " in these woods.\n"
 				<< "I guess we've destroyed every clan!\n"
-				<< "...\n let's take some rest, we've earned it."
+				<< "...\n let's take some rest, we've earned it.\n"
 				<< std::endl;
 
 	return ;
@@ -67,7 +67,7 @@ Cat &Cat::operator= ( const Cat &src )
 {
 	std::cout	<< "That "
 				<< _type
-				<< "is turning into that "
+				<< " is turning into that "
 				<< src._type
 				<< "!\n"
 				<< " the "
@@ -80,12 +80,12 @@ Cat &Cat::operator= ( const Cat &src )
 	return ( *this );
 }
 
-void	Animal::makeSound( void )
+void	Cat::makeSound( void ) const
 {
 	std::cout	<< "meow mrrp mreow prrrrrrrrr\n...\n"
 				<< "Wait stop! it's okay people, it's a trans girl!\n"
-				<< "give her headpats and call her a good girl,"
-				<< "she'll think you're the best person in the world"
+				<< "give her headpats and call her a good girl, "
+				<< "she'll think you're the best person in the world "
 				<< "and lay devastation upon your enemies.\n"
 				<< "she'll never leave you though...\n"
 				<< std::endl;

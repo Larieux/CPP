@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 01:51:16 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/18 01:57:08 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/25 16:56:32 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ WrongAnimal::WrongAnimal( void )
 
 	std::cout	<< "There's a "
 				<< _type
-				<< "in these woods."
+				<< " in these woods."
 				<< std::endl;
 
 	return ;
 }
 
-WrongAnimal::WrongAnimal( std::string type ) :
+WrongAnimal::WrongAnimal( const std::string type ) :
 	_type( type )
 {
 	std::cout	<< "There's a "
 				<< _type
-				<< "in these woods...\n"
+				<< " in these woods...\n"
 				<< "And that's just an animal, I tell ya!"
 				<< std::endl;
 
@@ -42,7 +42,7 @@ WrongAnimal::WrongAnimal( const WrongAnimal &src )
 
 	std::cout	<< "there's another "
 				<< _type
-				<< "in these woods...\n"
+				<< " in these woods...\n"
 				<< "Let's just continue onward, we're completely safe!"
 				<< std::endl;
 
@@ -53,9 +53,9 @@ WrongAnimal::~WrongAnimal( void )
 {
 	std::cout	<< "there's no more "
 				<< _type
-				<< "in these woods.\n"
+				<< " in these woods.\n"
 				<< "Darn it! the cryptids must have eaten 'em all!\n"
-				<< "let's just go back home."
+				<< "let's just go back home.\n"
 				<< std::endl;
 
 	return ;
@@ -66,7 +66,7 @@ WrongAnimal &WrongAnimal::operator= ( const WrongAnimal &src )
 {
 	std::cout	<< "That "
 				<< _type
-				<< "is turning into that "
+				<< " is turning into that "
 				<< src._type
 				<< ".\n"
 				<< "nothing to see here."
@@ -77,7 +77,12 @@ WrongAnimal &WrongAnimal::operator= ( const WrongAnimal &src )
 	return ( *this );
 }
 
-void	WrongAnimal::makeSound( void )
+std::string	WrongAnimal::getType( void ) const
+{
+	return (_type);
+}
+
+void	WrongAnimal::makeSound( void ) const
 {
 	std::cout	<< "Yiip!\n...\n...\n"
 				<< "See? that's just a fox! Told ya they were just random animals!"
