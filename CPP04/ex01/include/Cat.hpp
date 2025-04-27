@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:17:20 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/27 03:02:39 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 17:52:48 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 # define Cat_HPP
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : public Animal
 {
 public:
 	Cat( void );
-	Cat( const std::string type );
 	Cat( const Cat &src );
 	~Cat( void );
 
@@ -31,7 +31,7 @@ protected:
 
 
 private:
-
+	Brain	*_brain;
 
 };
 

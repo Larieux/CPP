@@ -6,11 +6,12 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/05 16:03:57 by mlarieux          #+#    #+#              #
-#    Updated: 2025/04/18 02:02:52 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/04/27 18:02:09 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =	Cat.cpp \
+SRC =	Brain.cpp \
+		Cat.cpp \
 		Dog.cpp \
 		Animal.cpp \
 		WrongCat.cpp \
@@ -30,7 +31,7 @@ CXX =		c++
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98 -g
 CPPFLAGS =	-I$(INCDIR)
 
-NAME =	$(BINDIR)/polymorphisme
+NAME =	$(BINDIR)/braincells
 
 all : $(NAME)
 

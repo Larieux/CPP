@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 18:51:38 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/25 16:51:12 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:17:00 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,11 @@ Cat::Cat( void ) : Animal()
 {
 	_type = "Cat";
 
-	std::cout	<< "There's a "
+	std::cout	<< "Oh! it's a cute "
 				<< _type
-				<< " in these woods..."
 				<< std::endl;
 
-	return ;
-}
-
-Cat::Cat( const std::string type ) : Animal( type )
-{
-	_type = type;
-
-	std::cout	<< "There's a "
-				<< _type
-				<< " in these woods...\n"
-				<< "And that's either a mimic or a devil's familiar, I tell ya!"
-				<< std::endl;
+	_brain = new Brain();
 
 	return ;
 }
@@ -41,22 +29,24 @@ Cat::Cat( const Cat &src ) : Animal( src )
 {
 	_type = src._type;
 
-	std::cout	<< "there's another "
+	std::cout	<< "Oh! It's another cute "
 				<< _type
-				<< " in these woods...\n"
 				<< "they group up in clans, then atack humans!"
 				<< std::endl;
+
+	_brain = new Brain();
 
 	return ;
 }
 
 Cat::~Cat( void )
 {
+	delete ( _brain );
+
 	std::cout	<< "there's no more "
 				<< _type
 				<< " in these woods.\n"
 				<< "I guess we've destroyed every clan!\n"
-				<< "...\n let's take some rest, we've earned it.\n"
 				<< std::endl;
 
 	return ;
@@ -75,14 +65,19 @@ Cat &Cat::operator= ( const Cat &src )
 				<< " was indeed a mimic!"
 				<< std::endl;
 
-	_type = src._type;
+	if ( this == &src )
+		return ( *this );
+	Animal::operator=(src);
+	if ( _brain != NULL )
+		delete _brain;
+	_brain = new Brain( *src._brain );
 
 	return ( *this );
 }
 
 void	Cat::makeSound( void ) const
 {
-	std::cout	<< "meow mrrp mreow prrrrrrrrr\n...\n"
+	std::cout	<< "meow mrrp mreow purrrrrrrrr\n...\n"
 				<< "Wait stop! it's okay people, it's a trans girl!\n"
 				<< "give her headpats and call her a good girl, "
 				<< "she'll think you're the best person in the world "

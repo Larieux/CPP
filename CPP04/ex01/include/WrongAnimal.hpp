@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 01:47:34 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/27 03:01:50 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:08:40 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ class WrongAnimal
 {
 public:
 	WrongAnimal( void );
-	WrongAnimal( const std::string type );
 	WrongAnimal( const WrongAnimal &src );
 	~WrongAnimal( void );
 

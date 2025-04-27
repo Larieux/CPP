@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:52:05 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/27 03:01:43 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:04:36 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ class Animal
 {
 public:
 	Animal( void );
-	Animal( const std::string &type );
 	Animal( const Animal &src );
 	virtual ~Animal( void );
 
