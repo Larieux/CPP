@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 01:00:30 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/27 03:30:39 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:49:39 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ public:
 
 	Brain &operator= ( const Brain &src );
 
+	const std::string	getIdea( int which ) const;
+
 protected:
 
 
 private:
-	std::string _ideas[NUM_IDEAS];
+	std::string	_ideas[NUM_IDEAS];
 
 };
 

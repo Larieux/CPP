@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:52:05 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/27 18:04:36 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 19:00:10 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define ANIMAL_HPP
 
 #include <iostream>
+
+#define NUM_AN 10
 
 class Animal
 {
@@ -24,8 +26,10 @@ public:
 
 	Animal &operator= ( const Animal &src );
 
-	virtual void		makeSound( void ) const;
 	std::string			getType( void ) const;
+	virtual std::string	getBrain( int which ) const;
+
+	virtual void		makeSound( void ) const;
 
 protected:
 	std::string _type;

@@ -14,7 +14,7 @@ WrongCat::WrongCat( void )
 
 WrongCat::WrongCat( const WrongCat &src )
 {
-	_type = src._type;
+	*this = src;
 
 	std::cout	<< "there's another "
 				<< _type

@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 01:50:09 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/27 17:56:10 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:30:55 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ public:
 	~WrongCat( void );
 
 	WrongCat &operator= ( const WrongCat &src );
+
+	std::string	getIdea( int which ) const;
 
 	void	makeSound( void ) const;
 

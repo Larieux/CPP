@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 18:51:38 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/27 18:17:00 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 19:23:12 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ Cat::Cat( void ) : Animal()
 
 	std::cout	<< "Oh! it's a cute "
 				<< _type
+				<< " ( Cat constructor )"
 				<< std::endl;
 
 	_brain = new Brain();
@@ -27,14 +28,13 @@ Cat::Cat( void ) : Animal()
 
 Cat::Cat( const Cat &src ) : Animal( src )
 {
-	_type = src._type;
+	*this = src;
 
 	std::cout	<< "Oh! It's another cute "
 				<< _type
-				<< "they group up in clans, then atack humans!"
+				<< "!\nThey group up in clans, then atack humans!"
+				<< " ( Cat copy constructor )"
 				<< std::endl;
-
-	_brain = new Brain();
 
 	return ;
 }
@@ -46,7 +46,8 @@ Cat::~Cat( void )
 	std::cout	<< "there's no more "
 				<< _type
 				<< " in these woods.\n"
-				<< "I guess we've destroyed every clan!\n"
+				<< "I guess we've destroyed every clan!"
+				<< " ( Cat destructor )\n"
 				<< std::endl;
 
 	return ;
@@ -55,14 +56,11 @@ Cat::~Cat( void )
 
 Cat &Cat::operator= ( const Cat &src )
 {
-	std::cout	<< "That "
-				<< _type
-				<< " is turning into that "
+	std::cout	<< "That thing is turning into that "
 				<< src._type
 				<< "!\n"
-				<< " the "
-				<< _type
-				<< " was indeed a mimic!"
+				<< "It was indeed a mimic!"
+				<< " ( Cat '=' operator )"
 				<< std::endl;
 
 	if ( this == &src )
@@ -73,6 +71,11 @@ Cat &Cat::operator= ( const Cat &src )
 	_brain = new Brain( *src._brain );
 
 	return ( *this );
+}
+
+std::string	Cat::getBrain( int which ) const
+{
+	return ( _brain->getIdea( which ) );
 }
 
 void	Cat::makeSound( void ) const

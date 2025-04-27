@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:05:13 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/27 17:53:53 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:52:17 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ public:
 
 	Dog &operator= ( const Dog &src );
 
-	void	makeSound( void ) const;
+	std::string	getBrain( int which ) const;
+
+	void		makeSound( void ) const;
 
 protected:
 

@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 18:33:16 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/27 18:16:31 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 19:22:38 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,12 @@ Dog::Dog( void ) : Animal()
 
 Dog::Dog( const Dog &src ) : Animal( src )
 {
-	_type = src._type;
+	*this = src;
 
 	std::cout	<< "Oh! it's another big meanie "
 				<< _type
 				<< "\nIt's a whole pack!"
 				<< std::endl;
-
-	_brain = new Brain();
 
 	return ;
 }
@@ -71,6 +69,11 @@ Dog &Dog::operator= ( const Dog &src )
 		delete _brain;
 	_brain = new Brain( *src._brain );
 	return ( *this );
+}
+
+std::string	Dog::getBrain( int which ) const
+{
+	return ( _brain->getIdea( which ) );
 }
 
 void	Dog::makeSound( void ) const

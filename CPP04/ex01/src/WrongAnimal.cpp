@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 01:51:16 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/27 18:15:02 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 19:15:07 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ WrongAnimal::WrongAnimal( void )
 
 WrongAnimal::WrongAnimal( const WrongAnimal &src )
 {
-	_type = src._type;
+	*this = src;
 
 	std::cout	<< "there's another "
 				<< _type
