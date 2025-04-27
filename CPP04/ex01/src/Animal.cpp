@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:18:59 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/27 18:09:48 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:25:13 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ Animal::Animal( const Animal &src )
 
 Animal::~Animal( void )
 {
-	std::cout	<< "...\nlet's take some rest, we've earned it.\n"
+	std::cout	<< "...let's take some rest, we've earned it.\n"
 				<< std::endl;
 
 	return ;

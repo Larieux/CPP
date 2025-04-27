@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 01:51:16 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/25 16:56:32 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:19:52 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,6 @@ WrongAnimal::WrongAnimal( void )
 	std::cout	<< "There's a "
 				<< _type
 				<< " in these woods."
-				<< std::endl;
-
-	return ;
-}
-
-WrongAnimal::WrongAnimal( const std::string type ) :
-	_type( type )
-{
-	std::cout	<< "There's a "
-				<< _type
-				<< " in these woods...\n"
-				<< "And that's just an animal, I tell ya!"
 				<< std::endl;
 
 	return ;

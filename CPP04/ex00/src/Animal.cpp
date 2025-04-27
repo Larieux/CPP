@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:18:59 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/25 15:44:18 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:24:46 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,6 @@ Animal::Animal( void )
 	std::cout	<< "There's a "
 				<< _type
 				<< " in these woods..."
-				<< std::endl;
-
-	return ;
-}
-
-Animal::Animal( const std::string &type ) :
-	_type( type )
-{
-	std::cout	<< "There's a "
-				<< _type
-				<< " in these woods...\n"
-				<< "And that's probably a cryptid too, I tell ya!"
 				<< std::endl;
 
 	return ;
@@ -51,11 +39,7 @@ Animal::Animal( const Animal &src )
 
 Animal::~Animal( void )
 {
-	std::cout	<< "there's no more "
-				<< _type
-				<< " in these woods.\n"
-				<< "I guess we survived the night!\n"
-				<< "...\n let's take some rest, we've earned it.\n"
+	std::cout	<< "...let's take some rest, we've earned it.\n"
 				<< std::endl;
 
 	return ;

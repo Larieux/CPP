@@ -12,19 +12,6 @@ WrongCat::WrongCat( void )
 	return ;
 }
 
-WrongCat::WrongCat( const std::string type )
-{
-	_type = type;
-
-	std::cout	<< "There's a "
-				<< _type
-				<< " in these woods...\n"
-				<< "And I'm hundred percent sure it's just a cute regular cat!"
-				<< std::endl;
-
-	return ;
-}
-
 WrongCat::WrongCat( const WrongCat &src )
 {
 	_type = src._type;

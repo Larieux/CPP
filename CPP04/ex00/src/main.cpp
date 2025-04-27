@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:25:12 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/25 17:02:18 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:26:02 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,39 +34,42 @@ int main( void )
 	std::cout << "\n***test animal***\n\n" << std::endl;
 
 	const Animal	*cryptid = new Animal();
-	const Animal	*thunderbird = new Animal( "thunderird" );
-	const Animal	*sec_thunderbird = new Animal( *thunderbird );
+	const Animal	*sec_cryptid = new Animal( *cryptid );
 
 	std::cout << cryptid->getType() << " " << std::endl;
-	std::cout << thunderbird->getType() << " " << std::endl;
-	std::cout << sec_thunderbird->getType() << " " << std::endl;
+	std::cout << sec_cryptid->getType() << " " << std::endl;
 
 	cryptid->makeSound();
-	thunderbird->makeSound();
-	sec_thunderbird->makeSound();
+	sec_cryptid->makeSound();
 
+	delete sec_cryptid;
 	delete cryptid;
-	delete sec_thunderbird;
-	delete thunderbird;
 
 	std::cout << "\n***test dog***\n\n" << std::endl;
 
 	const Animal	*dog = new Dog();
-	const Animal	*hellhound = new Dog( "hellhound" );
 
 	std::cout << dog->getType() << " " << std::endl;
-	std::cout << hellhound->getType() << " " << std::endl;
 
 	dog->makeSound();
-	hellhound->makeSound();
 
 	delete dog;
-	delete hellhound;
+
+	std::cout << "\n***test cat***\n\n" << std::endl;
+
+	const Animal	*cat = new Cat();
+
+	std::cout << cat->getType() << " " << std::endl;
+
+	cat->makeSound();
+
+	delete cat;
+
 
 	std::cout << "\n***test wrong animal and worngcat***\n\n" << std::endl;
 
 	const WrongAnimal	*wrong_animal = new WrongAnimal();
-	const WrongAnimal	*wrong_cat = new WrongCat( "unfamiliar" );
+	const WrongAnimal	*wrong_cat = new WrongCat();
 
 	std::cout << wrong_animal->getType() << " " << std::endl;
 	std::cout << wrong_cat->getType() << " " << std::endl;

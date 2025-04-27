@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:17:20 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/25 15:51:42 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:19:21 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ class Cat : public Animal
 {
 public:
 	Cat( void );
-	Cat( const std::string type );
 	Cat( const Cat &src );
 	~Cat( void );
 
