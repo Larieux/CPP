@@ -1,87 +1,81 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 18:33:16 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/29 17:18:03 by mlarieux         ###   ########.fr       */
+/*   Created: 2025/04/18 01:51:16 by mlarieux          #+#    #+#             */
+/*   Updated: 2025/04/27 19:15:07 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "WrongAnimal.hpp"
 
-Dog::Dog( void ) : Animal()
+WrongAnimal::WrongAnimal( void )
 {
-	_type = "Dog";
+	_type = "random wronganimal that's a hundred percent just an animal";
 
-	std::cout	<< "Oh! it's a big meanie "
+	std::cout	<< "There's a "
 				<< _type
+				<< " in these woods."
 				<< std::endl;
-
-	_brain = new Brain();
 
 	return ;
 }
 
-Dog::Dog( const Dog &src ) :
-		Animal( src ),
-		_brain( NULL )
+WrongAnimal::WrongAnimal( const WrongAnimal &src )
 {
 	*this = src;
 
-	std::cout	<< "Oh! it's another big meanie "
+	std::cout	<< "there's another "
 				<< _type
-				<< "\nIt's a whole pack!"
+				<< " in these woods...\n"
+				<< "Let's just continue onward, we're completely safe!"
 				<< std::endl;
 
 	return ;
 }
 
-Dog::~Dog( void )
+WrongAnimal::~WrongAnimal( void )
 {
-	delete ( _brain );
-
 	std::cout	<< "there's no more "
 				<< _type
 				<< " in these woods.\n"
-				<< "I guess we've killed all the mimics!\n"
+				<< "Darn it! the cryptids must have eaten 'em all!\n"
+				<< "let's just go back home.\n"
 				<< std::endl;
 
 	return ;
 }
 
-Dog &Dog::operator= ( const Dog &src )
+
+WrongAnimal &WrongAnimal::operator= ( const WrongAnimal &src )
 {
 	std::cout	<< "That "
 				<< _type
 				<< " is turning into that "
 				<< src._type
-				<< "!\n"
-				<< " the "
-				<< _type
-				<< " was actually a mimic!"
+				<< ".\n"
+				<< "nothing to see here."
 				<< std::endl;
 
 	if ( this == &src )
 		return ( *this );
-	Animal::operator=(src);
-	if ( _brain != NULL )
-		delete _brain;
-	_brain = new Brain( *src._brain );
+	_type = src._type;
+
 	return ( *this );
 }
 
-std::string	Dog::getBrain( int which ) const
+std::string	WrongAnimal::getType( void ) const
 {
-	return ( _brain->getIdea( which ) );
+	return (_type);
 }
 
-void	Dog::makeSound( void ) const
+void	WrongAnimal::makeSound( void ) const
 {
-	std::cout	<< "BARK!! BARK! BARK! BARK!!!\n"
-				<< "That's a mimic! let's kill it!"
+	std::cout	<< "Yiip!\n...\n...\n"
+				<< "See? that's just a fox! Told ya they were just random animals!"
 				<< std::endl;
 	return ;
 }
