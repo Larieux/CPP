@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 21:12:35 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/17 04:07:28 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/30 14:16:12 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ FragTrap	&FragTrap::operator= ( const FragTrap &original )
 	return ( *this );
 }
 
-void	FragTrap::attack( ClapTrap &target )
+void	FragTrap::attack( const std::string &target )
 {
 	if ( getEP() <= 0 || getHP() <= 0 )
 		setAD( 0 );
@@ -97,7 +97,7 @@ void	FragTrap::attack( ClapTrap &target )
 		std::cout	<< "FragTrap "
 					<< getName()
 					<< " attacks "
-					<< target.getName()
+					<< target
 					<< ", dealing "
 					<< getAD()
 					<< " points of damage!"

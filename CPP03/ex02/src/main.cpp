@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:25:12 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/17 03:53:55 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/30 14:14:52 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,22 @@ int main( void )
 
 	std::cout << std::endl;
 
-	korra.attack( copy );
+	korra.attack( "copy" );
 	copy.takeDamage( korra.getAD() );
-	copy.attack( korra );
+	copy.attack( "korra" );
 	korra.takeDamage( copy.getAD() );
 	bubbline.attack( korra.getName() );
 	korra.takeDamage( bubbline.getAD() );
-	pyco.attack( korra );
+	pyco.attack( "korra" );
 	korra.takeDamage( pyco.getAD() );
 
 	std::cout << std::endl;
 
-	korra.attack( pycopy );
+	korra.attack( "pycopy" );
 	pycopy.takeDamage( korra.getAD() );
-	korra.attack( pycopy );
+	korra.attack( "pycopy" );
 	pycopy.takeDamage( korra.getAD() );
-	korra.attack( fasami );
+	korra.attack( "fasami" );
 	fasami.takeDamage( korra.getAD() );
 
 	std::cout << std::endl;
@@ -55,9 +55,9 @@ int main( void )
 	pycopy = fasami;
 	std::cout << std::endl;
 
-	korra.attack( pycopy );
+	korra.attack( "pycopy" );
 	pycopy.takeDamage( korra.getAD() );
-	pyco.attack( korra );
+	pyco.attack( "korra" );
 	korra.takeDamage( pyco.getAD() );
 
 	std::cout << std::endl;
@@ -74,44 +74,44 @@ int main( void )
 
 	korra.setAD( 25 );
 
-	korra.attack( bubbline );
+	korra.attack( "bubbline" );
 	bubbline.takeDamage( korra.getAD() );
-	korra.attack( pyco );
+	korra.attack( "pyco" );
 	pyco.takeDamage( korra.getAD() );
-	korra.attack( copy );
+	korra.attack( "copy" );
 	copy.takeDamage( korra.getAD() );
 
 	std::cout << std::endl;
 
 	sbubbline.setAD( 1 );
 
-	sbubbline.attack( korra );
+	sbubbline.attack( "korra" );
 	korra.takeDamage( sbubbline.getAD() );
-	sbubbline.attack( korra );
+	sbubbline.attack( "korra" );
 	korra.takeDamage( sbubbline.getAD() );
-	sbubbline.attack( korra );
+	sbubbline.attack( "korra" );
 	korra.takeDamage( sbubbline.getAD() );
-	sbubbline.attack( korra );
+	sbubbline.attack( "korra" );
 	korra.takeDamage( sbubbline.getAD() );
-	sbubbline.attack( korra );
+	sbubbline.attack( "korra" );
 	korra.takeDamage( sbubbline.getAD() );
-	sbubbline.attack( korra );
+	sbubbline.attack( "korra" );
 	korra.takeDamage( sbubbline.getAD() );
-	sbubbline.attack( korra );
+	sbubbline.attack( "korra" );
 	korra.takeDamage( sbubbline.getAD() );
-	sbubbline.attack( korra );
+	sbubbline.attack( "korra" );
 
 	std::cout << std::endl;
 
-	asami.attack( korra );
+	asami.attack( "korra" );
 	korra.takeDamage( asami.getAD() );
-	asami.attack( korra );
+	asami.attack( "korra" );
 	korra.takeDamage( asami.getAD() );
-	asami.attack( korra );
+	asami.attack( "korra" );
 	korra.takeDamage( asami.getAD() );
-	asami.attack( korra );
+	asami.attack( "korra" );
 	korra.takeDamage( asami.getAD() );
-	asami.attack( korra );
+	asami.attack( "korra" );
 	korra.takeDamage( asami.getAD() );
 
 	std::cout << std::endl;

@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 21:12:35 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/17 04:07:22 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/30 14:11:38 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ ScavTrap	&ScavTrap::operator= ( const ScavTrap &original )
 	return ( *this );
 }
 
-void	ScavTrap::attack( ClapTrap &target )
+void	ScavTrap::attack( const std::string &target )
 {
 	if ( getEP() <= 0 || getHP() <= 0 )
 		setAD( 0 );
@@ -96,7 +96,7 @@ void	ScavTrap::attack( ClapTrap &target )
 		std::cout	<< "ScavTrap "
 					<< getName()
 					<< " attacks "
-					<< target.getName()
+					<< target
 					<< ", dealing "
 					<< getAD()
 					<< " points of damage!"

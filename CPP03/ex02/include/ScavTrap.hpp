@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 00:08:25 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/17 02:51:50 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/30 14:11:12 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ public:
 
 	ScavTrap &operator= ( const ScavTrap &original );
 
-	void	attack( ClapTrap &target );
+	void	attack( const std::string &target );
 	void	guardGate( void );
 
 private:
