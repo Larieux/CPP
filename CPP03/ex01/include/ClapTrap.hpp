@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 21:12:48 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/04/17 02:30:15 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/04/29 20:16:22 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ public:
 	void	takeDamage( unsigned int amount );
 	void	beRepaired( unsigned int amount );
 
-private:
+protected:
 	std::string	_Name;
 	int			_Hit_points;
 	int			_Energy_points;
 	int			_Attack_Damage;
+
+private:
 
 };
 
