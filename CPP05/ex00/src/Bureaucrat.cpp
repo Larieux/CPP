@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:46:46 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/05/12 19:41:30 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/05/12 19:43:51 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,6 @@ void		Bureaucrat::decrementGrade()
 
 std::ostream	&operator<<(std::ostream &out, const Bureaucrat &src)
 {
-	out << src.getName() << " is at grade " << src.getGrade() << ".";
+	out << src.getName() << ", bureaucrat grade " << src.getGrade() << ".";
 	return ( out );
 }
