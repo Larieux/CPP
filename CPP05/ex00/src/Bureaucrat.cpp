@@ -6,20 +6,41 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:46:46 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/05/06 19:06:44 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/05/12 19:41:30 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
+/******************************************************************************/
+/* structors                                                                  */
+/******************************************************************************/
+
 Bureaucrat::Bureaucrat( void ) :
-			_name(NULL),
-			_grade(NULL)
+			_name("Beatriz"),
+			_grade(MIN_GRADE)
 {
 	std::cout	<< "default Bureaucrat constructor called"
 				<< std::endl;
 
 	return ;
+}
+
+Bureaucrat::Bureaucrat( const std::string &name, const int &grade ):
+			_name( name )
+{
+	if ( grade < MAX_GRADE )
+		throw(GradeTooHighException());
+	if ( grade > MIN_GRADE )
+		throw(GradeTooLowException());
+
+	_grade = grade;
+
+	std::cout	<< _name
+				<< " hired! their grade: "
+				<< _grade
+				<< std::endl;
+
 }
 
 Bureaucrat::Bureaucrat( const Bureaucrat &src ) :
@@ -40,6 +61,9 @@ Bureaucrat::~Bureaucrat( void )
 	return ;
 }
 
+/******************************************************************************/
+/* operator overload                                                          */
+/******************************************************************************/
 
 Bureaucrat &Bureaucrat::operator= ( const Bureaucrat &src )
 {
@@ -51,6 +75,24 @@ Bureaucrat &Bureaucrat::operator= ( const Bureaucrat &src )
 	return ( *this );
 }
 
+/******************************************************************************/
+/* member classes                                                             */
+/******************************************************************************/
+
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return ("Invalid grade : Maximum grade is 1");
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return ("Invalid grade : Minimum grade is 150");
+}
+
+/******************************************************************************/
+/* member functions                                                           */
+/******************************************************************************/
+
 std::string	Bureaucrat::getName() const
 {
 	return (_name);
@@ -59,4 +101,28 @@ std::string	Bureaucrat::getName() const
 int			Bureaucrat::getGrade() const
 {
 	return (_grade);
+}
+
+void		Bureaucrat::icrementGrade()
+{
+	if ( _grade <= MAX_GRADE )
+		throw(GradeTooHighException());
+	_grade--;
+}
+
+void		Bureaucrat::decrementGrade()
+{
+	if ( _grade >= MIN_GRADE )
+		throw(GradeTooLowException());
+	_grade++;
+}
+
+/******************************************************************************/
+/* stream operator overload                                                   */
+/******************************************************************************/
+
+std::ostream	&operator<<(std::ostream &out, const Bureaucrat &src)
+{
+	out << src.getName() << " is at grade " << src.getGrade() << ".";
+	return ( out );
 }
