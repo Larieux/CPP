@@ -6,11 +6,12 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/06 18:47:20 by mlarieux          #+#    #+#              #
-#    Updated: 2025/05/13 18:12:15 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/05/14 19:27:54 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC =	Bureaucrat.cpp \
+		Form.cpp \
 		main.cpp
 
 SRCDIR =	src
@@ -26,7 +27,7 @@ CXX =		c++
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98 -Weffc++ -g
 CPPFLAGS =	-I$(INCDIR)
 
-NAME =	$(BINDIR)/bureaucrat
+NAME =	$(BINDIR)/forms
 
 all : $(NAME)
 
