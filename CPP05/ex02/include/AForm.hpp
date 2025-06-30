@@ -40,9 +40,9 @@ public:
 	};
 
 	const std::string	getName( void ) const;
-	bool			getIsSigned( void ) const;
-	int			getGradeToSign( void ) const;
-	int			getGradeToExe( void ) const;
+	bool				getIsSigned( void ) const;
+	int					getGradeToSign( void ) const;
+	int					getGradeToExe( void ) const;
 
 	void				beSigned( const Bureaucrat &b ) const;
 	std::string			printIsSigned( void ) const;

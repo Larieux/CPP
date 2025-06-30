@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:31:35 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/06/30 12:01:02 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/05/14 19:40:10 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 /******************************************************************************/
 /* structors                                                                  */
 /******************************************************************************/
 
-Form::Form( void ) :
-	_name( "random form" ),
+ShrubberyCreationForm::ShrubberyCreationForm( void ) :
+	_name( "random ShrubberyCreationForm" ),
 	_isSigned( false ),
-	_gradeToSign( 150 ),
-	_gradeToExe( 150 )
+	_gradeToSign( 145 ),
+	_gradeToExe( 137 )
 {
 	std::cout	<< "default constructor called for "
 				<< _name
 				<< std::endl;
 }
 
-Form::Form( const std::string name,
+ShrubberyCreationForm::ShrubberyCreationForm( const std::string name,
 	const int gradeToSign, const int gradeToExe ) :
 		_name( name ),
 		_isSigned( false ),
@@ -39,7 +39,7 @@ Form::Form( const std::string name,
 				<< std::endl;
 }
 
-Form::Form( const Form &src ) :
+ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm &src ) :
 	_name( src.getName() ),
 	_isSigned( src.getIsSigned() ),
 	_gradeToSign( src.getGradeToSign() ),
@@ -50,7 +50,7 @@ Form::Form( const Form &src ) :
 				<< std::endl;
 }
 
-Form::~Form( void )
+ShrubberyCreationForm::~ShrubberyCreationForm( void )
 {
 	std::cout	<< "destructor called for "
 				<< _name
@@ -61,7 +61,7 @@ Form::~Form( void )
 /* operator overload                                                          */
 /******************************************************************************/
 
-Form &Form::operator= ( const Form &src )
+ShrubberyCreationForm &ShrubberyCreationForm::operator= ( const ShrubberyCreationForm &src )
 {
 	_isSigned = src.getIsSigned();
 	return ( *this );
@@ -71,36 +71,36 @@ Form &Form::operator= ( const Form &src )
 /* member classes                                                             */
 /******************************************************************************/
 
-const char *Form::GradeTooHighException::what() const throw()
+const char *ShrubberyCreationForm::GradeTooHighException::what() const throw()
 {
-	return ("Invalid grade : grade too high");
+	return ("Invalid grade : Maximum grade is 1");
 }
 
-const char *Form::GradeTooLowException::what() const throw()
+const char *ShrubberyCreationForm::GradeTooLowException::what() const throw()
 {
-	return ("Invalid grade : grade too low");
+	return ("Invalid grade : Minimum grade is 150");
 }
 
 /******************************************************************************/
 /* geters                                                                     */
 /******************************************************************************/
 
-const std::string	Form::getName( void ) const
+const std::string	ShrubberyCreationForm::getName( void ) const
 {
 	return ( _name );
 }
 
-bool			Form::getIsSigned( void ) const
+bool			ShrubberyCreationForm::getIsSigned( void ) const
 {
 	return ( _isSigned );
 }
 
-int			Form::getGradeToSign( void ) const
+int			ShrubberyCreationForm::getGradeToSign( void ) const
 {
 	return ( _gradeToSign );
 }
 
-int			Form::getGradeToExe( void ) const
+int			ShrubberyCreationForm::getGradeToExe( void ) const
 {
 	return ( _gradeToExe );
 }
@@ -109,14 +109,7 @@ int			Form::getGradeToExe( void ) const
 /* member functions                                                           */
 /******************************************************************************/
 
-void				Form::beSigned( const Bureaucrat &b )
-{
-	if ( b.getGrade() > _gradeToSign )
-		throw(GradeTooLowException());
-	_isSigned = true;
-}
-
-std::string			Form::printIsSigned( void ) const
+std::string			ShrubberyCreationForm::printIsSigned( void ) const
 {
 	if ( getIsSigned() == false )
 		return ( "not signed" );
@@ -128,7 +121,7 @@ std::string			Form::printIsSigned( void ) const
 /* stream operator overload                                                   */
 /******************************************************************************/
 
-std::ostream	&operator<< (std::ostream &out, const Form &src )
+std::ostream	&operator<< (std::ostream &out, const ShrubberyCreationForm &src )
 {
 	out	<< "Name : " << src.getName() << ",\n"
 		<< "is : " << src.printIsSigned() << ",\n"

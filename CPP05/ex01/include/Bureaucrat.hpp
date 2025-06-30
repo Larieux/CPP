@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:47:10 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/05/14 18:30:37 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:16:26 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 # define BUREAUCRAT_HPP
 
 #include <iostream>
+#include "Form.hpp"
 
 # define MAX_GRADE 1
 # define MIN_GRADE 150
+
+class Form;
 
 class Bureaucrat
 {
@@ -45,7 +48,7 @@ public:
 
 	void		icrementGrade();
 	void		decrementGrade();
-
+	void		signForm( Form &f );
 
 protected:
 

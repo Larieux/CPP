@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:46:46 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/05/14 19:33:28 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:17:52 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,31 @@ void		Bureaucrat::icrementGrade()
 void		Bureaucrat::decrementGrade()
 {
 	if ( _grade >= MIN_GRADE )
-		throw(GradeTooLowException());
+		throw( GradeTooLowException() );
 	_grade++;
+}
+
+void		Bureaucrat::signForm( Form &f )
+{
+	try
+	{
+		f.beSigned( *this );
+	}
+	catch ( const std::exception &e )
+	{
+		std::cerr	<< getName()
+					<< " could not sign "
+					<< f.getName()
+					<< " because "
+					<< e.what()
+					<< std::endl;
+		return ;
+	}
+
+	std::cout	<< getName()
+				<< " signed "
+				<< f.getName()
+				<< std::endl;
 }
 
 /******************************************************************************/

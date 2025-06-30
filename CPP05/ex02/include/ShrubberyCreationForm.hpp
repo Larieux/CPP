@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   ShrubberyCreationFor.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:17:55 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/06/30 12:16:29 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/05/14 19:38:25 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef SHRUBBERYCREATIONFORM_HPP
+# define SHRUBBERYCREATIONFORM_HPP
 
 #include <iostream>
-#include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
-class Form
+class ShrubberyCreationForm
 {
 public:
-	Form( void );
-	Form( const std::string name, const int gToSign, const int gToExe );
-	Form( const Form &src );
-	~Form( void );
+	ShrubberyCreationForm( void );
+	ShrubberyCreationForm( const std::string name, const int gToSign, const int gToExe );
+	ShrubberyCreationForm( const ShrubberyCreationForm &src );
+	~ShrubberyCreationForm( void );
 
-	Form &operator= ( const Form &src );
+	ShrubberyCreationForm &operator= ( const ShrubberyCreationForm &src );
 
 	class GradeTooHighException : public std::exception
 	{
@@ -41,11 +40,11 @@ public:
 	};
 
 	const std::string	getName( void ) const;
-	bool			getIsSigned( void ) const;
-	int			getGradeToSign( void ) const;
-	int			getGradeToExe( void ) const;
+	bool				getIsSigned( void ) const;
+	int					getGradeToSign( void ) const;
+	int					getGradeToExe( void ) const;
 
-	void				beSigned( const Bureaucrat &b );
+	void				beSigned( const Bureaucrat &b ) const;
 	std::string			printIsSigned( void ) const;
 
 protected:
@@ -59,6 +58,6 @@ private:
 
 };
 
-std::ostream	&operator<< (std::ostream &out, const Form &src );
+std::ostream	&operator<< (std::ostream &out, const ShrubberyCreationForm &src );
 
 #endif
