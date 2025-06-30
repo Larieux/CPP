@@ -16,35 +16,18 @@
 /* structors                                                                  */
 /******************************************************************************/
 
-ShrubberyCreationForm::ShrubberyCreationForm( void ) :
-	_name( "random ShrubberyCreationForm" ),
-	_isSigned( false ),
-	_gradeToSign( 145 ),
-	_gradeToExe( 137 )
+ShrubberyCreationForm::ShrubberyCreationForm( void ) : AForm()
 {
+	_gradeToSign = 145;
+	_gradeToExe = 137;
 	std::cout	<< "default constructor called for "
 				<< _name
 				<< std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm( const std::string name,
-	const int gradeToSign, const int gradeToExe ) :
-		_name( name ),
-		_isSigned( false ),
-		_gradeToSign( gradeToSign ),
-		_gradeToExe( gradeToExe )
+ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm &src ) : AForm( src )
 {
-	std::cout	<< "filler constructor called for "
-				<< _name
-				<< std::endl;
-}
-
-ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm &src ) :
-	_name( src.getName() ),
-	_isSigned( src.getIsSigned() ),
-	_gradeToSign( src.getGradeToSign() ),
-	_gradeToExe( src.getGradeToExe() )
-{
+	*this = src;
 	std::cout	<< "copy constructor called for "
 				<< _name
 				<< std::endl;
@@ -68,53 +51,53 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator= ( const ShrubberyCreatio
 }
 
 /******************************************************************************/
-/* member classes                                                             */
-/******************************************************************************/
-
-const char *ShrubberyCreationForm::GradeTooHighException::what() const throw()
-{
-	return ("Invalid grade : Maximum grade is 1");
-}
-
-const char *ShrubberyCreationForm::GradeTooLowException::what() const throw()
-{
-	return ("Invalid grade : Minimum grade is 150");
-}
-
-/******************************************************************************/
-/* geters                                                                     */
-/******************************************************************************/
-
-const std::string	ShrubberyCreationForm::getName( void ) const
-{
-	return ( _name );
-}
-
-bool			ShrubberyCreationForm::getIsSigned( void ) const
-{
-	return ( _isSigned );
-}
-
-int			ShrubberyCreationForm::getGradeToSign( void ) const
-{
-	return ( _gradeToSign );
-}
-
-int			ShrubberyCreationForm::getGradeToExe( void ) const
-{
-	return ( _gradeToExe );
-}
-
-/******************************************************************************/
 /* member functions                                                           */
 /******************************************************************************/
 
-std::string			ShrubberyCreationForm::printIsSigned( void ) const
+void				ShrubberyCreationForm::beExe( const Bureaucrat &b ) const
 {
-	if ( getIsSigned() == false )
-		return ( "not signed" );
-	else
-		return ( "signed" );
+	if ( b.getGrade() > _gradeToExe )
+		throw(GradeTooLowException());
+	std::string		shName;
+	shName = getName() + "_shrubbery";
+	std::ofstream	file( shName.c_str() );
+
+	file << "              v .   ._, |_  .,\n"
+"           `-._\\/  .  \\ /    |/_\n"
+"               \\\\  _\\, y | \\//\n"
+"         _\\_.___\\\\, \\\\/ -.\\||\n"
+"           `7-,--.`._||  / / ,\n"
+"           /'     `-. `./ / |/_.'\n"
+"                     |    |//\n"
+"                     |_    /\n"
+"                     |-   |\n"
+"                     |   =|\n"
+"                     |    |\n"
+"                    / ,  . \\\n" << std::endl;
+	file << "              v .   ._, |_  .,\n"
+"           `-._\\/  .  \\ /    |/_\n"
+"               \\\\  _\\, y | \\//\n"
+"         _\\_.___\\\\, \\\\/ -.\\||\n"
+"           `7-,--.`._||  / / ,\n"
+"           /'     `-. `./ / |/_.'\n"
+"                     |    |//\n"
+"                     |_    /\n"
+"                     |-   |\n"
+"                     |   =|\n"
+"                     |    |\n"
+"                    / ,  . \\\n" << std::endl;
+	file << "              v .   ._, |_  .,\n"
+"           `-._\\/  .  \\ /    |/_\n"
+"               \\\\  _\\, y | \\//\n"
+"         _\\_.___\\\\, \\\\/ -.\\||\n"
+"           `7-,--.`._||  / / ,\n"
+"           /'     `-. `./ / |/_.'\n"
+"                     |    |//\n"
+"                     |_    /\n"
+"                     |-   |\n"
+"                     |   =|\n"
+"                     |    |\n"
+"                    / ,  . \\\n" << std::endl;
 }
 
 /******************************************************************************/

@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:46:58 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/06/30 12:22:57 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:16:11 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int main( void )
 		Bureaucrat	a;
 		Form		f;
 
-		a.signForm(f);
+		a.signForm( f );
+		f.getIsSigned();
 	}
 	catch ( const std::exception &e )
 	{

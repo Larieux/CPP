@@ -14,47 +14,25 @@
 # define SHRUBBERYCREATIONFORM_HPP
 
 #include <iostream>
+#include <fstream>
+#include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
-class ShrubberyCreationForm
+class ShrubberyCreationForm: public AForm
 {
 public:
 	ShrubberyCreationForm( void );
-	ShrubberyCreationForm( const std::string name, const int gToSign, const int gToExe );
 	ShrubberyCreationForm( const ShrubberyCreationForm &src );
 	~ShrubberyCreationForm( void );
 
 	ShrubberyCreationForm &operator= ( const ShrubberyCreationForm &src );
 
-	class GradeTooHighException : public std::exception
-	{
-		public :
-			virtual const char *what() const throw();
-	};
-
-	class GradeTooLowException : public std::exception
-	{
-		public :
-			virtual const char *what() const throw();
-	};
-
-	const std::string	getName( void ) const;
-	bool				getIsSigned( void ) const;
-	int					getGradeToSign( void ) const;
-	int					getGradeToExe( void ) const;
-
-	void				beSigned( const Bureaucrat &b ) const;
-	std::string			printIsSigned( void ) const;
+	void				beExe( const Bureaucrat &b ) const;
 
 protected:
 
-
 private:
-	const std::string	_name;
-	bool				_isSigned;
-	const int			_gradeToSign;
-	const int			_gradeToExe;
 
 };
 

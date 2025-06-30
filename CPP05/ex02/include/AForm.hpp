@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:17:55 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/05/14 19:38:25 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:16:29 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define AFORM_HPP
 
 #include <iostream>
+#include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
@@ -23,7 +24,7 @@ public:
 	AForm( void );
 	AForm( const std::string name, const int gToSign, const int gToExe );
 	AForm( const AForm &src );
-	~AForm( void );
+	virtual ~AForm( void );
 
 	AForm &operator= ( const AForm &src );
 
@@ -44,17 +45,17 @@ public:
 	int					getGradeToSign( void ) const;
 	int					getGradeToExe( void ) const;
 
-	void				beSigned( const Bureaucrat &b ) const;
+	void				beSigned( const Bureaucrat &b );
 	std::string			printIsSigned( void ) const;
+	virtual void		beExe( const Bureaucrat &b ) const = 0;
 
 protected:
-
+	std::string	_name;
+	bool		_isSigned;
+	int			_gradeToSign;
+	int			_gradeToExe;
 
 private:
-	const std::string	_name;
-	bool				_isSigned;
-	const int			_gradeToSign;
-	const int			_gradeToExe;
 
 };
 

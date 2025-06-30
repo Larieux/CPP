@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:31:35 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/05/14 19:40:10 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:01:02 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /******************************************************************************/
 
 AForm::AForm( void ) :
-	_name( "random AForm" ),
+	_name( "random_Aform" ),
 	_isSigned( false ),
 	_gradeToSign( 150 ),
 	_gradeToExe( 150 )
@@ -73,12 +73,12 @@ AForm &AForm::operator= ( const AForm &src )
 
 const char *AForm::GradeTooHighException::what() const throw()
 {
-	return ("Invalid grade : Maximum grade is 1");
+	return ("Invalid grade : grade too high");
 }
 
 const char *AForm::GradeTooLowException::what() const throw()
 {
-	return ("Invalid grade : Minimum grade is 150");
+	return ("Invalid grade : grade too low");
 }
 
 /******************************************************************************/
@@ -108,6 +108,14 @@ int			AForm::getGradeToExe( void ) const
 /******************************************************************************/
 /* member functions                                                           */
 /******************************************************************************/
+
+void				AForm::beSigned( const Bureaucrat &b )
+{
+	if ( b.getGrade() > _gradeToSign )
+		throw(GradeTooLowException());
+	_isSigned = true;
+	std::cout << getName() << " is signed." << std::endl;
+}
 
 std::string			AForm::printIsSigned( void ) const
 {
