@@ -47,7 +47,7 @@ public:
 
 	void				beSigned( const Bureaucrat &b );
 	std::string			printIsSigned( void ) const;
-	virtual void		beExe( const Bureaucrat &b ) const = 0;
+	virtual void		execute( const Bureaucrat &b ) const = 0;
 
 protected:
 	std::string	_name;

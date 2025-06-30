@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marceline <marceline@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -19,8 +19,8 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm( void ) : AForm()
 {
-	_gradeToSign = 145;
-	_gradeToExe = 137;
+	_gradeToSign = 72;
+	_gradeToExe = 45;
 	std::cout	<< "default constructor called for "
 				<< _name
 				<< std::endl;
@@ -59,46 +59,12 @@ void				ShrubberyCreationForm::execute( const Bureaucrat &b ) const
 {
 	if ( b.getGrade() > _gradeToExe )
 		throw(GradeTooLowException());
-	std::string		shName;
-	shName = getName() + "_shrubbery";
-	std::ofstream	file( shName.c_str() );
 
-	file << "              v .   ._, |_  .,\n"
-"           `-._\\/  .  \\ /    |/_\n"
-"               \\\\  _\\, y | \\//\n"
-"         _\\_.___\\\\, \\\\/ -.\\||\n"
-"           `7-,--.`._||  / / ,\n"
-"           /'     `-. `./ / |/_.'\n"
-"                     |    |//\n"
-"                     |_    /\n"
-"                     |-   |\n"
-"                     |   =|\n"
-"                     |    |\n"
-"                    / ,  . \\\n" << std::endl;
-	file << "              v .   ._, |_  .,\n"
-"           `-._\\/  .  \\ /    |/_\n"
-"               \\\\  _\\, y | \\//\n"
-"         _\\_.___\\\\, \\\\/ -.\\||\n"
-"           `7-,--.`._||  / / ,\n"
-"           /'     `-. `./ / |/_.'\n"
-"                     |    |//\n"
-"                     |_    /\n"
-"                     |-   |\n"
-"                     |   =|\n"
-"                     |    |\n"
-"                    / ,  . \\\n" << std::endl;
-	file << "              v .   ._, |_  .,\n"
-"           `-._\\/  .  \\ /    |/_\n"
-"               \\\\  _\\, y | \\//\n"
-"         _\\_.___\\\\, \\\\/ -.\\||\n"
-"           `7-,--.`._||  / / ,\n"
-"           /'     `-. `./ / |/_.'\n"
-"                     |    |//\n"
-"                     |_    /\n"
-"                     |-   |\n"
-"                     |   =|\n"
-"                     |    |\n"
-"                    / ,  . \\\n" << std::endl;
+	std::cout << "*deafening drilling noises*" << std::endl;
+	if (std::rand() % 2)
+		std::cout << _name << " has been successfully robotomized" << std::endl;
+	else
+		std::cout << _name << " robotomy failed" << std::endl;
 }
 
 /******************************************************************************/

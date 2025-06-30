@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marceline <marceline@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:46:46 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/06/30 15:59:16 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/06/30 18:30:11 by marceline        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,12 +148,12 @@ void		Bureaucrat::exeForm( AForm &f )
 {
 	try
 	{
-		f.beExe( *this );
+		f.execute( *this );
 	}
 	catch ( const std::exception &e )
 	{
 		std::cerr	<< getName()
-					<< " could not execute "
+					<< " could not exeForm "
 					<< f.getName()
 					<< " because "
 					<< e.what()
@@ -162,7 +162,7 @@ void		Bureaucrat::exeForm( AForm &f )
 	}
 
 	std::cout	<< getName()
-				<< " executed "
+				<< " exeFormd "
 				<< f.getName()
 				<< std::endl;
 }

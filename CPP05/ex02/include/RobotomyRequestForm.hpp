@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marceline <marceline@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,23 +11,23 @@
 /* ************************************************************************** */
 
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
 #include <iostream>
-#include <fstream>
+#include <cstdlib>
 #include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
-class ShrubberyCreationForm: public AForm
+class RobotomyRequestForm: public AForm
 {
 public:
-	ShrubberyCreationForm( void );
-	ShrubberyCreationForm( const ShrubberyCreationForm &src );
-	~ShrubberyCreationForm( void );
+	RobotomyRequestForm( void );
+	RobotomyRequestForm( const RobotomyRequestForm &src );
+	~RobotomyRequestForm( void );
 
-	ShrubberyCreationForm &operator= ( const ShrubberyCreationForm &src );
+	RobotomyRequestForm &operator= ( const RobotomyRequestForm &src );
 
 	void				execute( const Bureaucrat &b ) const;
 
@@ -37,6 +37,6 @@ private:
 
 };
 
-std::ostream	&operator<< (std::ostream &out, const ShrubberyCreationForm &src );
+std::ostream	&operator<< (std::ostream &out, const RobotomyRequestForm &src );
 
 #endif

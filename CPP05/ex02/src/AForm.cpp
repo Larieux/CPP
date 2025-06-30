@@ -134,7 +134,7 @@ std::ostream	&operator<< (std::ostream &out, const AForm &src )
 	out	<< "Name : " << src.getName() << ",\n"
 		<< "is : " << src.printIsSigned() << ",\n"
 		<< "grade required to sign : " << src.getGradeToSign() << ",\n"
-		<< "grade required to execute : " << src.getGradeToExe() << std::endl;
+		<< "grade required to exeForm : " << src.getGradeToExe() << std::endl;
 	
 	return ( out );
 }
