@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marceline <marceline@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:46:58 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/06/30 18:04:50 by marceline        ###   ########.fr       */
+/*   Updated: 2025/07/01 14:05:20 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main( void )
 {
@@ -24,22 +26,22 @@ int main( void )
 		std::cout << "a: " << a.getGrade() << "\nf: " << f.getGradeToSign() << "\n" << f.getGradeToExe() << std::endl; 
 
 		a.signForm( f );
-		b.exeForm( f );
+		b.executeForm( f );
 		f.printIsSigned();
 		a.icrementGrade();
 		b.icrementGrade();
 		a.signForm( f );
-		b.exeForm( f );
+		b.executeForm( f );
 		f.printIsSigned();
 		a.icrementGrade();
 		b.icrementGrade();
 		a.signForm( f );
-		b.exeForm( f );
+		b.executeForm( f );
 		f.printIsSigned();
 		a.decrementGrade();
 		b.decrementGrade();
 		a.signForm( f );
-		b.exeForm( f );
+		b.executeForm( f );
 		f.printIsSigned();
 	}
 	catch ( const std::exception &e )
@@ -53,27 +55,51 @@ int main( void )
 	{
 		Bureaucrat				a( "benedicte", 73 );
 		Bureaucrat				b( "bella", 44 );
-		ShrubberyCreationForm	f;
+		RobotomyRequestForm		f;
 
 		std::cout << "a: " << a.getGrade() << "\nf: " << f.getGradeToSign() << "\n" << f.getGradeToExe() << std::endl; 
 
 		a.signForm( f );
-		b.exeForm( f );
+		b.executeForm( f );
 		f.printIsSigned();
 		a.icrementGrade();
 		b.icrementGrade();
 		a.signForm( f );
 		f.printIsSigned();
-		b.exeForm( f );
-		b.exeForm( f );
-		b.exeForm( f );
-		b.exeForm( f );
-		b.exeForm( f );
-		b.exeForm( f );
+		b.executeForm( f );
 		a.decrementGrade();
 		b.decrementGrade();
 		a.signForm( f );
-		b.exeForm( f );
+		b.executeForm( f );
+		f.printIsSigned();
+	}
+	catch ( const std::exception &e )
+	{
+		std::cerr	<< "Exception caught: "
+					<< e.what()
+					<< std::endl;
+	}
+
+	try
+	{
+		Bureaucrat				a( "benedicte", 26 );
+		Bureaucrat				b( "bella", 6 );
+		PresidentialPardonForm	f( "Debbie" );
+
+		std::cout << "a: " << a.getGrade() << "\nf: " << f.getGradeToSign() << "\n" << f.getGradeToExe() << std::endl; 
+
+		a.signForm( f );
+		b.executeForm( f );
+		f.printIsSigned();
+		a.icrementGrade();
+		b.icrementGrade();
+		a.signForm( f );
+		f.printIsSigned();
+		b.executeForm( f );
+		a.decrementGrade();
+		b.decrementGrade();
+		a.signForm( f );
+		b.executeForm( f );
 		f.printIsSigned();
 	}
 	catch ( const std::exception &e )

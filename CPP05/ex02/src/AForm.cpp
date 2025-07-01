@@ -81,6 +81,11 @@ const char *AForm::GradeTooLowException::what() const throw()
 	return ("Invalid grade : grade too low");
 }
 
+const char *AForm::IsNotSignedException::what() const throw()
+{
+	return ("Form is not signed");
+}
+
 /******************************************************************************/
 /* geters                                                                     */
 /******************************************************************************/
@@ -125,6 +130,15 @@ std::string			AForm::printIsSigned( void ) const
 		return ( "signed" );
 }
 
+void				AForm::execute( Bureaucrat const & executor ) const
+{
+	if ( !_isSigned )
+		throw( IsNotSignedException() );
+	if ( executor.getGrade() > _gradeToExe )
+		throw( GradeTooLowException() );
+	printExecute();
+}
+
 /******************************************************************************/
 /* stream operator overload                                                   */
 /******************************************************************************/
@@ -134,7 +148,7 @@ std::ostream	&operator<< (std::ostream &out, const AForm &src )
 	out	<< "Name : " << src.getName() << ",\n"
 		<< "is : " << src.printIsSigned() << ",\n"
 		<< "grade required to sign : " << src.getGradeToSign() << ",\n"
-		<< "grade required to exeForm : " << src.getGradeToExe() << std::endl;
+		<< "grade required to execute : " << src.getGradeToExe() << std::endl;
 	
 	return ( out );
 }

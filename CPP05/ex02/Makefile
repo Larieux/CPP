@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marceline <marceline@student.42.fr>        +#+  +:+       +#+         #
+#    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/06 18:47:20 by mlarieux          #+#    #+#              #
-#    Updated: 2025/06/30 18:37:55 by marceline        ###   ########.fr        #
+#    Updated: 2025/07/01 13:56:54 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ SRC =	Bureaucrat.cpp \
 		AForm.cpp \
 		ShrubberyCreationForm.cpp \
 		RobotomyRequestForm.cpp \
+		PresidentialPardonForm.cpp \
 		main.cpp
 
 SRCDIR =	src

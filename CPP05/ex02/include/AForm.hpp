@@ -40,14 +40,22 @@ public:
 			virtual const char *what() const throw();
 	};
 
+	class IsNotSignedException : public std::exception
+	{
+		public :
+			virtual const char *what() const throw();
+	};
+
 	const std::string	getName( void ) const;
 	bool				getIsSigned( void ) const;
 	int					getGradeToSign( void ) const;
 	int					getGradeToExe( void ) const;
 
+	void				setTarget( std::string target );
 	void				beSigned( const Bureaucrat &b );
 	std::string			printIsSigned( void ) const;
-	virtual void		execute( const Bureaucrat &b ) const = 0;
+	virtual void		printExecute( void ) const  = 0;
+	void				execute( Bureaucrat const & executor ) const;
 
 protected:
 	std::string	_name;

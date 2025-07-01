@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marceline <marceline@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 16:31:41 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/06/30 18:30:11 by marceline        ###   ########.fr       */
+/*   Updated: 2025/07/01 14:04:32 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,18 @@ class ShrubberyCreationForm: public AForm
 {
 public:
 	ShrubberyCreationForm( void );
+	ShrubberyCreationForm( std::string target );
 	ShrubberyCreationForm( const ShrubberyCreationForm &src );
 	~ShrubberyCreationForm( void );
 
 	ShrubberyCreationForm &operator= ( const ShrubberyCreationForm &src );
 
-	void				execute( const Bureaucrat &b ) const;
+	void	printExecute( void ) const ;
 
 protected:
 
 private:
+	std::string	_target;
 
 };
 

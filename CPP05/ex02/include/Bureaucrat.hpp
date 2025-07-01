@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:47:10 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/06/30 15:58:21 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/07/01 13:36:16 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ public:
 	void		icrementGrade();
 	void		decrementGrade();
 	void		signForm( AForm &f );
-	void		exeForm( AForm &f );
+	void		executeForm( AForm const & form ) const;
 
 protected:
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,37 +10,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 /******************************************************************************/
 /* structors                                                                  */
 /******************************************************************************/
 
-ShrubberyCreationForm::ShrubberyCreationForm( void ) : AForm()
+PresidentialPardonForm::PresidentialPardonForm( void ) : AForm()
 {
 	_name = "hi";
 	_isSigned = false;
-	_gradeToSign = 145;
-	_gradeToExe = 137;
+	_gradeToSign = 25;
+	_gradeToExe = 5;
 	_target = "home";
 	std::cout	<< "default constructor called for "
 				<< _name
 				<< std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) :
+PresidentialPardonForm::PresidentialPardonForm( std::string target ) :
 	AForm(),
 	_target(target)
 {
-	_gradeToSign = 145;
-	_gradeToExe = 137;
-	std::cout	<< "default constructor called for "
+	_name = "hi";
+	_isSigned = false;
+	_gradeToSign = 25;
+	_gradeToExe = 5;
+	std::cout	<< "alt constructor called for "
 				<< _name
 				<< std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm &src ) : AForm( src )
+PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm &src ) :
+	AForm()
 {
 	*this = src;
 	std::cout	<< "copy constructor called for "
@@ -48,7 +50,7 @@ ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm &src )
 				<< std::endl;
 }
 
-ShrubberyCreationForm::~ShrubberyCreationForm( void )
+PresidentialPardonForm::~PresidentialPardonForm( void )
 {
 	std::cout	<< "destructor called for "
 				<< _name
@@ -59,7 +61,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm( void )
 /* operator overload                                                          */
 /******************************************************************************/
 
-ShrubberyCreationForm &ShrubberyCreationForm::operator= ( const ShrubberyCreationForm &src )
+PresidentialPardonForm &PresidentialPardonForm::operator= ( const PresidentialPardonForm &src )
 {
 	_isSigned = src.getIsSigned();
 	return ( *this );
@@ -69,55 +71,16 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator= ( const ShrubberyCreatio
 /* member functions                                                           */
 /******************************************************************************/
 
-void				ShrubberyCreationForm::printExecute( void ) const 
+void				PresidentialPardonForm::printExecute( void ) const 
 {
-	std::string		shName;
-	shName = _target + "_shrubbery";
-	std::ofstream	file( shName.c_str() );
-
-	file << "              v .   ._, |_  .,\n"
-"           `-._\\/  .  \\ /    |/_\n"
-"               \\\\  _\\, y | \\//\n"
-"         _\\_.___\\\\, \\\\/ -.\\||\n"
-"           `7-,--.`._||  / / ,\n"
-"           /'     `-. `./ / |/_.'\n"
-"                     |    |//\n"
-"                     |_    /\n"
-"                     |-   |\n"
-"                     |   =|\n"
-"                     |    |\n"
-"                    / ,  . \\\n" << std::endl;
-	file << "              v .   ._, |_  .,\n"
-"           `-._\\/  .  \\ /    |/_\n"
-"               \\\\  _\\, y | \\//\n"
-"         _\\_.___\\\\, \\\\/ -.\\||\n"
-"           `7-,--.`._||  / / ,\n"
-"           /'     `-. `./ / |/_.'\n"
-"                     |    |//\n"
-"                     |_    /\n"
-"                     |-   |\n"
-"                     |   =|\n"
-"                     |    |\n"
-"                    / ,  . \\\n" << std::endl;
-	file << "              v .   ._, |_  .,\n"
-"           `-._\\/  .  \\ /    |/_\n"
-"               \\\\  _\\, y | \\//\n"
-"         _\\_.___\\\\, \\\\/ -.\\||\n"
-"           `7-,--.`._||  / / ,\n"
-"           /'     `-. `./ / |/_.'\n"
-"                     |    |//\n"
-"                     |_    /\n"
-"                     |-   |\n"
-"                     |   =|\n"
-"                     |    |\n"
-"                    / ,  . \\\n" << std::endl;
+	std::cout << _target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }
 
 /******************************************************************************/
 /* stream operator overload                                                   */
 /******************************************************************************/
 
-std::ostream	&operator<< (std::ostream &out, const ShrubberyCreationForm &src )
+std::ostream	&operator<< (std::ostream &out, const PresidentialPardonForm &src )
 {
 	out	<< "Name : " << src.getName() << ",\n"
 		<< "is : " << src.printIsSigned() << ",\n"
