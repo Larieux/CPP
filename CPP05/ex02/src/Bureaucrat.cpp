@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marceline <marceline@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:46:46 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/07/01 13:58:07 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/07/01 17:15:28 by marceline        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@ Bureaucrat::Bureaucrat( void ) :
 }
 
 Bureaucrat::Bureaucrat( const std::string &name, const int &grade ):
-			_name( name )
+			_name( name ),
+			_grade( grade )
 {
 	if ( grade < MAX_GRADE )
 		throw(GradeTooHighException());
 	if ( grade > MIN_GRADE )
 		throw(GradeTooLowException());
-
-	_grade = grade;
 
 	std::cout	<< _name
 				<< " hired! their grade: "

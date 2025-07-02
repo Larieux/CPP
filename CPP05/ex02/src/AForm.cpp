@@ -27,12 +27,11 @@ AForm::AForm( void ) :
 				<< std::endl;
 }
 
-AForm::AForm( const std::string name,
-	const int gradeToSign, const int gradeToExe ) :
-		_name( name ),
-		_isSigned( false ),
-		_gradeToSign( gradeToSign ),
-		_gradeToExe( gradeToExe )
+AForm::AForm( const std::string name, const int gToSign, const int gToExe ) :
+	_name( name ),
+	_isSigned( false ),
+	_gradeToSign( gToSign ),
+	_gradeToExe( gToExe )
 {
 	std::cout	<< "filler constructor called for "
 				<< _name
@@ -63,7 +62,8 @@ AForm::~AForm( void )
 
 AForm &AForm::operator= ( const AForm &src )
 {
-	_isSigned = src.getIsSigned();
+	if (this != &src)
+		_isSigned = src.getIsSigned();
 	return ( *this );
 }
 

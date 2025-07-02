@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 16:31:47 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/07/01 14:04:32 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/07/02 11:23:03 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,42 +17,27 @@
 /* structors                                                                  */
 /******************************************************************************/
 
-ShrubberyCreationForm::ShrubberyCreationForm( void ) : AForm()
+ShrubberyCreationForm::ShrubberyCreationForm( void ) :
+	AForm( "Shrubbery Creation Form", 145, 137),
+	_target("home")
 {
-	_name = "hi";
-	_isSigned = false;
-	_gradeToSign = 145;
-	_gradeToExe = 137;
-	_target = "home";
-	std::cout	<< "default constructor called for "
-				<< _name
-				<< std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) :
-	AForm(),
+	AForm( "Shrubbery Creation Form", 145, 137),
 	_target(target)
 {
-	_gradeToSign = 145;
-	_gradeToExe = 137;
-	std::cout	<< "default constructor called for "
-				<< _name
-				<< std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm &src ) : AForm( src )
+ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm &src ) :
+	AForm( "Shrubbery Creation Form", 145, 137),
+	_target("home")
 {
 	*this = src;
-	std::cout	<< "copy constructor called for "
-				<< _name
-				<< std::endl;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm( void )
 {
-	std::cout	<< "destructor called for "
-				<< _name
-				<< std::endl;
 }
 
 /******************************************************************************/
@@ -61,13 +46,19 @@ ShrubberyCreationForm::~ShrubberyCreationForm( void )
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator= ( const ShrubberyCreationForm &src )
 {
-	_isSigned = src.getIsSigned();
+	if (this != &src)
+		_target = src.getTarget();
 	return ( *this );
 }
 
 /******************************************************************************/
 /* member functions                                                           */
 /******************************************************************************/
+
+std::string	ShrubberyCreationForm::getTarget( void ) const
+{
+	return ( _target );
+}
 
 void				ShrubberyCreationForm::printExecute( void ) const 
 {

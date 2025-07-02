@@ -21,7 +21,6 @@ class Bureaucrat;
 class AForm
 {
 public:
-	AForm( void );
 	AForm( const std::string name, const int gToSign, const int gToExe );
 	AForm( const AForm &src );
 	virtual ~AForm( void );
@@ -54,16 +53,17 @@ public:
 	void				setTarget( std::string target );
 	void				beSigned( const Bureaucrat &b );
 	std::string			printIsSigned( void ) const;
-	virtual void		printExecute( void ) const  = 0;
+	virtual void		printExecute( void ) const = 0;
 	void				execute( Bureaucrat const & executor ) const;
 
 protected:
+
+private:
+	AForm( void );
 	std::string	_name;
 	bool		_isSigned;
 	int			_gradeToSign;
 	int			_gradeToExe;
-
-private:
 
 };
 
