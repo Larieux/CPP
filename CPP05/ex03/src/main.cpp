@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marceline <marceline@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:46:58 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/07/01 17:43:20 by marceline        ###   ########.fr       */
+/*   Updated: 2025/07/02 11:24:32 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ int main( void )
 {
 	try
 	{
-		Bureaucrat				a( "benedicte", 147 );
-		Bureaucrat				b( "bella", 139 );
+		Bureaucrat				a( "benedicte", 73 );
+		Bureaucrat				b( "bella", 46 );
 		Intern 					someRandomIntern;
 		AForm* 					f = someRandomIntern.makeForm("Robotomy Request", "Bender");
+
+		std::cout << *f;
 
 		a.signForm( *f );
 		b.executeForm( *f );

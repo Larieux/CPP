@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marceline <marceline@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 16:31:47 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/07/01 17:19:51 by marceline        ###   ########.fr       */
+/*   Updated: 2025/07/02 11:23:20 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,44 +18,26 @@
 /******************************************************************************/
 
 RobotomyRequestForm::RobotomyRequestForm( void ) :
-	AForm(),
+	AForm( "Robotomy Request Form", 72, 45),
 	_target("home")
 {
-	_name = "hi";
-	_isSigned = false;
-	_gradeToSign = 72;
-	_gradeToExe = 45;
-	std::cout	<< "default constructor called for "
-				<< _name
-				<< std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm( std::string target ) :
-	AForm(),
+	AForm( "Robotomy Request Form", 72, 45),
 	_target(target)
 {
-	_gradeToSign = 72;
-	_gradeToExe = 45;
-	std::cout	<< "default constructor called for "
-				<< _name
-				<< std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm &src ) :
-	AForm( src ),
+	AForm( "Robotomy Request Form", 72, 45),
 	_target("home")
 {
 	*this = src;
-	std::cout	<< "copy constructor called for "
-				<< _name
-				<< std::endl;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm( void )
 {
-	std::cout	<< "destructor called for "
-				<< _name
-				<< std::endl;
 }
 
 /******************************************************************************/
@@ -64,7 +46,8 @@ RobotomyRequestForm::~RobotomyRequestForm( void )
 
 RobotomyRequestForm &RobotomyRequestForm::operator= ( const RobotomyRequestForm &src )
 {
-	_isSigned = src.getIsSigned();
+	if (this != &src)
+		_target = src.getTarget();
 	return ( *this );
 }
 
@@ -72,14 +55,19 @@ RobotomyRequestForm &RobotomyRequestForm::operator= ( const RobotomyRequestForm 
 /* member functions                                                           */
 /******************************************************************************/
 
+std::string	RobotomyRequestForm::getTarget( void ) const
+{
+	return ( _target );
+}
+
 void				RobotomyRequestForm::printExecute( void ) const 
 {
 	std::cout << "*deafening drilling noises*" << std::endl;
 	std::srand(time(NULL));
 	if (std::rand() % 2)
-		std::cout << _name << " has been successfully robotomized" << std::endl;
+		std::cout << _target << " has been successfully robotomized" << std::endl;
 	else
-		std::cout << _name << " robotomy failed" << std::endl;
+		std::cout << _target << " robotomy failed" << std::endl;
 }
 
 /******************************************************************************/

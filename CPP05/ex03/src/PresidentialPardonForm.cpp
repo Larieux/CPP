@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marceline <marceline@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 16:31:47 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/07/01 17:20:32 by marceline        ###   ########.fr       */
+/*   Updated: 2025/07/02 11:05:33 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,46 +17,26 @@
 /******************************************************************************/
 
 PresidentialPardonForm::PresidentialPardonForm( void ) :
-	AForm(),
+	AForm( "Presidentian Pardon Form", 25, 5),
 	_target("home")
 {
-	_name = "hi";
-	_isSigned = false;
-	_gradeToSign = 25;
-	_gradeToExe = 5;
-	std::cout	<< "default constructor called for "
-				<< _name
-				<< std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm( std::string target ) :
-	AForm(),
+	AForm( "Presidentian Pardon Form", 25, 5),
 	_target(target)
 {
-	_name = "hi";
-	_isSigned = false;
-	_gradeToSign = 25;
-	_gradeToExe = 5;
-	std::cout	<< "alt constructor called for "
-				<< _name
-				<< std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm &src ) :
-	AForm(),
+	AForm( "Presidentian Pardon Form", 25, 5),
 	_target("home")
 {
 	*this = src;
-	std::cout	<< "copy constructor called for "
-				<< _name
-				<< std::endl;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm( void )
 {
-	std::cout	<< "destructor called for "
-				<< _name
-				<< std::endl;
 }
 
 /******************************************************************************/
@@ -65,13 +45,19 @@ PresidentialPardonForm::~PresidentialPardonForm( void )
 
 PresidentialPardonForm &PresidentialPardonForm::operator= ( const PresidentialPardonForm &src )
 {
-	_isSigned = src.getIsSigned();
+	if (this != &src)
+		_target = src.getTarget();
 	return ( *this );
 }
 
 /******************************************************************************/
 /* member functions                                                           */
 /******************************************************************************/
+
+std::string	PresidentialPardonForm::getTarget( void ) const
+{
+	return ( _target );
+}
 
 void				PresidentialPardonForm::printExecute( void ) const 
 {

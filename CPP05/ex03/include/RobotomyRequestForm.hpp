@@ -6,7 +6,7 @@
 /*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 16:31:41 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/07/01 14:04:32 by mlarieux         ###   ########.fr       */
+/*   Updated: 2025/07/02 11:06:08 by mlarieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ public:
 	~RobotomyRequestForm( void );
 
 	RobotomyRequestForm &operator= ( const RobotomyRequestForm &src );
+
+	std::string	getTarget( void ) const;
 
 	void	printExecute( void ) const ;
 

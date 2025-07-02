@@ -27,11 +27,11 @@ AForm::AForm( void ) :
 				<< std::endl;
 }
 
-AForm::AForm( const std::string name ) :
+AForm::AForm( const std::string name, const int gToSign, const int gToExe ) :
 	_name( name ),
 	_isSigned( false ),
-	_gradeToSign( 150 ),
-	_gradeToExe( 150 )
+	_gradeToSign( gToSign ),
+	_gradeToExe( gToExe )
 {
 	std::cout	<< "filler constructor called for "
 				<< _name

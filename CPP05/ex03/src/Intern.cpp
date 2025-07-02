@@ -90,6 +90,6 @@ AForm	*Intern::makeForm( const std::string name, const std::string target )
 	it = formType.find( name );
 	if ( it == formType.end() )
 		throw ( UnknownFormTypeException() );
-	std::cout << "Intern creates " << target << std::endl;
+	std::cout << "Intern creates " << target << " " << it->first << std::endl;
 	return (( this->*( it->second ) )( target ));
 }
