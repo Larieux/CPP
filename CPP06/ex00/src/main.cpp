@@ -1,19 +1,24 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 18:46:58 by mlarieux          #+#    #+#             */
-/*   Updated: 2025/09/13 23:53:08 by mlarieux         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ScalarConverter.hpp"
 
-int main( void )
+int main()
 {
-	
-	return (0);
+    ScalarConverter::convert("");
+    std::cout << "----------------------" << std::endl;
+    ScalarConverter::convert("1");
+    std::cout << "----------------------" << std::endl;
+    ScalarConverter::convert("5.4f");
+    std::cout << "----------------------" << std::endl;
+    ScalarConverter::convert("6.3");
+    std::cout << "----------------------" << std::endl;
+    ScalarConverter::convert("inf");
+    std::cout << "----------------------" << std::endl;
+    ScalarConverter::convert("nanf");
+    std::cout << "----------------------" << std::endl;
+    ScalarConverter::convert("n");
+    std::cout << "----------------------" << std::endl;
+    ScalarConverter::convert("2147483648");
+    std::cout << "----------------------" << std::endl;
+    ScalarConverter::convert("-2147483648");
+    std::cout << "----------------------" << std::endl;
+    ScalarConverter::convert("hello");
 }
