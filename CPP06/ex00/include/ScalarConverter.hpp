@@ -3,6 +3,25 @@
 
 #include <string>
 #include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <cctype>
+#include <cmath>
+#include <climits>
+#include <cfloat>
+#include <cerrno>
+#include <sstream> 
+#include <limits>
+
+#define IMPOSSIBLE "impossible"
+#define NON_DISPLAYABLE "Non displayable"
+
+enum InputIndex {
+	CHAR,
+	INT,
+	FLOAT,
+	DOUBLE,
+};
 
 class ScalarConverter
 {

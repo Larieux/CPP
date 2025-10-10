@@ -6,11 +6,14 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/06 18:47:20 by mlarieux          #+#    #+#              #
-#    Updated: 2025/10/09 15:52:31 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/10/09 18:25:27 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =	ScalarConverter.cpp \
+SRC =	A.cpp \
+		B.cpp \
+		C.cpp \
+		Base.cpp \
 		main.cpp
 
 SRCDIR =	src
@@ -26,7 +29,7 @@ CXX =		c++
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98 -g
 CPPFLAGS =	-I$(INCDIR)
 
-NAME =	$(BINDIR)/ScalarConverter
+NAME =	$(BINDIR)/Identifier_the_second
 
 all : $(NAME)
 
