@@ -6,7 +6,7 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/06 18:47:20 by mlarieux          #+#    #+#              #
-#    Updated: 2025/10/11 17:48:42 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/10/11 19:26:08 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CXX =		c++
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98 -g
 CPPFLAGS =	-I$(INCDIR)
 
-NAME =	$(BINDIR)/span
+NAME =	$(BINDIR)/MutantStack
 
 all : $(NAME)
 
