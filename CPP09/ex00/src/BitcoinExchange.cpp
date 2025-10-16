@@ -176,12 +176,7 @@ bool	BitcoinExchange::parseData(std::string const &file)
 		{
 			i++;
 			if (!line.empty() && !_parseLine(map, line))
-			{
-				std::string err = INVALID_FORMAT;
-				std::string errIn = " in ";
-				std::string errPlus = DATABASE_FILE;
-				throw (std::runtime_error(err + errIn + errPlus));
-			}
+				throw (CustomException<std::runtime_error>(INVALID_FORMAT, " in ", DATABASE_FILE));
 		}
 	}
 	catch(const std::exception& e)
@@ -244,30 +239,15 @@ void	BitcoinExchange::convert(const std::string &file)
 				extractedDate = line.substr(0, pipe - 1);
 				std::string	extractedValue = line.substr(pipe + 1);
 				if (extractedValue.empty())
-				{
-					std::string err = COULD_NOT_READ;
-					std::string errIn = " in ";
-					std::string errPlus = INPUT_FILE;
-					throw (std::runtime_error(err + errIn + errPlus));
-				}
+					throw (CustomException<std::runtime_error>(COULD_NOT_READ, " in ", INPUT_FILE));
 				value = atof(extractedValue.c_str());
 			}
 
 			if (!_check_date_format(extractedDate))
-			{
-				std::string err = INVALID_FORMAT;
-				std::string errIn = " in ";
-				std::string errPlus = DATABASE_FILE;
-				throw (std::invalid_argument (err + errIn + errPlus));
-			}
+				throw (CustomException<std::invalid_argument>(INVALID_FORMAT, " in ", DATABASE_FILE));
 
 			if (value < 0 || value > 1000)
-			{
-				std::string err = VALUE_OUT_OF_RANGE;
-				std::string errIn = " in ";
-				std::string errPlus = INPUT_FILE;
-				throw (std::runtime_error(err + errIn + errPlus));
-			}
+				throw (CustomException<std::runtime_error>(VALUE_OUT_OF_RANGE, " in ", INPUT_FILE));
 
 			float rate = findClosest(map, extractedDate);
 

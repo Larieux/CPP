@@ -42,6 +42,16 @@ public:
 
 	std::map<std::string, float>	getMap() const;
 
+	template<typename ExceptionType>
+	class CustomException : public ExceptionType
+	{
+	public:
+		CustomException(const std::string& part1,
+						const std::string& part2,
+						const std::string& part3)
+			: ExceptionType(part1 + part2 + part3) {}
+	};
+
 private:
 	std::map<std::string, float> map;
 };
