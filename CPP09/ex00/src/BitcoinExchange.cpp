@@ -127,7 +127,6 @@ static bool	_parseLine(std::map<std::string, float> &map, std::string line)
 
 		if (!_check_date_format(extractedDate))
 		{
-			std::cout << INVALID_FORMAT << " in " << DATABASE_FILE << std::endl;
 			return (false);
 		}
 		
@@ -136,7 +135,6 @@ static bool	_parseLine(std::map<std::string, float> &map, std::string line)
 
 		if (!valueStream || valueStream.fail())
 		{
-			std::cout << VALUE_OUT_OF_RANGE << " in " << DATABASE_FILE << std::endl;
 			return (false);
 		}
 
@@ -152,12 +150,12 @@ bool	BitcoinExchange::parseData(std::string const &file)
 
 	if (!_extensionCorrect(file))
 	{
-		std::cerr << ERROR << "wrong extension for database file." << std::endl;
+		std::cerr << ERROR << "wrong extension for " << file << std::endl;
 	}
 
 	if (!infile.is_open())
 	{
-		std::cerr << ERROR << " " << COULD_NOT_OPEN << " " << " database file." << std::endl;
+		std::cerr << ERROR << " " << COULD_NOT_OPEN << " " << file << std::endl;
 		return (false);
 	}
 
@@ -165,7 +163,7 @@ bool	BitcoinExchange::parseData(std::string const &file)
 
 	if (!std::getline(infile, line))
 	{
-		std::cerr << ERROR << COULD_NOT_READ << " in " << DATABASE_FILE << std::endl;
+		std::cerr << ERROR << COULD_NOT_READ << " in " << file << std::endl;
 		return (false);
 	}
 
@@ -176,15 +174,17 @@ bool	BitcoinExchange::parseData(std::string const &file)
 		{
 			i++;
 			if (!line.empty() && !_parseLine(map, line))
-				throw (CustomException<std::runtime_error>(INVALID_FORMAT, " in ", DATABASE_FILE));
+				throw (std::runtime_error(INVALID_FORMAT));
 		}
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr	<< file
-					<< ": line " << i << ": " << e.what()
-					<< "\n\t[" << line << "]"
-					<< std::endl;
+		std::cerr	<< "Error: invalid argument: "
+					<< e.what()
+					<< "\n\tin "
+					<< file
+					<< ", Line: "
+					<< line << std::endl;
 		return (false);
 	}
 	
@@ -212,14 +212,14 @@ void	BitcoinExchange::convert(const std::string &file)
 
 	if (!infile.is_open())
 	{
-		std::cerr << ERROR << " " << COULD_NOT_OPEN << " " << INPUT_FILE << std::endl;
+		std::cerr << ERROR << " " << COULD_NOT_OPEN << " " << file << std::endl;
 		return ;
 	}
 
 	std::string	line;
 	if (!std::getline(infile, line))
 	{
-		std::cerr << ERROR << " " << COULD_NOT_READ << " in " << INPUT_FILE << std::endl;
+		std::cerr << ERROR << " " << COULD_NOT_READ << " in " << file << std::endl;
 		return ;
 	}
 
@@ -239,24 +239,40 @@ void	BitcoinExchange::convert(const std::string &file)
 				extractedDate = line.substr(0, pipe - 1);
 				std::string	extractedValue = line.substr(pipe + 1);
 				if (extractedValue.empty())
-					throw (CustomException<std::runtime_error>(COULD_NOT_READ, " in ", INPUT_FILE));
+					throw (std::runtime_error(COULD_NOT_READ));
 				value = atof(extractedValue.c_str());
 			}
 
 			if (!_check_date_format(extractedDate))
-				throw (CustomException<std::invalid_argument>(INVALID_FORMAT, " in ", DATABASE_FILE));
+				throw (std::invalid_argument(INVALID_FORMAT));
 
 			if (value < 0 || value > 1000)
-				throw (CustomException<std::runtime_error>(VALUE_OUT_OF_RANGE, " in ", INPUT_FILE));
+				throw (std::runtime_error(VALUE_OUT_OF_RANGE));
 
 			float rate = findClosest(map, extractedDate);
 
 			std::cout << extractedDate << " => " << value << " = " << value * rate << std::endl;
 
 		}
-		catch(const std::exception& e)
+		catch (const std::runtime_error& e)
 		{
-			std::cerr << "Error: " << e.what() << "\n\tLine: " << line << std::endl;
+			std::cerr	<< "Error: Runtime: "
+						<< e.what()
+						<< "\n\tin "
+						<< file
+						<< ", Line: "
+						<< line
+						<< std::endl;
+		}
+		catch (const std::invalid_argument& e)
+		{
+			std::cerr	<< "Error: invalid argument: "
+						<< e.what()
+						<< "\n\tin "
+						<< file
+						<< ", Line: "
+						<< line
+						<< std::endl;
 		}
 	}
 	infile.close();

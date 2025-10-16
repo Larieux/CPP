@@ -20,9 +20,6 @@
 #define COULD_NOT_READ "could not read first line"
 #define VALUE_OUT_OF_RANGE "value out of range"
 
-#define DATABASE_FILE "database file"
-#define INPUT_FILE "input file"
-
 #define DATE_YEAR 4
 #define DATE_DASH_MONTH 3
 #define DATE_DASH_DAY 3
@@ -41,16 +38,6 @@ public:
 	void	convert(std::string const &file);
 
 	std::map<std::string, float>	getMap() const;
-
-	template<typename ExceptionType>
-	class CustomException : public ExceptionType
-	{
-	public:
-		CustomException(const std::string& part1,
-						const std::string& part2,
-						const std::string& part3)
-			: ExceptionType(part1 + part2 + part3) {}
-	};
 
 private:
 	std::map<std::string, float> map;
