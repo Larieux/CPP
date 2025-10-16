@@ -14,7 +14,14 @@
 
 #define DATA_FILE "data.csv"
 
-#define INVALID_FORMAT "format invalid in data file."
+#define ERROR "Error: "
+#define COULD_NOT_OPEN "could not open"
+#define INVALID_FORMAT "Invalid format"
+#define COULD_NOT_READ "could not read first line"
+#define VALUE_OUT_OF_RANGE "value out of range"
+
+#define DATABASE_FILE "database file"
+#define INPUT_FILE "input file"
 
 #define DATE_YEAR 4
 #define DATE_DASH_MONTH 3
@@ -34,12 +41,6 @@ public:
 	void	convert(std::string const &file);
 
 	std::map<std::string, float>	getMap() const;
-
-	class ExceptionInvalidNumber : public std::exception
-	{
-		public :
-			virtual const char *what() const throw();
-	};
 
 private:
 	std::map<std::string, float> map;

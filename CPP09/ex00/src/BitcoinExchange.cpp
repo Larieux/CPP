@@ -45,7 +45,7 @@ static bool _isLeapYear(const unsigned int year)
 	return (false);
 }
 
-static bool _getDayPerMonth(const unsigned int year, const unsigned int month)
+static int _getDayPerMonth(const unsigned int year, const unsigned int month)
 {
 	static const unsigned int daysInMonth[] = {
 		31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
@@ -60,29 +60,39 @@ static bool _getDayPerMonth(const unsigned int year, const unsigned int month)
 static bool _check_date_format(std::string	extractedDate)
 {
 	if (extractedDate.length() != 10)
+	{
 		return (false);
+	}
 	
 	if (extractedDate[4] != '-' || extractedDate[7] != '-')
+	{
 		return (false);
+	}
 
 	int i = 0;
 	for (; i < DATE_YEAR; i++)
 	{
 		if (!isdigit(extractedDate[i]))
+		{
 			return (false);
+		}
 	}
 
 	for (i += DATE_DASH; i < DATE_YEAR + DATE_DASH_MONTH; i++)
 	{
 		if (!isdigit(extractedDate[i]))
+		{
 			return (false);
+		}
 	}
 
 	for (i += DATE_DASH;
 			i < DATE_YEAR + DATE_DASH_MONTH + DATE_DASH_DAY; i++)
 	{
 		if (!isdigit(extractedDate[i]))
+		{
 			return (false);
+		}
 	}
 
 
@@ -90,22 +100,25 @@ static bool _check_date_format(std::string	extractedDate)
 	const int month = atoi(extractedDate.substr(DATE_YEAR + DATE_DASH, 2).c_str());
 	const int day = atoi(extractedDate.substr(DATE_YEAR + DATE_DASH_MONTH + DATE_DASH, 2).c_str());
 
-	if (month <= 0 || NB_OF_MONTH < month) {
-		throw (std::out_of_range("Month value out of range"));
+	if (month <= 0 || month > NB_OF_MONTH)
+	{
+			std::cout << "Month " << VALUE_OUT_OF_RANGE << std::endl;
+			return (false);
 	}
 
-	if (day <= 0 || _getDayPerMonth(year, month) < day) {
-		throw (std::out_of_range("Day value out of range"));
+	if (day <= 0 || day > _getDayPerMonth(year, month))
+	{
+			std::cout << "Day " << VALUE_OUT_OF_RANGE << std::endl;
+			return (false);
 	}
 	return (true);
 }
 
-static bool	_parseLine(std::map<std::string, float> map, std::string line)
+static bool	_parseLine(std::map<std::string, float> &map, std::string line)
 {
 	std::istringstream	stream(line);
 	std::string			extractedDate;
 	std::string			extractedValue;
-	// std::string			delimiter = ",";
 	float				floatValue;
 
 	if (std::getline(stream, extractedDate, ',') && std::getline(stream, extractedValue))
@@ -113,13 +126,18 @@ static bool	_parseLine(std::map<std::string, float> map, std::string line)
 		extractedDate.erase(std::remove_if(extractedDate.begin(), extractedDate.end(), ::isspace), extractedDate.end());
 
 		if (!_check_date_format(extractedDate))
-			throw std::invalid_argument(INVALID_FORMAT);
+		{
+			std::cout << INVALID_FORMAT << " in " << DATABASE_FILE << std::endl;
+			return (false);
+		}
 		
 		std::istringstream valueStream(extractedValue);
 		valueStream >> floatValue;
 
-		if (!valueStream || valueStream.fail()) {
-			throw std::out_of_range("Value out of range");
+		if (!valueStream || valueStream.fail())
+		{
+			std::cout << VALUE_OUT_OF_RANGE << " in " << DATABASE_FILE << std::endl;
+			return (false);
 		}
 
 		map[extractedDate] = floatValue;
@@ -134,12 +152,12 @@ bool	BitcoinExchange::parseData(std::string const &file)
 
 	if (!_extensionCorrect(file))
 	{
-		std::cerr << "Error: wrong extension" << std::endl;
+		std::cerr << ERROR << "wrong extension for database file." << std::endl;
 	}
 
 	if (!infile.is_open())
 	{
-		std::cerr << "Error: Couldn't open database file." << std::endl;
+		std::cerr << ERROR << " " << COULD_NOT_OPEN << " " << " database file." << std::endl;
 		return (false);
 	}
 
@@ -147,7 +165,7 @@ bool	BitcoinExchange::parseData(std::string const &file)
 
 	if (!std::getline(infile, line))
 	{
-		std::cerr << "Error: couldn't read first line." << std::endl;
+		std::cerr << ERROR << COULD_NOT_READ << " in " << DATABASE_FILE << std::endl;
 		return (false);
 	}
 
@@ -158,10 +176,15 @@ bool	BitcoinExchange::parseData(std::string const &file)
 		{
 			i++;
 			if (!line.empty() && !_parseLine(map, line))
-				throw (std::runtime_error("Invalid data format"));
+			{
+				std::string err = INVALID_FORMAT;
+				std::string errIn = " in ";
+				std::string errPlus = DATABASE_FILE;
+				throw (std::runtime_error(err + errIn + errPlus));
+			}
 		}
 	}
-	catch(const std::runtime_error& e)
+	catch(const std::exception& e)
 	{
 		std::cerr	<< file
 					<< ": line " << i << ": " << e.what()
@@ -174,9 +197,89 @@ bool	BitcoinExchange::parseData(std::string const &file)
 	return (true);
 }
 
-void	BitcoinExchange::convert(std::string const &file)
+static float	findClosest(const std::map<std::string, float> &map, const std::string &extractedDate)
 {
-	(void) file;
+	std::map<std::string, float>::const_iterator it = map.begin();
+	float closest = 0;
+
+	for (; it != map.end(); it++)
+	{
+		if (extractedDate < it->first)
+			break ;
+		closest = it->second;
+	}
+	return (closest);
+}
+
+void	BitcoinExchange::convert(const std::string &file)
+{
+	std::ifstream	infile(file.c_str());
+
+	if (!infile.is_open())
+	{
+		std::cerr << ERROR << " " << COULD_NOT_OPEN << " " << INPUT_FILE << std::endl;
+		return ;
+	}
+
+	std::string	line;
+	if (!std::getline(infile, line))
+	{
+		std::cerr << ERROR << " " << COULD_NOT_READ << " in " << INPUT_FILE << std::endl;
+		return ;
+	}
+
+	while (std::getline(infile, line))
+	{
+		if (line.empty())
+			continue;
+
+		try
+		{
+			float value = 0;
+			std::string extractedDate;
+
+			size_t pipe = line.find('|');
+			if (pipe != std::string::npos)
+			{
+				extractedDate = line.substr(0, pipe - 1);
+				std::string	extractedValue = line.substr(pipe + 1);
+				if (extractedValue.empty())
+				{
+					std::string err = COULD_NOT_READ;
+					std::string errIn = " in ";
+					std::string errPlus = INPUT_FILE;
+					throw (std::runtime_error(err + errIn + errPlus));
+				}
+				value = atof(extractedValue.c_str());
+			}
+
+			if (!_check_date_format(extractedDate))
+			{
+				std::string err = INVALID_FORMAT;
+				std::string errIn = " in ";
+				std::string errPlus = DATABASE_FILE;
+				throw (std::invalid_argument (err + errIn + errPlus));
+			}
+
+			if (value < 0 || value > 1000)
+			{
+				std::string err = VALUE_OUT_OF_RANGE;
+				std::string errIn = " in ";
+				std::string errPlus = INPUT_FILE;
+				throw (std::runtime_error(err + errIn + errPlus));
+			}
+
+			float rate = findClosest(map, extractedDate);
+
+			std::cout << extractedDate << " => " << value << " = " << value * rate << std::endl;
+
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << "Error: " << e.what() << "\n\tLine: " << line << std::endl;
+		}
+	}
+	infile.close();
 }
 
 
