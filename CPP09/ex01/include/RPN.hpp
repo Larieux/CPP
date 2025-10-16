@@ -25,16 +25,6 @@ public:
 
 	void compute(std::string const &expression);
 
-	class Error : public std::exception
-	{
-		private:
-			std::string	msg;
-
-		public :
-			Error(const std::string &msg);
-			virtual ~Error() throw();
-			virtual const char *what() const throw();
-	};
 };
 
 #endif
