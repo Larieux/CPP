@@ -14,9 +14,6 @@
 
 class RPN
 {
-private:
-	std::stack<int>	stack;
-
 public:
 	RPN();
 	RPN(const RPN& src);
@@ -24,6 +21,9 @@ public:
 	~RPN();
 
 	void compute(std::string const &expression);
+
+private:
+	std::stack<int>	stack;
 
 };
 
