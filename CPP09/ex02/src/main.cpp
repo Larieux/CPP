@@ -1,8 +1,18 @@
 #include "PmergeMe.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
-	// vector and deque?
 
-return (0);
+
+	try
+	{
+		PmergeMe	sorter(argc, argv);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+
+	return (0);
 }
