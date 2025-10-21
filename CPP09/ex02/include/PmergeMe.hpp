@@ -13,29 +13,30 @@
 #include <list>
 #include <algorithm>
 
+template < class container >
 class PmergeMe
 {
 public:
 	PmergeMe();
-	PmergeMe(int argc = 0, char **argv = NULL);
+	PmergeMe(const std::vector<int> &src);
 	PmergeMe(const PmergeMe &src);
 	~PmergeMe();
 
 	PmergeMe &operator=(const PmergeMe &src);
 
-	std::vector<int>	getInput() const;
-	std::vector<int>	getVec() const;
-	std::list<int>		getLi() const;
+	container		getCont() const;
 
-	void				fillContainers(char **argv);
-
-	
+protected:
+	container	_cont;
 
 private:
-	std::vector<int>	input;
-	std::vector<int>	vec;
-	std::list<int>		li;
 
 };
+
+std::ostream& operator<<(std::ostream& out, const PmergeMe< std::vector<int> > &src);
+
+std::ostream& operator<<(std::ostream& out, const PmergeMe< std::list<int> > &src);
+
+#include "PmergeMe.tpp"
 
 #endif
