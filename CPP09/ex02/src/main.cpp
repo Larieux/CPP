@@ -24,9 +24,9 @@ int main(int argc, char **argv)
 
 		clock_gettime(CLOCK_REALTIME, &timeLi);
 
-		std::cout << "Before:\t" << inOutKeeper << std::endl;
-		std::cout << "AfterV:\t" << vecSorter << std::endl;
-		std::cout << "AfterL:\t" << liSorter << std::endl;
+		std::cout << inOutKeeper << std::endl;
+		std::cout << vecSorter << std::endl;
+		std::cout << liSorter << std::endl;
 
 		inOutKeeper.fillTimes(timeInit, timeToFill, timeVec, timeLi);
 

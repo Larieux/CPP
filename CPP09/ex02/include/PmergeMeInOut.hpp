@@ -16,7 +16,6 @@ public:
 	long	getTimeVector() const;
 	long	getTimeList() const;
 
-	std::vector<unsigned int>	getInput() const;
 	std::vector<unsigned int>	getSortedVec() const;
 	std::list<unsigned int>		getSortedLi() const;
 
@@ -32,7 +31,6 @@ public:
 private:
 	long			timeVector, timeList;
 
-	std::vector<unsigned int>	input;
 	std::vector<unsigned int>	sortedVec;
 	std::list<unsigned int>		sortedLi;
 

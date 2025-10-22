@@ -27,7 +27,7 @@ PmergeMeInOut::~PmergeMeInOut()
 
 PmergeMeInOut &PmergeMeInOut::operator=(const PmergeMeInOut &src)
 {
-	input = src.getInput();
+	_cont = src.getCont();
 	sortedVec = src.getSortedVec();
 	sortedLi = src.getSortedLi();
 	timeVector = src.getTimeVector();
@@ -46,14 +46,11 @@ long	PmergeMeInOut::getTimeList() const
 	return (timeList);
 }
 
-std::vector<unsigned int>	PmergeMeInOut::getInput() const
-{
-	return (input);
-}
 std::vector<unsigned int>	PmergeMeInOut::getSortedVec() const
 {
 	return (sortedVec);
 }
+
 std::list<unsigned int>		PmergeMeInOut::getSortedLi() const
 {
 	return (sortedLi);
@@ -113,7 +110,7 @@ void	PmergeMeInOut::setSortedLi(const std::list<unsigned int> outLi)
 			
 void	PmergeMeInOut::printOutput(int argc)
 {
-	std::cout	<< "Before:\t\t" << input << "\n"
+	std::cout	<< "Before:\t\t" << _cont << "\n"
 				<< "After (v):\t" << sortedVec << "\n"
 				<< "After (d):\t" << sortedLi << "\n"
 				<< "Time to process a range of " << argc << " elements with std::vector:  " 
