@@ -22,7 +22,7 @@ PmergeMeLi::~PmergeMeLi()
 }
 
 
-PmergeMeLi &PmergeMeLi::operator=(const PmergeMeLi &src)
+PmergeMeLi	&PmergeMeLi::operator=(const PmergeMeLi &src)
 {
 	_cont = src.getCont();
 
@@ -32,15 +32,15 @@ PmergeMeLi &PmergeMeLi::operator=(const PmergeMeLi &src)
 
 std::list<unsigned int>	PmergeMeLi::sortLi()
 {
-	listPair	pairs = makePairs();
-	
+	pairsList	pairs = makePairs();
+
 	return (_cont);
 }
 
 
-listPair PmergeMeLi::makePairs()
+pairsList	PmergeMeLi::makePairs()
 {
-	listPair	pairs;
+	pairsList	pairs;
 
 	std::list<unsigned int>::const_iterator it = _cont.begin();
 	it++;

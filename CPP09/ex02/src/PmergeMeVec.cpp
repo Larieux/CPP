@@ -32,15 +32,15 @@ PmergeMeVec &PmergeMeVec::operator=(const PmergeMeVec &src)
 
 std::vector<unsigned int>	PmergeMeVec::sortVec()
 {
-	vectorPair	pairs = makePairs();
+	pairsVector	pairs = makePairs();
 	
 	return (_cont);
 }
 
 
-vectorPair PmergeMeVec::makePairs()
+pairsVector PmergeMeVec::makePairs()
 {
-	vectorPair	pairs;
+	pairsVector	pairs;
 
 	std::vector<unsigned int>::const_iterator it = _cont.begin();
 	it++;

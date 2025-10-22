@@ -3,6 +3,8 @@
 
 #include "PmergeMe.hpp"
 
+typedef std::vector< std::pair<unsigned int, unsigned int> > pairsVector;
+
 class PmergeMeVec : public PmergeMe< std::vector<unsigned int> >
 {
 public:
@@ -16,7 +18,7 @@ public:
 	std::vector<unsigned int>	sortVec();
 
 private:
-	vectorPair makePairs();
+	pairsVector makePairs();
 
 };
 
