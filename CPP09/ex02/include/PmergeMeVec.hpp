@@ -16,6 +16,7 @@ public:
 	std::vector<unsigned int>	sortVec();
 
 private:
+	vectorPair makePairs();
 
 };
 

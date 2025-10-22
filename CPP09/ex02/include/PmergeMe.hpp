@@ -13,6 +13,9 @@
 #include <list>
 #include <algorithm>
 
+typedef std::vector< std::pair<unsigned int, unsigned int> > vectorPair;
+typedef std::list< std::pair<unsigned int, unsigned int> > listPair;
+
 template < class container >
 class PmergeMe
 {

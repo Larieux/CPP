@@ -32,6 +32,32 @@ PmergeMeLi &PmergeMeLi::operator=(const PmergeMeLi &src)
 
 std::list<unsigned int>	PmergeMeLi::sortLi()
 {
+	listPair	pairs = makePairs();
+	
 	return (_cont);
 }
 
+
+listPair PmergeMeLi::makePairs()
+{
+	listPair	pairs;
+
+	std::list<unsigned int>::const_iterator it = _cont.begin();
+	it++;
+	for (std::list<unsigned int>::const_iterator ite = _cont.begin(); it != _cont.end();)
+	{
+		if (*it < *ite)
+			pairs.push_back(std::make_pair(*it, *ite));
+		else
+			pairs.push_back(std::make_pair(*ite, *it));
+
+		it++;
+		ite++;
+		if (it == _cont.end())
+			return (pairs);
+		it++;
+		ite++;
+	}
+
+	return (pairs);
+}

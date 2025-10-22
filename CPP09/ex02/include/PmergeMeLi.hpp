@@ -16,6 +16,7 @@ public:
 	std::list<unsigned int>	sortLi();
 
 private:
+	listPair makePairs();
 
 };
 
