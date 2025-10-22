@@ -2,9 +2,10 @@
 # define PMERGEMELI_HPP
 
 #include "PmergeMe.hpp"
-#include "incePairsList.hpp"
+#include "incePairs.hpp"
 
-typedef std::list< std::pair<unsigned int, unsigned int> > pairsList;
+typedef incePairs< std::pair< const unsigned int, const unsigned int > > pairsInception;
+typedef std::list< pairsInception > pairsList;
 
 class PmergeMeLi : public PmergeMe< std::list<unsigned int> >
 {
@@ -19,7 +20,8 @@ public:
 	std::list<unsigned int>	sortLi();
 
 private:
-	pairsList	makePairs();
+	pairsList	launchIncePairs();
+	std::pair< pairsInception, pairsInception >	makePairs();
 
 };
 
