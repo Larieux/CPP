@@ -5,9 +5,9 @@ PmergeMe<container>::PmergeMe() : _cont(0)
 }
 
 template <class container >
-PmergeMe<container>::PmergeMe(const std::vector<int> &src)
+PmergeMe<container>::PmergeMe(const std::vector<unsigned int> &src)
 {
-	for (std::vector<int>::const_iterator it = src.begin(); it != src.end(); it++)
+	for (std::vector<unsigned int>::const_iterator it = src.begin(); it != src.end(); it++)
 	{
 		_cont.push_back(*it);
 	}

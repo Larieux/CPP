@@ -18,7 +18,7 @@ class PmergeMe
 {
 public:
 	PmergeMe();
-	PmergeMe(const std::vector<int> &src);
+	PmergeMe(const std::vector<unsigned int> &src);
 	PmergeMe(const PmergeMe &src);
 	~PmergeMe();
 
@@ -33,9 +33,9 @@ private:
 
 };
 
-std::ostream& operator<<(std::ostream& out, const PmergeMe< std::vector<int> > &src);
+std::ostream& operator<<(std::ostream& out, const PmergeMe< std::vector<unsigned int> > &src);
 
-std::ostream& operator<<(std::ostream& out, const PmergeMe< std::list<int> > &src);
+std::ostream& operator<<(std::ostream& out, const PmergeMe< std::list<unsigned int> > &src);
 
 #include "PmergeMe.tpp"
 

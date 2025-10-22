@@ -3,15 +3,17 @@
 
 #include "PmergeMe.hpp"
 
-class PmergeMeVec : public PmergeMe< std::vector<int> >
+class PmergeMeVec : public PmergeMe< std::vector<unsigned int> >
 {
 public:
 	PmergeMeVec();
-	PmergeMeVec(const std::vector<int> &src);
+	PmergeMeVec(const std::vector<unsigned int> &src);
 	PmergeMeVec(const PmergeMeVec &src);
 	virtual ~PmergeMeVec();
 
 	PmergeMeVec &operator=(const PmergeMeVec &src);
+
+	std::vector<unsigned int>	sortVec();
 
 private:
 
