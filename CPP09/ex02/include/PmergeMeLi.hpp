@@ -22,6 +22,7 @@ private:
 	pairsList	makePairs();
 	pairsList	makePairsOfSecond(const pairsList &src);
 	pairsList	sortSecondLi(const pairsList &src);
+	pairsList	sortPushed(const pairsList &src);
 
 };
 
