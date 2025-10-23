@@ -33,6 +33,8 @@ PmergeMeVec &PmergeMeVec::operator=(const PmergeMeVec &src)
 std::vector<unsigned int>	PmergeMeVec::sortVec()
 {
 	pairsVector	pairs = makePairs();
+
+	pairsVector	sortedHighestPairs = callIncePairs(pairs);
 	
 	return (_cont);
 }

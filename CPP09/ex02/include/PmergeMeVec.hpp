@@ -2,6 +2,7 @@
 # define PMERGEMEVEC_HPP
 
 #include "PmergeMe.hpp"
+#include "incePairs.hpp"
 
 typedef std::vector< std::pair<unsigned int, unsigned int> > pairsVector;
 
