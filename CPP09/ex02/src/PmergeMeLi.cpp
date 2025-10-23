@@ -220,6 +220,8 @@ pairsList	PmergeMeLi::sortSecondLi(const pairsList &src)
 
 	if (pairsOfSecond.size() > 2)
 		sortedPairsOfSecond = sortSecondLi(pairsOfSecond);
+	else
+		sortedPairsOfSecond = pairsOfSecond;
 
 	for (std::list<basePair>::const_iterator it = sortedPairsOfSecond.begin(); it != sortedPairsOfSecond.end(); it++)
 		pushedTo.push_front(*it);
