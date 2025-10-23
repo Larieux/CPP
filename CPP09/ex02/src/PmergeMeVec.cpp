@@ -33,33 +33,89 @@ PmergeMeVec &PmergeMeVec::operator=(const PmergeMeVec &src)
 std::vector<unsigned int>	PmergeMeVec::sortVec()
 {
 	pairsVector	pairs = makePairs();
+	pairsVector	sortedSecond = sortSecondVec(pairs);
 
-	pairsVector	sortedHighestPairs = callIncePairs(pairs);
-	
+
 	return (_cont);
 }
 
 
-pairsVector PmergeMeVec::makePairs()
+pairsVector	PmergeMeVec::makePairs()
 {
-	pairsVector	pairs;
+	pairsVector	vector;
 
 	std::vector<unsigned int>::const_iterator it = _cont.begin();
 	it++;
-	for (std::vector<unsigned int>::const_iterator ite = _cont.begin(); it != _cont.end();)
+
+	std::vector<unsigned int>::const_iterator ite = _cont.begin();
+
+
+	for (; it != _cont.end();)
 	{
 		if (*it < *ite)
-			pairs.push_back(std::make_pair(*it, *ite));
+			vector.push_back(std::make_pair(*it, *ite));
 		else
-			pairs.push_back(std::make_pair(*ite, *it));
+			vector.push_back(std::make_pair(*ite, *it));
+
 
 		it++;
 		ite++;
 		if (it == _cont.end())
-			return (pairs);
+			return (vector);
 		it++;
 		ite++;
+		if (it == _cont.end())
+			return (vector);
+
 	}
 
-	return (pairs);
+	return (vector);
+}
+
+pairsVector	PmergeMeVec::makePairsOfSecond(const pairsVector &src)
+{
+	pairsVector	vector;
+
+	std::vector<basePair>::const_iterator it = src.begin();
+	it++;
+
+	std::vector<basePair>::const_iterator ite = src.begin();
+
+
+	for (; it != src.end();)
+	{
+		if ((*it).second < (*ite).second)
+			vector.push_back(std::make_pair((*it).second, (*ite).second));
+		else
+			vector.push_back(std::make_pair((*ite).second, (*it).second));
+
+
+		it++;
+		ite++;
+		if (it == src.end())
+			return (vector);
+		it++;
+		ite++;
+		if (it == src.end())
+			return (vector);
+	}
+
+	return (vector);
+}
+
+pairsVector	PmergeMeVec::sortSecondVec(const pairsVector &src)
+{
+	pairsVector	pairsOfSecond = makePairsOfSecond(src);
+	pairsVector	sortedPairsOfSecond;
+	pairsVector	sorted;
+
+	if (pairsOfSecond.size() > 2)
+		sortedPairsOfSecond = sortSecondVec(pairsOfSecond);
+
+	std::vector<basePair>::const_iterator it = sortedPairsOfSecond.end()--;
+	for (; it != sortedPairsOfSecond.begin(); it--)
+		sorted.push_back(*it);
+	sorted.push_back(*it);
+
+	return (sorted);
 }

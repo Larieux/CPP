@@ -30,132 +30,90 @@ PmergeMeLi	&PmergeMeLi::operator=(const PmergeMeLi &src)
 }
 
 
-pairsList	PmergeMeLi::launchIncePairs()
-{
-
-	pairsList	firstList;
-
-	std::list<unsigned int>::const_iterator it = _cont.begin();
-	it++;
-
-	std::list<unsigned int>::const_iterator ite = _cont.begin();
-
-	incePairs< std::pair<const unsigned int, const unsigned int> >	pairFirst;
-	if (*it < *ite)
-		pairFirst.setAbomination(*it, *ite);
-	else
-		pairFirst.setAbomination(*ite, *it);
-
-
-	it++;
-	ite++;
-	if (it == _cont.end())
-	{
-		firstList.push_back(pairFirst);
-		return (firstList);
-	}
-	it++;
-	ite++;
-	if (it == _cont.end())
-	{
-		firstList.push_back(pairFirst);
-		return (firstList);
-	}
-
-	incePairs< std::pair<const unsigned int, const unsigned int> >	pairSecond;
-	if (*it < *ite)
-		pairSecond.setAbomination(*it, *ite);
-	else
-		pairSecond.setAbomination(*ite, *it);
-
-
-	it++;
-	ite++;
-	firstList.push_back(pairFirst);
-	firstList.push_back(pairSecond);
-
-	incePairs< std::pair<pairsInception, pairsInception> >	deeperPairFisrt;
-	deeperPairFisrt.setAbomination(pairFirst, pairSecond);
-
-	it++;
-	ite++;
-
-	for (; it != _cont.end();)
-	{
-		incePairs< std::pair<const unsigned int, const unsigned int> >	pairThird;
-		if (*it < *ite)
-			pairThird.setAbomination(*it, *ite);
-		else
-			pairThird.setAbomination(*ite, *it);
-
-
-		it++;
-		ite++;
-		if (it == _cont.end())
-		{
-			firstList.push_back(pairThird);
-			return (firstList);
-		}
-		it++;
-		ite++;
-		if (it == _cont.end())
-		{
-			firstList.push_back(pairThird);
-			return (firstList);
-		}
-
-		incePairs< std::pair<const unsigned int, const unsigned int> >	pairFourth;
-		if (*it < *ite)
-			pairFourth.setAbomination(*it, *ite);
-		else
-			pairFourth.setAbomination(*ite, *it);
-
-
-		it++;
-		ite++;
-		firstList.push_back(pairThird);
-		firstList.push_back(pairFourth);
-
-		incePairs< std::pair<pairsInception, pairsInception> >	deeperPair;
-
-		it++;
-		ite++;
-	}
-
-	return (firstList);
-
-}
-
 std::list<unsigned int>	PmergeMeLi::sortLi()
 {
-	pairsList		sortedPairs = launchIncePairs();
+	pairsList	pairs = makePairs();
+	pairsList	sortedSecond = sortSecondLi(pairs);
 
 
 	return (_cont);
 }
 
 
-std::pair< pairsInception, pairsInception >	PmergeMeLi::makePairs()
+pairsList	PmergeMeLi::makePairs()
 {
+	pairsList	list;
+
 	std::list<unsigned int>::const_iterator it = _cont.begin();
 	it++;
 
-	for (std::list<unsigned int>::const_iterator ite = _cont.begin(); it != _cont.end();)
+	std::list<unsigned int>::const_iterator ite = _cont.begin();
+
+
+	for (; it != _cont.end();)
 	{
-		incePairs< std::pair<const unsigned int, const unsigned int> >	deeperPairFirst;
 		if (*it < *ite)
-			deeperPairFirst.setAbomination(*it, *ite);
+			list.push_back(std::make_pair(*it, *ite));
 		else
-			deeperPairFirst.setAbomination(*ite, *it);
+			list.push_back(std::make_pair(*ite, *it));
 
 
 		it++;
 		ite++;
 		if (it == _cont.end())
-			return (deeperPairFirst.getAbomination());
+			return (list);
 		it++;
 		ite++;
+		if (it == _cont.end())
+			return (list);
+
 	}
 
-	return (firstList);
+	return (list);
+}
+
+pairsList	PmergeMeLi::makePairsOfSecond(const pairsList &src)
+{
+	pairsList	list;
+
+	std::list<basePair>::const_iterator it = src.begin();
+	it++;
+
+	std::list<basePair>::const_iterator ite = src.begin();
+
+
+	for (; it != src.end();)
+	{
+		if ((*it).second < (*ite).second)
+			list.push_back(std::make_pair((*it).second, (*ite).second));
+		else
+			list.push_back(std::make_pair((*ite).second, (*it).second));
+
+
+		it++;
+		ite++;
+		if (it == src.end())
+			return (list);
+		it++;
+		ite++;
+		if (it == src.end())
+			return (list);
+	}
+
+	return (list);
+}
+
+pairsList	PmergeMeLi::sortSecondLi(const pairsList &src)
+{
+	pairsList	pairsOfSecond = makePairsOfSecond(src);
+	pairsList	sortedPairsOfSecond;
+	pairsList	sorted;
+
+	if (pairsOfSecond.size() > 2)
+		sortedPairsOfSecond = sortSecondLi(pairsOfSecond);
+
+	for (std::list<basePair>::const_iterator it = sortedPairsOfSecond.begin(); it != sortedPairsOfSecond.end(); it++)
+		sorted.push_front(*it);
+
+	return (sorted);
 }

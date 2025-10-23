@@ -2,9 +2,9 @@
 # define PMERGEMEVEC_HPP
 
 #include "PmergeMe.hpp"
-#include "incePairs.hpp"
 
-typedef std::vector< std::pair<unsigned int, unsigned int> > pairsVector;
+typedef std::pair< unsigned int, unsigned int > basePair;
+typedef std::vector< basePair > pairsVector;
 
 class PmergeMeVec : public PmergeMe< std::vector<unsigned int> >
 {
@@ -20,6 +20,8 @@ public:
 
 private:
 	pairsVector makePairs();
+	pairsVector	makePairsOfSecond(const pairsVector &src);
+	pairsVector	sortSecondVec(const pairsVector &src);
 
 };
 
