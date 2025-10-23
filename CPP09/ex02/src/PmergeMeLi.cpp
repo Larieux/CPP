@@ -36,7 +36,7 @@ std::list<unsigned int>	PmergeMeLi::sortLi()
 	pairsList	sortedSecond = sortSecondLi(pairs);
 	int			lastElement = (_cont.size() % 2 == 0) ? -1 : *(--_cont.end());
 	std::list<unsigned int>	insertOrder = defineInsertOrderLi(sortedSecond.size(), lastElement);
-	std::list<unsigned int> res = insertElementsLi(sortedSecond, lastElement, insertOrder);
+	std::list<unsigned int> res = insertElementsLi(sortedSecond, lastElement, -1, insertOrder);
 
 	return (res);
 }
@@ -47,6 +47,7 @@ pairsList	PmergeMeLi::makePairs()
 	pairsList	list;
 
 	cListIt it = _cont.begin();
+	
 	it++;
 
 	cListIt ite = _cont.begin();
@@ -128,7 +129,7 @@ std::list<unsigned int>	PmergeMeLi::defineInsertOrderLi(unsigned int numberOfPai
 	return (indexOrder);
 }
 
-std::list<unsigned int> PmergeMeLi::insertElementsLi(const pairsList &pairs, int lastElement, std::list<unsigned int> insertOrder)
+std::list<unsigned int> PmergeMeLi::insertElementsLi(const pairsList &pairs, int lastElementFirst, int lastElementSecond, std::list<unsigned int> insertOrder)
 {
 	std::list<unsigned int> res;
 	for (pairsList::const_iterator it = pairs.begin(); it != pairs.end(); it++)
@@ -137,8 +138,10 @@ std::list<unsigned int> PmergeMeLi::insertElementsLi(const pairsList &pairs, int
 	std::list<unsigned int>	seconds;
 	for (pairsList::const_iterator it = pairs.begin(); it != pairs.end(); it++)
 		seconds.push_back((*it).second);
-	if (lastElement != -1)
-		seconds.push_back(lastElement);
+	if (lastElementFirst != -1)
+		seconds.push_back(lastElementFirst);
+	if (lastElementSecond != -1)
+		seconds.push_back(lastElementSecond);
 
 	for (cListIt it = insertOrder.begin(); it != insertOrder.end(); it++)
 	{
@@ -162,7 +165,7 @@ cListIt	PmergeMeLi::findSecondsIndex(std::list<unsigned int> &list, cListIt orde
 
 listIt	PmergeMeLi::binarySearchLi(cListIt index, listIt begin, cListIt end, const std::list<unsigned int> &list)
 {
-	if (*begin >= *end)
+	if (*begin >= *(--end))
 		return (begin);
 
 	listIt	mid = begin;
@@ -170,7 +173,7 @@ listIt	PmergeMeLi::binarySearchLi(cListIt index, listIt begin, cListIt end, cons
 		mid++;
 
 	if (*index < *mid)
-		return (binarySearchLi(index, begin, mid, list));
+		return (binarySearchLi(index, begin, ++mid, list));
 	else if (*index > *mid)
 		return (binarySearchLi(index, ++mid, end, list));
 	return (mid);
@@ -221,21 +224,22 @@ pairsList	PmergeMeLi::sortSecondLi(const pairsList &src)
 	for (std::list<basePair>::const_iterator it = sortedPairsOfSecond.begin(); it != sortedPairsOfSecond.end(); it++)
 		pushedTo.push_front(*it);
 
-	sorted = sortPushed(pushedTo);
+	sorted = sortPushed(src, pushedTo);
 
 	return (sorted);
 }
 
-pairsList	PmergeMeLi::sortPushed(const pairsList &src)
+pairsList	PmergeMeLi::sortPushed(const pairsList &origin, const pairsList &src)
 {
-	int			lastElement = (_cont.size() % 2 == 0) ? -1 : *(--_cont.end());
-	std::list<unsigned int>	insertOrder = defineInsertOrderLi(src.size(), lastElement);
-	std::list<unsigned int> inserted = insertElementsLi(src, lastElement, insertOrder);
+	int	lastElementFirst = (origin.size() % 2 == 0) ? -1 : (*(--origin.end())).first;
+	int	lastElementSec = (origin.size() % 2 == 0) ? -1 : (*(--origin.end())).second;
+	std::list<unsigned int>	insertOrder = defineInsertOrderLi(src.size(), lastElementFirst);
+	std::list<unsigned int>	inserted = insertElementsLi(src, lastElementFirst, lastElementSec, insertOrder);
 	pairsList	res;
 
 	for (std::list<unsigned int>::const_iterator it = inserted.begin(); it != inserted.end(); it++)
 	{
-		for (pairsList::const_iterator ite = src.begin(); ite != src.end(); ite++)
+		for (pairsList::const_iterator ite = origin.begin(); ite != origin.end(); ite++)
 		{
 			if (*it == (*ite).second)
 			{
