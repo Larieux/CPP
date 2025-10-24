@@ -20,7 +20,7 @@ public:
 
 	std::vector<unsigned int>	getCont() const;
 
-	void	clearLi();
+	void	clearVec();
 
 	std::vector<unsigned int>	sortVec();
 
@@ -31,7 +31,7 @@ private:
 	std::vector<unsigned int>	defineInsertOrderVec(unsigned int numberOfPairs, int lastElement);
 	std::vector<unsigned int>	insertElementsVec(const pairsVector &pairs,
 		int lastElementFirst, int lastElementSec, std::vector<unsigned int> insertOrder);
-	cVectorIt					findSecondsIndex(std::vector<unsigned int> &vector, cVectorIt orderIndex);
+	cVectorIt					findSecIndex(std::vector<unsigned int> &vector, cVectorIt orderIndex);
 	unsigned int				binarySearchVec(unsigned int index, unsigned int begin, unsigned int end);
 	pairsVector					makePairsOfSecond(const pairsVector &src);
 	pairsVector					sortSecondVec(const pairsVector &src);
