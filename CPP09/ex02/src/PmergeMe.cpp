@@ -129,9 +129,9 @@ void	PmergeMe::printOutput(int argc)
 				<< "After (v):\t" << sortedVec << "\n"
 				<< "After (l):\t" << sortedLi << "\n"
 				<< "Time to process a range of " << argc << "\telements with std::vector:\t" 
-				<< timeVector * 1000 << " µs" << "\n"
+				<< timeVector * 1000 << "\tµs" << "\n"
 				<< "Time to process a range of " << argc << "\telements with std::list:\t" 
-				<< timeList * 1000 << " µs" << std::endl;
+				<< timeList * 1000 << "\tµs" << std::endl;
 }
 
 

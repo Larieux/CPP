@@ -48,7 +48,11 @@ void	PmergeMeVec::clearLi()
 std::vector<unsigned int>	PmergeMeVec::sortVec()
 {
 	pairsVector	pairs = makePairs(_cont);
-	pairsVector	sortedSecond = sortSecondVec(pairs);
+	pairsVector	sortedSecond;
+	if (pairs.size() > 1)
+		sortedSecond = sortSecondVec(pairs);
+	else
+		sortedSecond = pairs;
 
 	pairs.clear();
 
@@ -144,7 +148,7 @@ std::vector<unsigned int>	PmergeMeVec::defineInsertOrderVec(unsigned int numberO
 	return (indexOrder);
 }
 
-std::vector<unsigned int> PmergeMeVec::insertElementsVec(const pairsVector &pairs, int lastElementFisrt, int lastElementSec, std::vector<unsigned int> insertOrder)
+std::vector<unsigned int> PmergeMeVec::insertElementsVec(const pairsVector &pairs, int lastElementFirst, int lastElementSec, std::vector<unsigned int> insertOrder)
 {
 	std::vector<unsigned int> res;
 	for (pairsVector::const_iterator it = pairs.begin(); it != pairs.end(); it++)
@@ -153,8 +157,8 @@ std::vector<unsigned int> PmergeMeVec::insertElementsVec(const pairsVector &pair
 	std::vector<unsigned int>	seconds;
 	for (pairsVector::const_iterator it = pairs.begin(); it != pairs.end(); it++)
 		seconds.push_back((*it).second);
-	if (lastElementFisrt != -1)
-		seconds.push_back(lastElementFisrt);
+	if (lastElementFirst != -1)
+		seconds.push_back(lastElementFirst);
 	if (lastElementSec != -1)
 		seconds.push_back(lastElementSec);
 
@@ -165,7 +169,7 @@ std::vector<unsigned int> PmergeMeVec::insertElementsVec(const pairsVector &pair
 		unsigned int	index = binarySearchVec(*secondsIndex, *(res.begin()), *(--(res.end())));
 
 		vectorIt	findIndex = res.begin();
-		for (; *findIndex != index;)
+		for (; *findIndex != index && findIndex != res.end();)
 			findIndex++;
 
 		res.insert(findIndex, *secondsIndex);

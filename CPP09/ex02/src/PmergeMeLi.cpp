@@ -57,19 +57,20 @@ void	PmergeMeLi::clearLi()
 std::list<unsigned int>	PmergeMeLi::sortLi()
 {
 	pairsList	pairs = makePairs(_cont);
-
-	pairsList	sortedSecond = sortSecondLi(pairs);
+	pairsList	sortedSecond;
+	if (pairs.size() > 1)
+		sortedSecond = sortSecondLi(pairs);
+	else
+		sortedSecond = pairs;
 
 	pairs.clear();
 
 	int			lastElement = (_cont.size() % 2 == 0) ? -1 : *(--_cont.end());
 	std::list<unsigned int>	insertOrder = defineInsertOrderLi(sortedSecond.size(), lastElement);
 
-	std::cout << "insertOrder: " << insertOrder << std::endl;
-
 	std::list<unsigned int> res = insertElementsLi(sortedSecond, lastElement, -1, insertOrder);
 
-	std::cout << "res: " << res << std::endl;
+	std::cerr << "res:\t\t" << res << std::endl;
 
 	sortedSecond.clear();
 
@@ -111,7 +112,7 @@ std::list<unsigned int>	PmergeMeLi::defineInsertOrderLi(unsigned int numberOfPai
 	unsigned long long		currentSizesSum;
 	unsigned int			JSFirst, JSSecond, JSNew;
 
-	groupSizes.push_back(2);
+	groupSizes.push_back(1);
 	currentSizesSum = 4;
 	JSFirst = 1;
 	JSSecond = 3;
@@ -134,8 +135,6 @@ std::list<unsigned int>	PmergeMeLi::defineInsertOrderLi(unsigned int numberOfPai
 	int				largestIndexInGroup = 0;
 	int				listSize = 0;
 	cListIt	it = groupSizes.begin();
-
-	std::cout << "groupSizes: " << groupSizes << std::endl;
 
 	indexOrder.push_back(0);
 
@@ -163,34 +162,35 @@ std::list<unsigned int>	PmergeMeLi::defineInsertOrderLi(unsigned int numberOfPai
 
 std::list<unsigned int> PmergeMeLi::insertElementsLi(const pairsList &pairs, int lastElementFirst, int lastElementSecond, std::list<unsigned int> insertOrder)
 {
-	std::list<unsigned int> res;
+	std::list<unsigned int> first;
 	for (pairsList::const_iterator it = pairs.begin(); it != pairs.end(); it++)
-		res.push_back((*it).first);
+		first.push_back((*it).first);
 
 	std::list<unsigned int>	seconds;
 	for (pairsList::const_iterator it = pairs.begin(); it != pairs.end(); it++)
 		seconds.push_back((*it).second);
+
 	if (lastElementFirst != -1)
-		seconds.push_back(lastElementFirst);
+		first.push_back(lastElementFirst);
 	if (lastElementSecond != -1)
-		seconds.push_back(lastElementSecond);
+		first.push_back(lastElementSecond);
 
 	for (cListIt it = insertOrder.begin(); it != insertOrder.end(); it++)
 	{
-		cListIt	secondsIndex = findSecondsIndex(seconds, it);
+		cListIt	firstIndex = findSecIndex(first, it);
 
-		unsigned int	index = binarySearchLi(*secondsIndex, *(res.begin()), *(--(res.end())));
+		unsigned int	index = binarySearchLi(*firstIndex, *(seconds.begin()), *(--(seconds.end())));
 
-		listIt	findIndex = res.begin();
-		for (; *findIndex != index;)
+		listIt	findIndex = seconds.begin();
+		for (; *findIndex != index && findIndex != seconds.end();)
 			findIndex++;
 
-		res.insert(findIndex, *secondsIndex);
+		seconds.insert(findIndex, *firstIndex);
 	}
-	return (res);
+	return (seconds);
 }
 
-cListIt	PmergeMeLi::findSecondsIndex(std::list<unsigned int> &list, cListIt orderIndex)
+cListIt	PmergeMeLi::findSecIndex(std::list<unsigned int> &list, cListIt orderIndex)
 {
 	cListIt	res = list.begin();
 
@@ -256,7 +256,7 @@ pairsList	PmergeMeLi::sortSecondLi(const pairsList &src)
 	pairsList	pushedTo;
 	pairsList	sorted;
 
-	if (pairsOfSecond.size() > 2)
+	if (pairsOfSecond.size() > 1)
 		sortedPairsOfSecond = sortSecondLi(pairsOfSecond);
 	else
 		sortedPairsOfSecond = pairsOfSecond;
@@ -282,8 +282,13 @@ pairsList	PmergeMeLi::sortPushed(const pairsList &origin, const pairsList &src)
 {
 	int	lastElementFirst = (origin.size() % 2 == 0) ? -1 : (*(--origin.end())).first;
 	int	lastElementSec = (origin.size() % 2 == 0) ? -1 : (*(--origin.end())).second;
+
 	std::list<unsigned int>	insertOrder = defineInsertOrderLi(src.size(), lastElementFirst);
+
 	std::list<unsigned int>	inserted = insertElementsLi(src, lastElementFirst, lastElementSec, insertOrder);
+
+	// std::cerr << "inserted: " << inserted << std::endl;
+
 	pairsList	res;
 
 	for (std::list<unsigned int>::const_iterator it = inserted.begin(); it != inserted.end(); it++)
@@ -293,6 +298,7 @@ pairsList	PmergeMeLi::sortPushed(const pairsList &origin, const pairsList &src)
 			if (*it == (*ite).second)
 			{
 				res.push_back(std::make_pair((*ite).first, (*ite).second));
+				std::cerr << "res: " << res << std::endl;
 				continue ;
 			}
 		}
