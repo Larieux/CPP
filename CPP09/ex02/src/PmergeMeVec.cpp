@@ -241,10 +241,14 @@ pairsVector	PmergeMeVec::sortSecondVec(const pairsVector &src)
 	else
 		sortedPairsOfSecond = pairsOfSecond;
 
+	if (src.size() % 2 != 0)
+		pushedTo.push_back(*(--src.end()));
+
 	std::vector<basePair>::const_iterator it = --sortedPairsOfSecond.end();
 	for (; it != sortedPairsOfSecond.begin(); --it)
 		pushedTo.push_back(*it);
 	pushedTo.push_back(*it);
+
 
 	sorted = sortPushed(src, pushedTo);
 

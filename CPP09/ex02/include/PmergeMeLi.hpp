@@ -38,4 +38,6 @@ private:
 
 };
 
+std::ostream& operator<<(std::ostream& out, const pairsList &src);
+
 #endif

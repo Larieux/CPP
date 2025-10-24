@@ -33,6 +33,15 @@ PmergeMeLi	&PmergeMeLi::operator=(const PmergeMeLi &src)
 }
 
 
+std::ostream& operator<<(std::ostream& out, const pairsList &src)
+{
+	for (pairsList::const_iterator it = src.begin(); it != src.end(); it++)
+		out << (*it).first << " " << (*it).second << " | ";
+
+	return (out);
+}
+
+
 std::list<unsigned int>	PmergeMeLi::getCont() const
 {
 	return (_cont);
@@ -48,11 +57,6 @@ void	PmergeMeLi::clearLi()
 std::list<unsigned int>	PmergeMeLi::sortLi()
 {
 	pairsList	pairs = makePairs(_cont);
-	for (pairsList::const_iterator it = pairs.begin(); it != pairs.end(); it++)
-	{
-		std::cerr << (*it).first << " " << (*it).second << " | ";
-	}
-	std::cerr << std::endl;
 
 	pairsList	sortedSecond = sortSecondLi(pairs);
 
@@ -60,7 +64,12 @@ std::list<unsigned int>	PmergeMeLi::sortLi()
 
 	int			lastElement = (_cont.size() % 2 == 0) ? -1 : *(--_cont.end());
 	std::list<unsigned int>	insertOrder = defineInsertOrderLi(sortedSecond.size(), lastElement);
+
+	std::cout << "insertOrder: " << insertOrder << std::endl;
+
 	std::list<unsigned int> res = insertElementsLi(sortedSecond, lastElement, -1, insertOrder);
+
+	std::cout << "res: " << res << std::endl;
 
 	sortedSecond.clear();
 
@@ -102,8 +111,8 @@ std::list<unsigned int>	PmergeMeLi::defineInsertOrderLi(unsigned int numberOfPai
 	unsigned long long		currentSizesSum;
 	unsigned int			JSFirst, JSSecond, JSNew;
 
-	groupSizes.push_back(3);
-	currentSizesSum = 2;
+	groupSizes.push_back(2);
+	currentSizesSum = 4;
 	JSFirst = 1;
 	JSSecond = 3;
 
@@ -125,6 +134,8 @@ std::list<unsigned int>	PmergeMeLi::defineInsertOrderLi(unsigned int numberOfPai
 	int				largestIndexInGroup = 0;
 	int				listSize = 0;
 	cListIt	it = groupSizes.begin();
+
+	std::cout << "groupSizes: " << groupSizes << std::endl;
 
 	indexOrder.push_back(0);
 
@@ -238,6 +249,9 @@ pairsList	PmergeMeLi::makePairsOfSecond(const pairsList &src)
 pairsList	PmergeMeLi::sortSecondLi(const pairsList &src)
 {
 	pairsList	pairsOfSecond = makePairsOfSecond(src);
+	
+	// std::cerr << "pairsOfSecond: " << pairsOfSecond << std::endl;
+
 	pairsList	sortedPairsOfSecond;
 	pairsList	pushedTo;
 	pairsList	sorted;
@@ -247,10 +261,19 @@ pairsList	PmergeMeLi::sortSecondLi(const pairsList &src)
 	else
 		sortedPairsOfSecond = pairsOfSecond;
 
+	// std::cerr << "sortedpairsOfSecond: " << sortedPairsOfSecond << std::endl;
+
 	for (std::list<basePair>::const_iterator it = sortedPairsOfSecond.begin(); it != sortedPairsOfSecond.end(); it++)
 		pushedTo.push_front(*it);
 
+	if (src.size() % 2 != 0)
+		pushedTo.push_front(*(--src.end()));
+
+	// std::cerr << "pushedTo: " << pushedTo << std::endl;
+
 	sorted = sortPushed(src, pushedTo);
+
+	// std::cerr << "sorted: " << sorted << std::endl;
 
 	return (sorted);
 }
