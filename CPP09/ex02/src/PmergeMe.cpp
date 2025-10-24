@@ -76,7 +76,7 @@ void	PmergeMe::fillInput(char **argv)
 
 	_cont.clear();
 
-	for (int i = 1; argv[i] && argv[i] != '\0'; i++)
+	for (int i = 1; argv[i] && argv[i][0] != '\0'; i++)
 	{
 		std::string	inputStr = argv[i];
 
