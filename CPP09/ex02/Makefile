@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marceline <marceline@student.42.fr>        +#+  +:+       +#+         #
+#    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/06 18:47:20 by mlarieux          #+#    #+#              #
-#    Updated: 2025/10/22 15:31:33 by marceline        ###   ########.fr        #
+#    Updated: 2025/10/24 13:39:32 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =	PmergeMeInOut.cpp \
+SRC =	 \
 		PmergeMeLi.cpp \
 		PmergeMeVec.cpp \
 		PmergeMe.cpp \

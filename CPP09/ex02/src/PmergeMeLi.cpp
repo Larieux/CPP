@@ -1,75 +1,96 @@
 #include "PmergeMeLi.hpp"
 
-PmergeMeLi::PmergeMeLi() : PmergeMe< std::list<unsigned int> >()
+PmergeMeLi::PmergeMeLi()
 {
 
 }
 
-PmergeMeLi::PmergeMeLi(const std::vector<unsigned int> &src) : PmergeMe< std::list<unsigned int> >(src)
+PmergeMeLi::PmergeMeLi(const std::vector<unsigned int> &src)
 {
-
+	for (std::vector<unsigned int>::const_iterator it = src.begin(); it != src.end(); it++)
+	{
+		_cont.push_back(*it);
+	}
 }
 
-PmergeMeLi::PmergeMeLi(const PmergeMeLi &src):
-	PmergeMe< std::list<unsigned int> >(src)
+PmergeMeLi::PmergeMeLi(const PmergeMeLi &src)
 {
 	*this = src;
 }
 
 PmergeMeLi::~PmergeMeLi()
 {
-
+	_cont.clear();
 }
 
 
 PmergeMeLi	&PmergeMeLi::operator=(const PmergeMeLi &src)
 {
+	_cont.clear();
 	_cont = src.getCont();
 
 	return (*this);
 }
 
 
+std::list<unsigned int>	PmergeMeLi::getCont() const
+{
+	return (_cont);
+}
+
+
+void	PmergeMeLi::clearLi()
+{
+	_cont.clear();
+}
+
+
 std::list<unsigned int>	PmergeMeLi::sortLi()
 {
-	pairsList	pairs = makePairs();
+	pairsList	pairs = makePairs(_cont);
+	for (pairsList::const_iterator it = pairs.begin(); it != pairs.end(); it++)
+	{
+		std::cerr << (*it).first << " " << (*it).second << " | ";
+	}
+	std::cerr << std::endl;
+
 	pairsList	sortedSecond = sortSecondLi(pairs);
+
+	pairs.clear();
+
 	int			lastElement = (_cont.size() % 2 == 0) ? -1 : *(--_cont.end());
 	std::list<unsigned int>	insertOrder = defineInsertOrderLi(sortedSecond.size(), lastElement);
 	std::list<unsigned int> res = insertElementsLi(sortedSecond, lastElement, -1, insertOrder);
+
+	sortedSecond.clear();
 
 	return (res);
 }
 
 
-pairsList	PmergeMeLi::makePairs()
+pairsList	PmergeMeLi::makePairs(std::list<unsigned int>	cont)
 {
 	pairsList	list;
 
-	cListIt it = _cont.begin();
-	
-	it++;
+	cListIt it = ++(cont.begin());
 
-	cListIt ite = _cont.begin();
+	cListIt ite = cont.begin();
 
-
-	for (; it != _cont.end();)
+	for (; it != cont.end();)
 	{
 		if (*it < *ite)
 			list.push_back(std::make_pair(*it, *ite));
 		else
 			list.push_back(std::make_pair(*ite, *it));
 
-
 		it++;
 		ite++;
-		if (it == _cont.end())
+		if (it == cont.end())
 			return (list);
 		it++;
 		ite++;
-		if (it == _cont.end())
+		if (it == cont.end())
 			return (list);
-
 	}
 
 	return (list);
@@ -146,9 +167,14 @@ std::list<unsigned int> PmergeMeLi::insertElementsLi(const pairsList &pairs, int
 	for (cListIt it = insertOrder.begin(); it != insertOrder.end(); it++)
 	{
 		cListIt	secondsIndex = findSecondsIndex(seconds, it);
-		listIt	index = binarySearchLi(secondsIndex, res.begin(), res.end(), res);
-		
-		res.insert(index, *secondsIndex);
+
+		unsigned int	index = binarySearchLi(*secondsIndex, *(res.begin()), *(--(res.end())));
+
+		listIt	findIndex = res.begin();
+		for (; *findIndex != index;)
+			findIndex++;
+
+		res.insert(findIndex, *secondsIndex);
 	}
 	return (res);
 }
@@ -163,19 +189,17 @@ cListIt	PmergeMeLi::findSecondsIndex(std::list<unsigned int> &list, cListIt orde
 	return (res);
 }
 
-listIt	PmergeMeLi::binarySearchLi(cListIt index, listIt begin, cListIt end, const std::list<unsigned int> &list)
+unsigned int	PmergeMeLi::binarySearchLi(unsigned int index, unsigned int begin, unsigned int end)
 {
-	if (*begin >= *(--end))
+	if (end <= begin)
 		return (begin);
 
-	listIt	mid = begin;
-	for (unsigned int findMid = 0; findMid < (list.size() / 2); findMid++)
-		mid++;
+	unsigned int	mid = (begin + end) / 2;
 
-	if (*index < *mid)
-		return (binarySearchLi(index, begin, ++mid, list));
-	else if (*index > *mid)
-		return (binarySearchLi(index, ++mid, end, list));
+	if (index < mid)
+		return (binarySearchLi(index, begin, mid));
+	else if (index > mid)
+		return (binarySearchLi(index, ++mid, end));
 	return (mid);
 }
 

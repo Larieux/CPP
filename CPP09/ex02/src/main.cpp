@@ -1,6 +1,5 @@
-#include "PmergeMeInOut.hpp"
-#include "PmergeMeLi.hpp"
 #include "PmergeMeVec.hpp"
+#include "PmergeMeLi.hpp"
 
 int main(int argc, char **argv)
 {
@@ -10,7 +9,7 @@ int main(int argc, char **argv)
 
 	try
 	{
-		PmergeMeInOut	inOutKeeper(argc, argv);
+		PmergeMe	inOutKeeper(argc, argv);
 
 		clock_gettime(CLOCK_REALTIME, &timeToFill);
 
@@ -23,10 +22,6 @@ int main(int argc, char **argv)
 		inOutKeeper.setSortedLi(liSorter.sortLi());
 
 		clock_gettime(CLOCK_REALTIME, &timeLi);
-
-		std::cout << inOutKeeper << std::endl;
-		std::cout << vecSorter << std::endl;
-		std::cout << liSorter << std::endl;
 
 		inOutKeeper.fillTimes(timeInit, timeToFill, timeVec, timeLi);
 

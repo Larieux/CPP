@@ -8,7 +8,7 @@ typedef std::vector< basePair >						pairsVector;
 typedef std::vector<unsigned int>::const_iterator	cVectorIt;
 typedef std::vector<unsigned int>::iterator			vectorIt;
 
-class PmergeMeVec : public PmergeMe< std::vector<unsigned int> >
+class PmergeMeVec
 {
 public:
 	PmergeMeVec();
@@ -18,14 +18,21 @@ public:
 
 	PmergeMeVec &operator=(const PmergeMeVec &src);
 
+	std::vector<unsigned int>	getCont() const;
+
+	void	clearLi();
+
 	std::vector<unsigned int>	sortVec();
 
 private:
-	pairsVector					makePairs();
+	std::vector<unsigned int>	_cont;
+
+	pairsVector					makePairs(std::vector<unsigned int> cont);
 	std::vector<unsigned int>	defineInsertOrderVec(unsigned int numberOfPairs, int lastElement);
-	std::vector<unsigned int>	insertElementsVec(const pairsVector &pairs, int lastElementFirst, int lastElementSec, std::vector<unsigned int> insertOrder);
+	std::vector<unsigned int>	insertElementsVec(const pairsVector &pairs,
+		int lastElementFirst, int lastElementSec, std::vector<unsigned int> insertOrder);
 	cVectorIt					findSecondsIndex(std::vector<unsigned int> &vector, cVectorIt orderIndex);
-	vectorIt					binarySearchVec(cVectorIt index, vectorIt begin, cVectorIt end, const std::vector<unsigned int> &vector);
+	unsigned int				binarySearchVec(unsigned int index, unsigned int begin, unsigned int end);
 	pairsVector					makePairsOfSecond(const pairsVector &src);
 	pairsVector					sortSecondVec(const pairsVector &src);
 	pairsVector					sortPushed(const pairsVector &origin, const pairsVector &src);

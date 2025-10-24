@@ -13,30 +13,46 @@
 #include <list>
 #include <algorithm>
 
-template < class container >
 class PmergeMe
 {
 public:
 	PmergeMe();
-	PmergeMe(const std::vector<unsigned int> &src);
+	PmergeMe(int argc = 0, char **argv = NULL);
 	PmergeMe(const PmergeMe &src);
-	~PmergeMe();
+	virtual ~PmergeMe();
 
 	PmergeMe &operator=(const PmergeMe &src);
 
-	container		getCont() const;
+	std::vector<unsigned int>	getCont() const;
 
-protected:
-	container	_cont;
+	void	clearLi();
+
+	long	getTimeVector() const;
+	long	getTimeList() const;
+
+	std::vector<unsigned int>	getSortedVec() const;
+	std::list<unsigned int>		getSortedLi() const;
+
+	void	fillInput(char **argv);
+	void	fillTimes(struct timespec timeInit, struct timespec timeToFill,
+				struct timespec timeVec, struct timespec timeLi);
+
+	void	setSortedVec(std::vector<unsigned int> outVec);
+	void	setSortedLi(std::list<unsigned int> outLi);
+
+	void	printOutput(int argc);
 
 private:
+	std::vector<unsigned int>	_cont;
+	long						timeVector, timeList;
+
+	std::vector<unsigned int>	sortedVec;
+	std::list<unsigned int>		sortedLi;
 
 };
 
-std::ostream& operator<<(std::ostream& out, const PmergeMe< std::vector<unsigned int> > &src);
+std::ostream& operator<<(std::ostream& out, const std::vector<unsigned int> &src);
 
-std::ostream& operator<<(std::ostream& out, const PmergeMe< std::list<unsigned int> > &src);
-
-#include "PmergeMe.tpp"
+std::ostream& operator<<(std::ostream& out, const std::list<unsigned int> &src);
 
 #endif
