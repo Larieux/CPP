@@ -65,12 +65,11 @@ std::vector<unsigned int>	PmergeMeVec::sortVec()
 
 	pairs.clear();
 
-	int			lastElement = (_cont.size() % 2 == 0) ? -1 : *(--_cont.end());
+	int	lastElement = (_cont.size() % 2 == 0) ? -1 : *(--_cont.end());
+
 	std::vector<unsigned int>	insertOrder = defineInsertOrderVec(sortedSecond.size(), lastElement);
 
-	std::vector<unsigned int> res = insertElementsVec(sortedSecond, lastElement, -1, insertOrder);
-
-	std::cerr << "res:\t\t" << res << std::endl;
+	std::vector<unsigned int>	res = insertElementsVec(sortedSecond, lastElement, -1, insertOrder);
 
 	sortedSecond.clear();
 
@@ -106,7 +105,8 @@ pairsVector	PmergeMeVec::makePairs(std::vector<unsigned int>	cont)
 	return (vector);
 }
 
-std::vector<unsigned int>	PmergeMeVec::defineInsertOrderVec(unsigned int numberOfPairs, int lastElement)
+std::vector<unsigned int>	PmergeMeVec::defineInsertOrderVec(unsigned int numberOfPairs,
+	int lastElement)
 {
 	std::vector<unsigned int>	groupSizes;
 	unsigned long long		currentSizesSum;
@@ -133,7 +133,7 @@ std::vector<unsigned int>	PmergeMeVec::defineInsertOrderVec(unsigned int numberO
 	std::vector<unsigned int>	indexOrder;
 	unsigned int	numberOfElementsLeftInGroup = *(groupSizes.begin());
 	int				largestIndexInGroup = 0;
-	int				vectorSize = 0;
+	int				listSize = 0;
 	cVectorIt	it = groupSizes.begin();
 
 	indexOrder.push_back(0);
@@ -143,12 +143,12 @@ std::vector<unsigned int>	PmergeMeVec::defineInsertOrderVec(unsigned int numberO
 		if (numberOfElementsLeftInGroup == 1)
 			numberOfElementsLeftInGroup = *(++it);
 
-		vectorSize = indexOrder.size() - 1;
-		largestIndexInGroup = *it + vectorSize;
+		listSize = indexOrder.size() - 1;
+		largestIndexInGroup = *it + listSize;
 		if (largestIndexInGroup >= (int)numberOfPairs)
 			largestIndexInGroup = (int)numberOfPairs - 1;
 
-		while (largestIndexInGroup - vectorSize > 0)
+		while (largestIndexInGroup - listSize > 0)
 		{
 			indexOrder.push_back(largestIndexInGroup);
 			largestIndexInGroup--;
@@ -160,7 +160,8 @@ std::vector<unsigned int>	PmergeMeVec::defineInsertOrderVec(unsigned int numberO
 	return (indexOrder);
 }
 
-std::vector<unsigned int> PmergeMeVec::insertElementsVec(const pairsVector &pairs, int lastElementFirst, int lastElementSecond, std::vector<unsigned int> insertOrder)
+std::vector<unsigned int> PmergeMeVec::insertElementsVec(const pairsVector &pairs,
+	int lastElementFirst, int lastElementSecond, std::vector<unsigned int> insertOrder)
 {
 	std::vector<unsigned int> first;
 	for (pairsVector::const_iterator it = pairs.begin(); it != pairs.end(); it++)
@@ -179,20 +180,16 @@ std::vector<unsigned int> PmergeMeVec::insertElementsVec(const pairsVector &pair
 	{
 		cVectorIt	firstIndex = findSecIndex(first, it);
 
-		unsigned int	index = binarySearchVec(*firstIndex, *(seconds.begin()), *(--(seconds.end())));
-
-		vectorIt	findIndex = seconds.begin();
-		for (; *findIndex != index && findIndex != seconds.end();)
-			findIndex++;
+		vectorIt	findIndex = binarySearchVec(seconds, *firstIndex);
 
 		seconds.insert(findIndex, *firstIndex);
 	}
 	return (seconds);
 }
 
-cVectorIt	PmergeMeVec::findSecIndex(std::vector<unsigned int> &vector, cVectorIt orderIndex)
+cVectorIt	PmergeMeVec::findSecIndex(std::vector<unsigned int> &list, cVectorIt orderIndex)
 {
-	cVectorIt	res = vector.begin();
+	cVectorIt	res = list.begin();
 
 	for (unsigned int i = 0; i < *orderIndex; i++)
 		res++;
@@ -200,55 +197,57 @@ cVectorIt	PmergeMeVec::findSecIndex(std::vector<unsigned int> &vector, cVectorIt
 	return (res);
 }
 
-unsigned int	PmergeMeVec::binarySearchVec(unsigned int index, unsigned int begin, unsigned int end)
+vectorIt PmergeMeVec::binarySearchVec(std::vector<unsigned int> &lst,
+	unsigned int value)
 {
-	if (end <= begin)
-		return (begin);
+	vectorIt low = lst.begin();
+	vectorIt high = lst.end();
 
-	unsigned int	mid = (begin + end) / 2;
-
-	if (index < mid)
-		return (binarySearchVec(index, begin, mid));
-	else if (index > mid)
-		return (binarySearchVec(index, ++mid, end));
-	return (mid);
+	while (low != high)
+	{
+		vectorIt mid = low;
+		std::advance(mid, std::distance(low, high) / 2);
+		if (*mid < value)
+			low = ++mid;
+		else
+			high = mid;
+	}
+	return low;
 }
 
 
 pairsVector	PmergeMeVec::makePairsOfSecond(const pairsVector &src)
 {
-	pairsVector	vector;
+	pairsVector	list;
 
-	std::vector<basePair>::const_iterator it = src.begin();
+	pairsVector::const_iterator it = src.begin();
 	it++;
 
-	std::vector<basePair>::const_iterator ite = src.begin();
+	pairsVector::const_iterator ite = src.begin();
 
 	for (; it != src.end();)
 	{
 		if ((*it).second < (*ite).second)
-			vector.push_back(std::make_pair((*it).second, (*ite).second));
+			list.push_back(std::make_pair((*it).second, (*ite).second));
 		else
-			vector.push_back(std::make_pair((*ite).second, (*it).second));
+			list.push_back(std::make_pair((*ite).second, (*it).second));
 
 		it++;
 		ite++;
 		if (it == src.end())
-			return (vector);
+			return (list);
 		it++;
 		ite++;
 		if (it == src.end())
-			return (vector);
+			return (list);
 	}
 
-	return (vector);
+	return (list);
 }
 
 pairsVector	PmergeMeVec::sortSecondVec(const pairsVector &src)
 {
 	pairsVector	pairsOfSecond = makePairsOfSecond(src);
-	
-	// std::cerr << "pairsOfSecond: " << pairsOfSecond << std::endl;
 
 	pairsVector	sortedPairsOfSecond;
 	pairsVector	pushedTo;
@@ -259,19 +258,15 @@ pairsVector	PmergeMeVec::sortSecondVec(const pairsVector &src)
 	else
 		sortedPairsOfSecond = pairsOfSecond;
 
-	// std::cerr << "sortedpairsOfSecond: " << sortedPairsOfSecond << std::endl;
-
-	std::vector<basePair>::const_iterator it = --sortedPairsOfSecond.end();
-	for (std::vector<basePair>::const_iterator it = sortedPairsOfSecond.begin(); it != sortedPairsOfSecond.end(); it++)
+	pairsVector::const_iterator	it = sortedPairsOfSecond.begin();
 	for (; it != sortedPairsOfSecond.begin(); --it)
 		pushedTo.push_back(*it);
 	pushedTo.push_back(*it);
 
-	// std::cerr << "pushedTo: " << pushedTo << std::endl;
+	if (src.size() % 2 != 0)
+		pushedTo.push_back(*(--src.end()));
 
 	sorted = sortPushed(src, pushedTo);
-
-	// std::cerr << "sorted: " << sorted << std::endl;
 
 	return (sorted);
 }
@@ -283,25 +278,22 @@ pairsVector	PmergeMeVec::sortPushed(const pairsVector &origin, const pairsVector
 
 	std::vector<unsigned int>	insertOrder = defineInsertOrderVec(src.size(), lastElementFirst);
 
-	std::vector<unsigned int>	inserted = insertElementsVec(src, lastElementFirst, lastElementSec, insertOrder);
-
-	// std::cerr << "inserted: " << inserted << std::endl;
+	std::vector<unsigned int>	inserted = insertElementsVec(src, lastElementFirst,
+		lastElementSec, insertOrder);
 
 	pairsVector	res;
 
-	for (std::vector<unsigned int>::const_iterator it = inserted.begin(); it != inserted.end(); it++)
+	for (cVectorIt it = inserted.begin(); it != inserted.end(); it++)
 	{
 		for (pairsVector::const_iterator ite = origin.begin(); ite != origin.end(); ite++)
 		{
 			if (*it == (*ite).second)
 			{
 				res.push_back(std::make_pair((*ite).first, (*ite).second));
-				std::cerr << "res: " << res << std::endl;
-				continue ;
+				break ;
 			}
 		}
 	}
 
 	return (res);
 }
-

@@ -28,10 +28,12 @@ private:
 	std::list<unsigned int>	_cont;
 
 	pairsList				makePairs(std::list<unsigned int> cont);
-	std::list<unsigned int>	defineInsertOrderLi(unsigned int numberOfPairs, int lastElement);
-	std::list<unsigned int>	insertElementsLi(const pairsList &pairs, int lastElementFirst, int lastElementSecond, std::list<unsigned int> insertOrder);
+	std::list<unsigned int>	defineInsertOrderLi(unsigned int numberOfPairs,
+		int lastElement);
+	std::list<unsigned int>	insertElementsLi(const pairsList &pairs,
+		int lastElementFirst, int lastElementSecond, std::list<unsigned int> insertOrder);
 	cListIt					findSecIndex(std::list<unsigned int> &list, cListIt orderIndex);
-	unsigned int			binarySearchLi(unsigned int index, unsigned int begin, unsigned int end);
+	listIt					binarySearchLi(std::list<unsigned int> &lst, unsigned int value);
 	pairsList				makePairsOfSecond(const pairsList &src);
 	pairsList				sortSecondLi(const pairsList &src);
 	pairsList				sortPushed(const pairsList &origin, const pairsList &src);
