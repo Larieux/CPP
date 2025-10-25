@@ -79,27 +79,21 @@ std::list<unsigned int>	PmergeMeLi::sortLi()
 
 pairsList	PmergeMeLi::makePairs(std::list<unsigned int>	cont)
 {
-	pairsList	list;
-
-	cListIt it = ++(cont.begin());
-
-	cListIt ite = cont.begin();
-
-	for (; it != cont.end();)
+	pairsList list;
+	listIt it = cont.begin();
+		
+	while (it != cont.end())
 	{
-		if (*it < *ite)
-			list.push_back(std::make_pair(*it, *ite));
-		else
-			list.push_back(std::make_pair(*ite, *it));
+		unsigned int a = *it;
+		++it;
 
-		it++;
-		ite++;
 		if (it == cont.end())
-			return (list);
-		it++;
-		ite++;
-		if (it == cont.end())
-			return (list);
+			break;
+
+		unsigned int b = *it;
+		++it;
+
+		list.push_back(std::make_pair(std::min(a, b), std::max(a, b)));
 	}
 
 	return (list);
@@ -117,7 +111,7 @@ std::list<unsigned int>	PmergeMeLi::defineInsertOrderLi(unsigned int numberOfPai
 	std::list<unsigned int> jSeq;
 	jSeq.push_back(1);
 	jSeq.push_back(3);
-	while (jSeq.back() < numberOfPairs)
+	while (jSeq.back() < numberOfPairs + 1)
 	{
 		listIt last = jSeq.end();
 		--last;
@@ -220,28 +214,21 @@ listIt PmergeMeLi::binarySearchLi(std::list<unsigned int> &lst,
 
 pairsList	PmergeMeLi::makePairsOfSecond(const pairsList &src)
 {
-	pairsList	list;
-
+	pairsList list;
 	pairsList::const_iterator it = src.begin();
-	it++;
-
-	pairsList::const_iterator ite = src.begin();
-
-	for (; it != src.end();)
+		
+	while (it != src.end())
 	{
-		if ((*it).second < (*ite).second)
-			list.push_back(std::make_pair((*it).second, (*ite).second));
-		else
-			list.push_back(std::make_pair((*ite).second, (*it).second));
+		unsigned int a = (*it).second;
+		++it;
 
-		it++;
-		ite++;
 		if (it == src.end())
-			return (list);
-		it++;
-		ite++;
-		if (it == src.end())
-			return (list);
+			break;
+
+		unsigned int b = (*it).second;
+		++it;
+
+		list.push_back(std::make_pair(std::min(a, b), std::max(a, b)));
 	}
 
 	return (list);
@@ -261,7 +248,7 @@ pairsList	PmergeMeLi::sortSecondLi(const pairsList &src)
 		sortedPairsOfSecond = pairsOfSecond;
 
 	for (pairsList::const_iterator it = sortedPairsOfSecond.begin(); it != sortedPairsOfSecond.end(); it++)
-		pushedTo.push_front(*it);
+		pushedTo.push_back(*it);
 
 	if (src.size() % 2 != 0)
 		pushedTo.push_front(*(--src.end()));

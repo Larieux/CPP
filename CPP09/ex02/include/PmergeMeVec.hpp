@@ -32,7 +32,7 @@ private:
 	std::vector<unsigned int>	insertElementsVec(const pairsVector &pairs,
 		int lastElementFirst, int lastElementSecond, std::vector<unsigned int> insertOrder);
 	cVectorIt				findSecIndex(std::vector<unsigned int> &vector, cVectorIt orderIndex);
-	vectorIt				binarySearchVec(std::vector<unsigned int> &vec, unsigned int value);
+	size_t					binarySearchVec(std::vector<unsigned int> &vec, unsigned int value);
 	pairsVector				makePairsOfSecond(const pairsVector &src);
 	pairsVector				sortSecondVec(const pairsVector &src);
 	pairsVector				sortPushed(const pairsVector &origin, const pairsVector &src);
