@@ -170,7 +170,7 @@ std::list<unsigned int> PmergeMeLi::insertElementsLi(const pairsList &pairs,
 	if (lastElementFirst != -1)
 		first.push_back(lastElementFirst);
 	if (lastElementSecond != -1)
-		first.push_back(lastElementSecond);
+		seconds.push_back(lastElementSecond);
 
 	for (cListIt it = insertOrder.begin(); it != insertOrder.end(); it++)
 	{
@@ -270,17 +270,29 @@ pairsList	PmergeMeLi::sortPushed(const pairsList &origin, const pairsList &src)
 		lastElementSec, insertOrder);
 
 	pairsList	res;
+	std::vector<bool> usedIndices(origin.size(), false);
 
 	for (cListIt it = inserted.begin(); it != inserted.end(); it++)
 	{
-		for (pairsList::const_iterator ite = origin.begin(); ite != origin.end(); ite++)
+		bool found = false;
+		pairsList::const_iterator	originIt = origin.begin();
+		for (size_t i = 0; i < origin.size(); i++)
 		{
-			if (*it == (*ite).second)
+			if (usedIndices[i])
+				continue;
+
+			if (*it == (*originIt).first || *it == (*originIt).second)
 			{
-				res.push_back(std::make_pair((*ite).first, (*ite).second));
-				break ;
+				res.push_back((*originIt));
+				usedIndices[i] = true;
+				found = true;
+				originIt++;
+				break;
 			}
+			originIt++;
 		}
+		if (!found)
+			res.push_back(std::make_pair(*it, *it));
 	}
 
 	return (res);
