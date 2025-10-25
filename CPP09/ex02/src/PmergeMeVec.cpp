@@ -174,7 +174,7 @@ std::vector<unsigned int> PmergeMeVec::insertElementsVec(const pairsVector &pair
 
 	for (cVectorIt it = insertOrder.begin(); it != insertOrder.end(); it++)
 	{
-		cVectorIt	firstIndex = findSecIndex(first, it);
+		cVectorIt	firstIndex = first.begin() + *it;
 
 		size_t	findIndex = binarySearchVec(seconds, *firstIndex);
 
