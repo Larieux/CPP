@@ -6,11 +6,12 @@
 #    By: mlarieux <mlarieux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/06 18:47:20 by mlarieux          #+#    #+#              #
-#    Updated: 2025/10/24 13:39:32 by mlarieux         ###   ########.fr        #
+#    Updated: 2025/10/26 19:45:08 by mlarieux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC =	 \
+		leftBehindHandler.cpp \
 		PmergeMeLi.cpp \
 		PmergeMeVec.cpp \
 		PmergeMe.cpp \

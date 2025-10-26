@@ -155,11 +155,22 @@ std::ostream& operator<<(std::ostream& out, const std::vector<int> &src)
 	return (out);
 }
 
+
 std::ostream& operator<<(std::ostream& out, const std::list<unsigned int> &src)
 {
 	std::list<unsigned int>	tmpLi = src;
 
 	for (std::list<unsigned int>::const_iterator it = tmpLi.begin(); it != tmpLi.end(); it++)
+		out << *it << " ";
+
+	return (out);
+}
+
+std::ostream& operator<<(std::ostream& out, const std::list<int> &src)
+{
+	std::list<int>	tmpLi = src;
+
+	for (std::list<int>::const_iterator it = tmpLi.begin(); it != tmpLi.end(); it++)
 		out << *it << " ";
 
 	return (out);

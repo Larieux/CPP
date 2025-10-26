@@ -20,7 +20,7 @@ public:
 	PmergeMe();
 	PmergeMe(int argc = 0, char **argv = NULL);
 	PmergeMe(const PmergeMe &src);
-	virtual ~PmergeMe();
+	~PmergeMe();
 
 	PmergeMe &operator=(const PmergeMe &src);
 
@@ -56,5 +56,6 @@ std::ostream& operator<<(std::ostream& out, const std::vector<unsigned int> &src
 std::ostream& operator<<(std::ostream& out, const std::vector<int> &src);
 
 std::ostream& operator<<(std::ostream& out, const std::list<unsigned int> &src);
+std::ostream& operator<<(std::ostream& out, const std::list<int> &src);
 
 #endif
