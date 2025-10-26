@@ -37,19 +37,18 @@ public:
 private:
 	std::vector<unsigned int>	_cont;
 
-	t_result_vec					makePairs(std::vector<unsigned int> cont);
-	std::vector<unsigned int>	defineInsertOrderVec(unsigned int numberOfPairs,
-		intPairsVector forgottenElements);
+	t_result_vec				makePairs(std::vector<unsigned int> cont);
+	std::vector<unsigned int>	defineInsertOrderVec(unsigned int numberOfPairs);
 	std::vector<int>			insertElementsVec(const intPairsVector &pairs,
 	intPairsVector forgottenElements, std::vector<unsigned int> insertOrder);
-	cVectorIt					findSecIndex(std::vector<unsigned int> &vector, cVectorIt orderIndex);
 	intVectorIt					binarySearchVec(std::vector<int> &lst,
 		int value);
-	t_result_vec					makePairsOfSecond(const t_result_vec &src);
-	t_result_vec					sortSecondVec(const t_result_vec &src);
-	intPairsVector				sortPushed(const intPairsVector &origin, const intPairsVector &src);
+	t_result_vec				makePairsOfSecond(const t_result_vec &src);
+	t_result_vec				sortSecondVec(const t_result_vec &src);
+	intPairsVector				sortPushed(const t_result_vec &origin, const t_result_vec &src);
 };
 
+std::ostream& operator<<(std::ostream& out, const pairsVector &src);
 std::ostream& operator<<(std::ostream& out, const intPairsVector &src);
 
 #endif

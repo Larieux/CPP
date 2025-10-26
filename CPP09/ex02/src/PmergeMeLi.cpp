@@ -88,7 +88,7 @@ std::list<unsigned int>	PmergeMeLi::sortLi()
 		{
 			bool found = false;
 			for (intPairsList::const_iterator ite = pairs.pairs.begin(); ite != pairs.pairs.end(); ++ite) {
-				if (ite->second == it->second || ite->second == it->second) {
+				if (ite->first == it->second || ite->second == it->second) {
 					found = true;
 					break;
 				}
@@ -97,7 +97,7 @@ std::list<unsigned int>	PmergeMeLi::sortLi()
 				forgottenElements.push_back(std::make_pair(it->second, -1));
 		}
 	}
-	std::list<unsigned int> insertOrder = defineInsertOrderLi(sortedResult.pairs.size(), forgottenElements);
+	std::list<unsigned int> insertOrder = defineInsertOrderLi(sortedResult.pairs.size() + forgottenElements.size());
 
 	std::list<int> tmp = insertElementsLi(sortedResult.pairs, forgottenElements, insertOrder);
 
@@ -128,13 +128,11 @@ t_result_li	PmergeMeLi::makePairs(std::list<unsigned int>	cont)
 	return (list);
 }
 
-std::list<unsigned int>	PmergeMeLi::defineInsertOrderLi(unsigned int numberOfPairs,
-	intPairsList forgottenElements)
+std::list<unsigned int>	PmergeMeLi::defineInsertOrderLi(unsigned int numberOfPairs)
 {
 	std::list<unsigned int>	groupSizes;
 
 	groupSizes.push_back(1);
-	numberOfPairs += forgottenElements.size();
 
 	std::list<unsigned int> jSeq;
 	jSeq.push_back(1);
@@ -192,21 +190,27 @@ std::list<int> PmergeMeLi::insertElementsLi(const intPairsList &pairs,
 			first.push_back(it->second);
 	}
 
-	for (cListIt it = insertOrder.begin(); it != insertOrder.end(); it++)
+	for (cListIt it = insertOrder.begin(); it != insertOrder.end(); ++it)
 	{
-		cListIt	firstIndex = findSecIndex(first, it);
+		if (*it >= first.size())
+			continue;
 
-		intListIt	findIndex = binarySearchLi(second, *firstIndex);
+		cListIt valueIt = first.begin();
+		std::advance(valueIt, *it);
+		int value = *valueIt;
 
-		second.insert(findIndex, *firstIndex);
+		intListIt findIndex = binarySearchLi(second, value);
+
+		second.insert(findIndex, value);
 	}
 
 	for (cListIt it = first.begin(); it != first.end(); ++it)
 	{
-		if (std::find(second.begin(), second.end(), *it) == second.end())
+		int val = *it;
+		if (std::find(second.begin(), second.end(), val) == second.end())
 		{
-			intListIt findIndex = binarySearchLi(second, *it);
-			second.insert(findIndex, *it);
+			intListIt pos = binarySearchLi(second, val);
+			second.insert(pos, val);
 		}
 	}
 
@@ -279,7 +283,7 @@ t_result_li PmergeMeLi::sortSecondLi(const t_result_li &src)
 		recResult = pairsOfSecond;
 	}
 
-	intPairsList sorted = sortPushed(src.pairs, recResult.pairs);
+	intPairsList sorted = sortPushed(src, recResult);
 
 	t_result_li res;
 	res.pairs = sorted;
@@ -296,35 +300,30 @@ t_result_li PmergeMeLi::sortSecondLi(const t_result_li &src)
 	return (res);
 }
 
-intPairsList	PmergeMeLi::sortPushed(const intPairsList &origin, const intPairsList &src)
+intPairsList	PmergeMeLi::sortPushed(const t_result_li &origin, const t_result_li &src)
 {
-	intPairsList	forgottenElements;
+	std::list<unsigned int> insertOrder = defineInsertOrderLi(src.pairs.size() + src.leftoverPairs.size());
 
-	std::list<unsigned int>	insertOrder = defineInsertOrderLi(src.size(),
-		forgottenElements);
+	std::list<int> inserted = insertElementsLi(src.pairs, src.leftoverPairs, insertOrder);
 
-	std::list<int>	inserted = insertElementsLi(src, forgottenElements, insertOrder);
+	intPairsList res;
+	std::list<bool> used(origin.pairs.size(), false);
 
-	intPairsList	res;
-	std::vector<bool> usedIndic(origin.size(), false);
-
-	for (cIntListIt it = inserted.begin(); it != inserted.end(); it++)
+	cIntListIt insertedIt = inserted.begin();
+	for (; insertedIt != inserted.end(); ++insertedIt)
 	{
-		unsigned int j = 0;
-		for (intPairsList::const_iterator originIt = origin.begin();
-			originIt != origin.end(); ++originIt, j++)
+		intPairsList::const_iterator	originIt = origin.pairs.begin();
+		std::list<bool>::iterator	usedIt = used.begin();
+		for (; originIt != origin.pairs.end(); ++originIt, ++usedIt)
 		{
-			if (usedIndic[j])
-				continue;
-			if (*it == originIt->first || *it == originIt->second)
+			if (*insertedIt == originIt->second && !*usedIt)
 			{
 				res.push_back(*originIt);
-				usedIndic[j] = true;
+				*usedIt = true;
 				break;
 			}
 		}
 	}
-	std::cerr << "res: " << res << std::endl;
 
 	return (res);
 }

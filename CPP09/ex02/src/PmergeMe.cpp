@@ -145,6 +145,16 @@ std::ostream& operator<<(std::ostream& out, const std::vector<unsigned int> &src
 	return (out);
 }
 
+std::ostream& operator<<(std::ostream& out, const std::vector<int> &src)
+{
+	std::vector<int>	tmpVec = src;
+
+	for (std::vector<int>::const_iterator it = tmpVec.begin(); it != tmpVec.end(); it++)
+		out << *it << " ";
+
+	return (out);
+}
+
 std::ostream& operator<<(std::ostream& out, const std::list<unsigned int> &src)
 {
 	std::list<unsigned int>	tmpLi = src;

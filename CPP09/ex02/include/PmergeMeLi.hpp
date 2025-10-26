@@ -37,9 +37,8 @@ public:
 private:
 	std::list<unsigned int>	_cont;
 
-	t_result_li			makePairs(std::list<unsigned int> cont);
-	std::list<unsigned int>	defineInsertOrderLi(unsigned int numberOfPairs,
-		intPairsList forgottenElements);
+	t_result_li				makePairs(std::list<unsigned int> cont);
+	std::list<unsigned int>	defineInsertOrderLi(unsigned int numberOfPairs);
 	std::list<int>			insertElementsLi(const intPairsList &pairs,
 	intPairsList forgottenElements, std::list<unsigned int> insertOrder);
 	cListIt					findSecIndex(std::list<unsigned int> &list, cListIt orderIndex);
@@ -47,7 +46,7 @@ private:
 		int value);
 	t_result_li				makePairsOfSecond(const t_result_li &src);
 	t_result_li				sortSecondLi(const t_result_li &src);
-	intPairsList			sortPushed(const intPairsList &origin, const intPairsList &src);
+	intPairsList			sortPushed(const t_result_li &origin, const t_result_li &src);
 
 };
 

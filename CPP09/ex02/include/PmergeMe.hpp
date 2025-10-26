@@ -53,6 +53,7 @@ private:
 };
 
 std::ostream& operator<<(std::ostream& out, const std::vector<unsigned int> &src);
+std::ostream& operator<<(std::ostream& out, const std::vector<int> &src);
 
 std::ostream& operator<<(std::ostream& out, const std::list<unsigned int> &src);
 
