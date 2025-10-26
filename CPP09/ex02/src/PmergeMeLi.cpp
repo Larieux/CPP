@@ -267,7 +267,6 @@ leftBehindHandler	PmergeMeLi::makePairsOfSecond(const leftBehindHandler &src)
 	intPairsList					list;
 	leftBehindHandler				res;
 	intPairsList					leftOver;
-	bool hasLeftover = false;
 
 	unsigned int a;
 
@@ -277,7 +276,6 @@ leftBehindHandler	PmergeMeLi::makePairsOfSecond(const leftBehindHandler &src)
 		if (it == srcCpy.end())
 		{
 			leftOver.push_back(std::make_pair(a, -1));
-			hasLeftover = true;
 			break;
 		}
 		unsigned int b = (it++)->second;
