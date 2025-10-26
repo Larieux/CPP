@@ -3,10 +3,20 @@
 
 #include "PmergeMe.hpp"
 
+typedef std::pair< int, int >						intPair;
+typedef std::vector< intPair >						intPairsVector;
+typedef std::vector<int>::const_iterator			cIntVectorIt;
+typedef std::vector<int>::iterator					intVectorIt;
 typedef std::pair< unsigned int, unsigned int >		basePair;
 typedef std::vector< basePair >						pairsVector;
 typedef std::vector<unsigned int>::const_iterator	cVectorIt;
 typedef std::vector<unsigned int>::iterator			vectorIt;
+
+typedef struct s_result_vec
+{
+	intPairsVector	pairs;
+	intPairsVector	leftoverPairs;
+}					t_result_vec;
 
 class PmergeMeVec
 {
@@ -27,15 +37,19 @@ public:
 private:
 	std::vector<unsigned int>	_cont;
 
-	pairsVector				makePairs(std::vector<unsigned int> cont);
-	std::vector<unsigned int>	defineInsertOrderVec(unsigned int numberOfPairs, int lastElement);
-	std::vector<unsigned int>	insertElementsVec(const pairsVector &pairs,
-		int lastElementFirst, int lastElementSecond, std::vector<unsigned int> insertOrder);
-	cVectorIt				findSecIndex(std::vector<unsigned int> &vector, cVectorIt orderIndex);
-	size_t					binarySearchVec(std::vector<unsigned int> &vec, unsigned int value);
-	pairsVector				makePairsOfSecond(const pairsVector &src);
-	pairsVector				sortSecondVec(const pairsVector &src);
-	pairsVector				sortPushed(const pairsVector &origin, const pairsVector &src);
+	t_result_vec					makePairs(std::vector<unsigned int> cont);
+	std::vector<unsigned int>	defineInsertOrderVec(unsigned int numberOfPairs,
+		intPairsVector forgottenElements);
+	std::vector<int>			insertElementsVec(const intPairsVector &pairs,
+	intPairsVector forgottenElements, std::vector<unsigned int> insertOrder);
+	cVectorIt					findSecIndex(std::vector<unsigned int> &vector, cVectorIt orderIndex);
+	intVectorIt					binarySearchVec(std::vector<int> &lst,
+		int value);
+	t_result_vec					makePairsOfSecond(const t_result_vec &src);
+	t_result_vec					sortSecondVec(const t_result_vec &src);
+	intPairsVector				sortPushed(const intPairsVector &origin, const intPairsVector &src);
 };
+
+std::ostream& operator<<(std::ostream& out, const intPairsVector &src);
 
 #endif

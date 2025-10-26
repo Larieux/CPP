@@ -11,6 +11,7 @@
 #include <stdexcept>
 #include <vector>
 #include <list>
+#include <set>
 #include <algorithm>
 
 class PmergeMe
