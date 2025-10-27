@@ -67,7 +67,7 @@ void RPN::compute(std::string const &expression)
 		std::string token;
 		while (stream >> token) {
 			if (isdigit(token[0])) {
-				int num = atoi(token.c_str());
+				int num = std::atoi(token.c_str());
 				if (num > 9) {
 					throw (std::invalid_argument("Invalid token: " + token));
 				}
