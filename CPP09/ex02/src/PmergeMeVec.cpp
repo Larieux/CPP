@@ -68,48 +68,10 @@ std::vector<unsigned int>	PmergeMeVec::sortVec()
 
 	leftBehindHandler sortedResult = sortSecondVec(pairs);
 
-	intPairsVector forgottenElements;
-	intPairsVector	SRCpy = sortedResult.getPairsVec();
-	for (intPairsVector::const_iterator it = SRCpy.begin();
-		it != SRCpy.end(); it++)
-	{
-		if (it->first != -1)
-		{
-			bool found = false;
-			intPairsVector	pairsCpy = pairs.getPairsVec();
-			for (intPairsVector::const_iterator ite = pairsCpy.begin();
-					ite != pairsCpy.end(); ++ite)
-			{
-				if (ite->first == it->first || ite->second == it->first)
-				{
-					found = true;
-					break;
-				}
-			}
-			if (!found && it->first != -1)
-				forgottenElements.push_back(std::make_pair(it->first, -1));
-		}
-		if (it->second != -1)
-		{
-			bool found = false;
-			intPairsVector	pairsCpy = pairs.getPairsVec();
-			for (intPairsVector::const_iterator ite = pairsCpy.begin();
-					ite != pairsCpy.end(); ++ite)
-			{
-				if (ite->first == it->second || ite->second == it->second)
-				{
-					found = true;
-					break;
-				}
-			}
-			if (!found && it->second != -1)
-				forgottenElements.push_back(std::make_pair(it->second, -1));
-		}
-	}
 	std::vector<unsigned int> insertOrder = defineInsertOrderVec(sortedResult.getPairsVec().size()
-		+ forgottenElements.size());
+		+ sortedResult.getLeftOversVec().size());
 
-	std::vector<int> tmp = insertElementsVec(sortedResult.getPairsVec(), forgottenElements, insertOrder);
+	std::vector<int> tmp = insertElementsVec(sortedResult, insertOrder);
 
 	std::vector<unsigned int> res(tmp.begin(), tmp.end());
 
@@ -186,19 +148,25 @@ std::vector<unsigned int>	PmergeMeVec::defineInsertOrderVec(unsigned int numberO
 	return (indexOrder);
 }
 
-std::vector<int> PmergeMeVec::insertElementsVec(const intPairsVector &pairs,
-	intPairsVector forgottenElements, std::vector<unsigned int> insertOrder)
+std::vector<int> PmergeMeVec::insertElementsVec(const leftBehindHandler &src,
+	std::vector<unsigned int> insertOrder)
 {
-	std::vector<unsigned int> first;
-	for (intPairsVector::const_iterator it = pairs.begin(); it != pairs.end(); it++)
-		first.push_back((*it).first);
-
+	std::vector<int>	first;
 	std::vector<int>	second;
-	for (intPairsVector::const_iterator it = pairs.begin(); it != pairs.end(); it++)
-		second.push_back((*it).second);
+	intPairsVector	srcPairs = src.getPairsVec();
 
-	for (intPairsVector::const_iterator it = forgottenElements.begin();
-		it != forgottenElements.end(); it++)
+	for (intPairsVector::const_iterator it = srcPairs.begin(); it != srcPairs.end(); it++)
+	{
+		if (it->first != -1 && std::find(first.begin(), first.end(), it->first) == first.end())
+			first.push_back(it->first);
+		if (it->second != -1 && std::find(second.begin(), second.end(), it->second) == second.end())
+			second.push_back(it->second);
+	}
+
+	srcPairs.clear();
+	srcPairs = src.getLeftOversVec();
+	for (intPairsVector::const_iterator it = srcPairs.begin();
+		it != srcPairs.end(); it++)
 	{
 		if (it->first != -1 && std::find(first.begin(), first.end(), it->first) == first.end())
 			first.push_back(it->first);
@@ -260,6 +228,7 @@ leftBehindHandler	PmergeMeVec::makePairsOfSecond(const leftBehindHandler &src)
 
 	unsigned int a;
 
+	leftOver = src.getLeftOversVec();
 
 	for (; it != srcCpy.end();)
 	{
@@ -285,45 +254,34 @@ leftBehindHandler PmergeMeVec::sortSecondVec(const leftBehindHandler &src)
 	leftBehindHandler recResult;
 	if (pairsOfSecond.getPairsVec().size() > 1)
 		recResult = sortSecondVec(pairsOfSecond);
-	else {
+	else
 		recResult = pairsOfSecond;
-	}
 
 	intPairsVector sorted = sortPushed(src, recResult);
 
 	leftBehindHandler	res;
-	intPairsVector		pairs;
-	intPairsVector		leftOver;
-	pairs = sorted;
-	leftOver = src.getLeftOversVec();
-	intPairsVector	recRes = recResult.getPairsVec();
-	for (intPairsVector::const_iterator it = recRes.begin();
-		it != recRes.end(); it++)
-	{
-		if (it->first != -1)
-			leftOver.push_back(std::make_pair(it->first, -1));
-		if (it->second != -1)
-			leftOver.push_back(std::make_pair(it->second, -1));
-	}
 
-	res.setPairsVec(pairs);
-	res.setLeftOversVec(leftOver);
+	res.setPairsVec(sorted);
 	
 	return (res);
 }
 
-intPairsVector	PmergeMeVec::sortPushed(const leftBehindHandler &origin,
-	const leftBehindHandler &src)
+intPairsVector	PmergeMeVec::sortPushed(const leftBehindHandler &origin
+	, const leftBehindHandler &src)
 {
 	std::vector<unsigned int>	insertOrder = defineInsertOrderVec(src.getPairsVec().size()
 		+ src.getLeftOversVec().size());
 
-	std::vector<int>	inserted = insertElementsVec(src.getPairsVec(), src.getLeftOversVec(), insertOrder);
+	std::vector<int>	inserted = insertElementsVec(src, insertOrder);
 
 	intPairsVector	res;
 
 	intPairsVector		ori = origin.getPairsVec();
+	intPairsVector		oriLeftOver = origin.getLeftOversVec();
+
 	std::vector<bool>	used(ori.size(), false);
+	std::vector<bool>	usedLeftOver(oriLeftOver.size(), false);
+
 	for (size_t i = 0; i < inserted.size(); ++i)
 	{
 		for (size_t j = 0; j < ori.size(); j++)
@@ -332,6 +290,16 @@ intPairsVector	PmergeMeVec::sortPushed(const leftBehindHandler &origin,
 			{
 				res.push_back(ori[j]);
 				used[j] = true;
+				break;
+			}
+		}
+		for (size_t j = 0; j < oriLeftOver.size(); j++)
+		{
+			if ((inserted[i] == oriLeftOver[j].first || inserted[i] == oriLeftOver[j].second)
+				&& !usedLeftOver[j])
+			{
+				res.push_back(oriLeftOver[j]);
+				usedLeftOver[j] = true;
 				break;
 			}
 		}

@@ -32,14 +32,14 @@ private:
 	std::vector<unsigned int>	_cont;
 
 	leftBehindHandler				makePairs(std::vector<unsigned int> cont);
-	std::vector<unsigned int>	defineInsertOrderVec(unsigned int numberOfPairs);
-	std::vector<int>			insertElementsVec(const intPairsVector &pairs,
-	intPairsVector forgottenElements, std::vector<unsigned int> insertOrder);
-	intVectorIt					binarySearchVec(std::vector<int> &lst,
+	std::vector<unsigned int>		defineInsertOrderVec(unsigned int numberOfPairs);
+	std::vector<int>				insertElementsVec(const leftBehindHandler &src,
+		std::vector<unsigned int> insertOrder);
+	intVectorIt						binarySearchVec(std::vector<int> &lst,
 		int value);
 	leftBehindHandler				makePairsOfSecond(const leftBehindHandler &src);
 	leftBehindHandler				sortSecondVec(const leftBehindHandler &src);
-	intPairsVector				sortPushed(const leftBehindHandler &origin,
+	intPairsVector					sortPushed(const leftBehindHandler &origin,
 		const leftBehindHandler &src);
 };
 

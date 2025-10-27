@@ -31,16 +31,15 @@ public:
 private:
 	std::list<unsigned int>	_cont;
 
-	leftBehindHandler				makePairs(std::list<unsigned int> cont);
-	std::list<unsigned int>	defineInsertOrderLi(unsigned int numberOfPairs);
-	std::list<int>			insertElementsLi(const intPairsList &pairs,
-	intPairsList forgottenElements, std::list<unsigned int> insertOrder);
-	cListIt					findSecIndex(std::list<unsigned int> &list, cListIt orderIndex);
-	intListIt				binarySearchLi(std::list<int> &lst,
+	leftBehindHandler			makePairs(std::list<unsigned int> cont);
+	std::list<unsigned int>		defineInsertOrderLi(unsigned int numberOfPairs);
+	std::list<int>				insertElementsLi(const leftBehindHandler &src,
+		std::list<unsigned int> insertOrder);
+	intListIt					binarySearchLi(std::list<int> &lst,
 		int value);
-	leftBehindHandler				makePairsOfSecond(const leftBehindHandler &src);
-	leftBehindHandler				sortSecondLi(const leftBehindHandler &src);
-	intPairsList			sortPushed(const leftBehindHandler &origin,
+	leftBehindHandler			makePairsOfSecond(const leftBehindHandler &src);
+	leftBehindHandler			sortSecondLi(const leftBehindHandler &src);
+	intPairsList				sortPushed(const leftBehindHandler &origin,
 		const leftBehindHandler &src);
 
 };

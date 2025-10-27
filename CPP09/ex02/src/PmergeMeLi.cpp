@@ -68,47 +68,10 @@ std::list<unsigned int>	PmergeMeLi::sortLi()
 
 	leftBehindHandler sortedResult = sortSecondLi(pairs);
 
-	intPairsList forgottenElements;
-	intPairsList	SRCpy = sortedResult.getPairsLi();
-	for (intPairsList::const_iterator it = SRCpy.begin();
-		it != SRCpy.end(); it++)
-	{
-		if (it->first != -1)
-		{
-			bool found = false;
-			intPairsList	pairsCpy = pairs.getPairsLi();
-			for (intPairsList::const_iterator ite = pairsCpy.begin();
-					ite != pairsCpy.end(); ++ite)
-			{
-				if (ite->first == it->first || ite->second == it->first)
-				{
-					found = true;
-					break;
-				}
-			}
-			if (!found && it->first != -1)
-				forgottenElements.push_back(std::make_pair(it->first, -1));
-		}
-		if (it->second != -1)
-		{
-			bool found = false;
-			intPairsList	pairsCpy = pairs.getPairsLi();
-			for (intPairsList::const_iterator ite = pairsCpy.begin();
-					ite != pairsCpy.end(); ++ite)
-			{
-				if (ite->first == it->second || ite->second == it->second)
-				{
-					found = true;
-					break;
-				}
-			}
-			if (!found && it->second != -1)
-				forgottenElements.push_back(std::make_pair(it->second, -1));
-		}
-	}
-	std::list<unsigned int> insertOrder = defineInsertOrderLi(sortedResult.getPairsLi().size() + forgottenElements.size());
+	std::list<unsigned int> insertOrder = defineInsertOrderLi(sortedResult.getPairsLi().size()
+		+ sortedResult.getLeftOversLi().size());
 
-	std::list<int> tmp = insertElementsLi(sortedResult.getPairsLi(), forgottenElements, insertOrder);
+	std::list<int> tmp = insertElementsLi(sortedResult, insertOrder);
 
 	std::list<unsigned int> res(tmp.begin(), tmp.end());
 
@@ -185,18 +148,25 @@ std::list<unsigned int>	PmergeMeLi::defineInsertOrderLi(unsigned int numberOfPai
 	return (indexOrder);
 }
 
-std::list<int> PmergeMeLi::insertElementsLi(const intPairsList &pairs,
-	intPairsList forgottenElements, std::list<unsigned int> insertOrder)
+std::list<int>	PmergeMeLi::insertElementsLi(const leftBehindHandler &src,
+	std::list<unsigned int> insertOrder)
 {
-	std::list<unsigned int> first;
-	for (intPairsList::const_iterator it = pairs.begin(); it != pairs.end(); it++)
-		first.push_back((*it).first);
-
+	std::list<int>	first;
 	std::list<int>	second;
-	for (intPairsList::const_iterator it = pairs.begin(); it != pairs.end(); it++)
-		second.push_back((*it).second);
+	intPairsList	srcPairs = src.getPairsLi();
 
-	for (intPairsList::const_iterator it = forgottenElements.begin(); it != forgottenElements.end(); it++)
+	for (intPairsList::const_iterator it = srcPairs.begin(); it != srcPairs.end(); it++)
+	{
+		if (it->first != -1 && std::find(first.begin(), first.end(), it->first) == first.end())
+			first.push_back(it->first);
+		if (it->second != -1 && std::find(second.begin(), second.end(), it->second) == second.end())
+			second.push_back(it->second);
+	}
+
+	srcPairs.clear();
+	srcPairs = src.getLeftOversLi();
+	for (intPairsList::const_iterator it = srcPairs.begin();
+		it != srcPairs.end(); it++)
 	{
 		if (it->first != -1 && std::find(first.begin(), first.end(), it->first) == first.end())
 			first.push_back(it->first);
@@ -209,7 +179,7 @@ std::list<int> PmergeMeLi::insertElementsLi(const intPairsList &pairs,
 		if (*it >= first.size())
 			continue;
 
-		cListIt valueIt = first.begin();
+		cIntListIt valueIt = first.begin();
 		std::advance(valueIt, *it);
 		int value = *valueIt;
 
@@ -218,7 +188,7 @@ std::list<int> PmergeMeLi::insertElementsLi(const intPairsList &pairs,
 		second.insert(findIndex, value);
 	}
 
-	for (cListIt it = first.begin(); it != first.end(); ++it)
+	for (cIntListIt it = first.begin(); it != first.end(); ++it)
 	{
 		int val = *it;
 		if (std::find(second.begin(), second.end(), val) == second.end())
@@ -229,16 +199,6 @@ std::list<int> PmergeMeLi::insertElementsLi(const intPairsList &pairs,
 	}
 
 	return (second);
-}
-
-cListIt	PmergeMeLi::findSecIndex(std::list<unsigned int> &list, cListIt orderIndex)
-{
-	cListIt	res = list.begin();
-
-	for (unsigned int i = 0; i < *orderIndex; i++)
-		res++;
-
-	return (res);
 }
 
 intListIt PmergeMeLi::binarySearchLi(std::list<int> &lst,
@@ -269,6 +229,8 @@ leftBehindHandler	PmergeMeLi::makePairsOfSecond(const leftBehindHandler &src)
 	intPairsList					leftOver;
 
 	unsigned int a;
+
+	leftOver = src.getLeftOversLi();
 
 	for (; it != srcCpy.end();)
 	{
@@ -301,44 +263,48 @@ leftBehindHandler PmergeMeLi::sortSecondLi(const leftBehindHandler &src)
 	intPairsList sorted = sortPushed(src, recResult);
 
 	leftBehindHandler	res;
-	intPairsList		pairs;
-	intPairsList		leftOver;
-	pairs = sorted;
-	leftOver = src.getLeftOversLi();
-	intPairsList	recRes = recResult.getPairsLi();
-	for (intPairsList::const_iterator it = recRes.begin();
-		it != recRes.end(); it++)
-	{
-		if (it->first != -1)
-			leftOver.push_back(std::make_pair(it->first, -1));
-		if (it->second != -1)
-			leftOver.push_back(std::make_pair(it->second, -1));
-	}
 
-	res.setPairsLi(pairs);
-	res.setLeftOversLi(leftOver);
+	res.setPairsLi(sorted);
 
 	return (res);
 }
 
-intPairsList	PmergeMeLi::sortPushed(const leftBehindHandler &origin, const leftBehindHandler &src)
+intPairsList	PmergeMeLi::sortPushed(const leftBehindHandler &origin
+	, const leftBehindHandler &src)
 {
-	std::list<unsigned int> insertOrder = defineInsertOrderLi(src.getPairsLi().size() + src.getLeftOversLi().size());
+	std::list<unsigned int> insertOrder = defineInsertOrderLi(src.getPairsLi().size()
+		+ src.getLeftOversLi().size());
 
-	std::list<int> inserted = insertElementsLi(src.getPairsLi(), src.getLeftOversLi(), insertOrder);
+	std::list<int> inserted = insertElementsLi(src, insertOrder);
 
 	intPairsList res;
-	std::list<bool> used(origin.getPairsLi().size(), false);
+
+	intPairsList		ori = origin.getPairsLi();
+	intPairsList		oriLeftOver = origin.getLeftOversLi();
+
+	std::list<bool>	used(ori.size(), false);
+	std::list<bool>	usedLeftOver(oriLeftOver.size(), false);
 
 	cIntListIt insertedIt = inserted.begin();
-	intPairsList	ori = origin.getPairsLi();
-	for (; insertedIt != inserted.end(); ++insertedIt)
+	for (; insertedIt != inserted.end(); insertedIt++)
 	{
 		intPairsList::const_iterator	originIt = ori.begin();
 		std::list<bool>::iterator	usedIt = used.begin();
-		for (; originIt != ori.end(); ++originIt, ++usedIt)
+		for (; originIt != ori.end(); originIt++, usedIt++)
 		{
 			if (*insertedIt == originIt->second && !*usedIt)
+			{
+				res.push_back(*originIt);
+				*usedIt = true;
+				break;
+			}
+		}
+		originIt = oriLeftOver.begin();
+		usedIt = usedLeftOver.begin();
+		for (; originIt != oriLeftOver.end(); originIt++, usedIt++)
+		{
+			if ((*insertedIt == originIt->first || *insertedIt == originIt->second)
+				&& !*usedIt)
 			{
 				res.push_back(*originIt);
 				*usedIt = true;
