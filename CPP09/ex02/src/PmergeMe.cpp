@@ -128,10 +128,10 @@ void	PmergeMe::printOutput(int argc)
 	std::cout	<< "Before:\t\t" << _cont << "\n"
 				<< "After (v):\t" << sortedVec << "\n"
 				<< "After (l):\t" << sortedLi << "\n"
-				<< "Time to process a range of " << argc << "\telements with std::vector:\t" 
-				<< timeVector * 1000 << "\tµs" << "\n"
-				<< "Time to process a range of " << argc << "\telements with std::list:\t" 
-				<< timeList * 1000 << "\tµs" << std::endl;
+				<< "Time to process a range of " << argc - 1 << "\telements with std::vector:\t" 
+				<< timeVector << "\tns" << "\n"
+				<< "Time to process a range of " << argc - 1 << "\telements with std::list:\t" 
+				<< timeList << "\tns" << std::endl;
 }
 
 

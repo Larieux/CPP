@@ -45,7 +45,7 @@ public:
 
 private:
 	std::vector<unsigned int>	_cont;
-	long						timeVector, timeList;
+	unsigned long long					timeVector, timeList;
 
 	std::vector<unsigned int>	sortedVec;
 	std::list<unsigned int>		sortedLi;
